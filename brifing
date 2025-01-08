@@ -1,0 +1,8 @@
+<title>HTML Tutorial</title>
+Tecnologías y Herramientas
+Docker: Plataforma principal para la virtualización y orquestación de los contenedores.
+Servidor Apache: Para hostear la página web.
+Servidor ProFTPd o vsftpd: Para el manejo del servidor FTP.
+Bind9 o dnsmasq: Para la configuración de servicios DNS y DHCP.
+Emuladores Retro: Software adicional para ejecutar videojuegos retro (por ejemplo, RetroArch o Mednafen).
+Lenguajes Web: HTML, CSS, JavaScript (opcional para dinamismo en la web).
