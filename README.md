@@ -34,37 +34,54 @@ A futuro, todos los componentes clave (el servidor web, el servidor FTP, e inclu
 
 El sistema completo se configura para que los usuarios puedan acceder al sitio web, donde el servidor Apache proporcionará la interfaz de usuario para seleccionar y jugar títulos retro. A continuación, explico cómo interactúan los diferentes componentes:
 
+
 1. Servidor Web (Apache) con el Sitio de Emulación
 
-El servidor Apache se encarga de servir el sitio web (HTML, CSS, JavaScript) que permite a los usuarios interactuar con el emulador MAME.
+  El servidor Apache se encarga de servir el sitio web (HTML, CSS, JavaScript) que permite a los usuarios interactuar con el emulador MAME.
 
-El emulador MAME se ejecuta en el navegador y carga los juegos desde el servidor FTP que almacena las ROMs.
+  El emulador MAME se ejecuta en el navegador y carga los juegos desde el servidor FTP que almacena las ROMs.
 
-Funcionalidades:
+  Funcionalidades:
 
-Alojamiento del sitio web: Apache sirve todos los archivos estáticos (HTML, CSS, JS) que permiten la navegación por el catálogo de juegos.
-Integración con MAME: El emulador en el navegador se conecta al servidor FTP para obtener las ROMs necesarias.
-Seguridad HTTPS: Asegurar la comunicación con el servidor mediante cifrado SSL/TLS.
+    Alojamiento del sitio web: Apache sirve todos los archivos estáticos (HTML, CSS, JS) que permiten la navegación por el catálogo de juegos.
+  
+    Integración con MAME: El emulador en el navegador se conecta al servidor FTP para obtener las ROMs necesarias.
+  
+    Seguridad HTTPS: Asegurar la comunicación con el servidor mediante cifrado SSL/TLS.
+
 2. Servidor FTP (vsftpd)
-El servidor FTP aloja las ROMs de los juegos retro y facilita su acceso al emulador MAME cuando un usuario selecciona un juego.
-Funcionalidades:
 
-Almacenamiento y acceso a ROMs: Los juegos (archivos ROM) se almacenan en el servidor FTP y son accedidos por el emulador MAME a través de conexiones FTP.
-Configuración de permisos: Asegurarse de que los permisos del servidor FTP están correctamente configurados para permitir el acceso sólo al emulador y a los administradores autorizados.
+  El servidor FTP aloja las ROMs de los juegos retro y facilita su acceso al emulador MAME cuando un usuario selecciona un juego.
+
+  Funcionalidades:
+
+    Almacenamiento y acceso a ROMs: Los juegos (archivos ROM) se almacenan en el servidor FTP y son accedidos por el emulador MAME a través de conexiones FTP.
+    
+    Configuración de permisos: Asegurarse de que los permisos del servidor FTP están correctamente configurados para permitir el acceso sólo al emulador y a los administradores autorizados.
+
 3. Servidor DNS
+
 El servidor DNS se encarga de la resolución de nombres de dominio para el sitio web. Por ejemplo, cuando un usuario ingresa una URL como www.retroarch.com, el servidor DNS resuelve este nombre a la dirección IP correcta.
+
 Funcionalidades:
 
-Resolución de nombres: Traduce los dominios asociados con el sitio web (y otros servicios internos si es necesario).
-Manejo de subdominios: Si se usa un subdominio para las ROMs (por ejemplo, roms.retroarch.com), el servidor DNS se encarga de redirigir las solicitudes al servidor FTP o al servidor adecuado.
-Redundancia: En caso de que el servidor DNS esté fuera de línea, se pueden usar servicios DNS externos como Google DNS o Cloudflare como respaldo.
+    Resolución de nombres: Traduce los dominios asociados con el sitio web (y otros servicios internos si es necesario).
+ 
+    Manejo de subdominios: Si se usa un subdominio para las ROMs (por ejemplo, roms.retroarch.com), el servidor DNS se encarga de redirigir las solicitudes al servidor FTP o al servidor adecuado.
+ 
+    Redundancia: En caso de que el servidor DNS esté fuera de línea, se pueden usar servicios DNS externos como Google DNS o Cloudflare como respaldo.
+
 4. Servidor DHCP
-El servidor DHCP asigna dinámicamente direcciones IP a los dispositivos dentro de la red interna de tu infraestructura. Este servidor no interactúa directamente con el sitio web, pero es crucial para la asignación de IPs en una red local, especialmente si tienes varias máquinas de prueba o servidores internos.
-Funcionalidades:
 
-Asignación de IPs: Los dispositivos que se conecten a la red recibirán automáticamente una dirección IP.
-Configuración de rango de IPs: Se pueden configurar rangos específicos de direcciones IP para diferentes tipos de dispositivos, como servidores o estaciones de trabajo.
-Facilitación de pruebas: Si el sitio va a ser probado en una red interna antes de su lanzamiento, DHCP facilita la configuración automática de los dispositivos.
+  El servidor DHCP asigna dinámicamente direcciones IP a los dispositivos dentro de la red interna de tu infraestructura. Este servidor no interactúa directamente con el sitio web, pero es crucial para la asignación de IPs en una red local, especialmente si tienes     varias máquinas de prueba o servidores internos.
+
+  Funcionalidades:
+
+    Asignación de IPs: Los dispositivos que se conecten a la red recibirán automáticamente una dirección IP.
+  
+    Configuración de rango de IPs: Se pueden configurar rangos específicos de direcciones IP para diferentes tipos de dispositivos, como servidores o estaciones de trabajo.
+  
+    Facilitación de pruebas: Si el sitio va a ser probado en una red interna antes de su lanzamiento, DHCP facilita la configuración automática de los dispositivos.
 
 
 
