@@ -64,9 +64,7 @@ Diseñar y desplegar una infraestructura basada en contenedores Docker que permi
 4. **Servidor DHCP**
     - Asignará direcciones IP de forma dinámica a clientes en la red.
     - Herramienta sugerida: ISC DHCP Server.
-5. **Servidor LDAP** 
-    - Centralizará la autenticación de usuarios en tu infraestructura.
-    - Herramienta sugerida: OpenLDAP.
+
 
 
 # 🛠️"configuracios que se se haran"
@@ -89,10 +87,8 @@ Proyecto_Final/
 │   └── Dockerfile        # Configuración para el servidor DNS
 │
 ├── dhcp/
-│   └── Dockerfile        # Configuración para el servidor DHCP
-│
-└── ldap/
-    └── Dockerfile        # Configuración para OpenLDAP
+    └── Dockerfile        # Configuración para el servidor DHCP
+
 
 ```
 
@@ -126,18 +122,13 @@ Aquí te dejo un ejemplo básico de un archivo <ins>docker-compose.yml</ins> que
     COPY dhcpd.conf /etc/dhcp/dhcpd.conf
     CMD ["dhcpd", "-f"]
 
-**LDAP (Dockerfile):**
-
-    FROM osixia/openldap:latest
-    ENV LDAP_ORGANISATION="My Organization"
-    ENV LDAP_DOMAIN="example.com"
     
 
 ## 🌐 Interconexión de Servicios
 El uso de una red interna (<ins>internal_net</ins>) en Docker permite que todos los contenedores se comuniquen de manera eficiente y segura.
 Puedes configurar el **Apache** como proxy inverso para redirigir tráfico HTTP hacia otros contenedores si es necesario.
-El servidor **LDAP** puede usarse para centralizar usuarios y contraseñas para FTP, Apache u otros servicios.
-¡Suena como un proyecto muy completo e interesante! 😊 Integrar **Docker* con varios servicios como **Apache, FTP, DNS, DHCP y LDAP** es una excelente manera de demostrar habilidades en infraestructura y virtualización. Aquí te dejo un esquema claro y sugerencias para estructurar tu proyecto.
+
+¡Suena como un proyecto muy completo e interesante! 😊 Integrar **Docker* con varios servicios como **Apache, FTP, DNS, DHCP** es una excelente manera de demostrar habilidades en infraestructura y virtualización. Aquí te dejo un esquema claro y sugerencias para estructurar tu proyecto.
 
 .
 ---
