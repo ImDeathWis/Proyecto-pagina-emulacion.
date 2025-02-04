@@ -27,7 +27,7 @@ Separar servicios como DNS y DHCP del servidor web y FTP mejora la modularidad. 
 
 Se planea empaquetar los componentes clave (servidor web, FTP, emulador MAME) en contenedores Docker para optimizar la gestión y escalabilidad.
 
-## 👷🏻‏Funcionamiento General👷🏻‏
+##👷🏻Funcionamiento General👷🏻
 
 El sistema permite a los usuarios acceder al sitio web, donde Apache sirve la interfaz para seleccionar y jugar títulos retro. Los componentes interactúan de la siguiente manera:
 
