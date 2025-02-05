@@ -1,4 +1,4 @@
-# 🎮​👾​🕹️​RetroArch🕹️​👾​🎮
+# 🎮​👾​🕹️​RetroGold🕹️​👾​🎮
 
 ![DALL·E 2025-01-29 10 42 36 - A neon-style logo for a website called 'Retro Gold'  The design should incorporate an arcade theme with a retro-futuristic aesthetic  The color palett](https://github.com/user-attachments/assets/e8d85532-bad1-464d-8d1b-57406362fe65)
 
