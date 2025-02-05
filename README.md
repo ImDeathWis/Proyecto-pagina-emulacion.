@@ -2,6 +2,11 @@
 
 RetroArch es tu portal para revivir los mejores clásicos de los videojuegos, potenciado por el emulador MAME. Ofrecemos una experiencia única para los amantes de los juegos retro, permitiéndote disfrutar de títulos icónicos que marcaron la época dorada de los salones recreativos.
 
+## 🛠️Mapa de la Red🛠️​
+
+![Frame 6](https://github.com/user-attachments/assets/0c022f26-0552-4fd4-bb8d-4b42ee07a960)
+
+
 ## 🛠️​Arquitectura del Sistema🛠️​
 
 ### Componentes Principales:
