@@ -95,7 +95,31 @@ Las principales tecnologías que se utilizarán en el proyecto incluyen:
   - **HTML, CSS y JavaScript** para la creación del frontend.  
 
 - **Gestión y Control de Versiones:**  
-  - **GitHub** para el control de versiones y almacenamiento del proyecto.  
+  - **GitHub** para el control de versiones y almacenamiento del proyecto.
+    
+---
+
+## 🔹 Hardware a Utilizar  
+Se necesitará un hardware adecuado para soportar las MV y la emulación de juegos retro.  
+
+### **Requisitos mínimos por Máquina Virtual (MV)**  
+✅ **Servidor Principal** (MV con Apache, FTP, RetroArch)  
+- CPU: **4 núcleos**  
+- RAM: **4 GB**  
+- Almacenamiento: **40 GB SSD**  
+- Tarjeta de Red: **1 Gbps**  
+
+✅ **Servidor DNS/DHCP y Firewall (MV con Bind9, ISC DHCP y Sophos Firewall)**  
+- CPU: **2 núcleos**  
+- RAM: **2 GB**  
+- Almacenamiento: **20 GB SSD**  
+- Tarjeta de Red: **1 Gbps**  
+
+✅ **Máquina Física para Virtualización (Host)**  
+- Procesador: **Intel i5/i7 o AMD Ryzen 5/7**  
+- RAM: **8-16 GB**  
+- Almacenamiento: **SSD de 256GB+**  
+- Conectividad: **Wi-Fi y Ethernet** 
 
 ## 💻​Servicios Utilizados💻​
 
@@ -104,6 +128,19 @@ Las principales tecnologías que se utilizarán en el proyecto incluyen:
 - DHCP
 - VSFTPD
 - Sophos
+  
+---
+
+## 🔹 Sistemas Operativos a Utilizar  
+El proyecto utilizará principalmente sistemas basados en Linux por su estabilidad y compatibilidad con los servicios requeridos.  
+
+| **Sistema Operativo** | **Uso en el Proyecto** | **Versión Recomendada** |
+|----------------------|----------------------|------------------------|
+| **Ubuntu Server** | Base para todas las máquinas virtuales (MV). | **Ubuntu Server 22.04 LTS** |
+| **Ubuntu Desktop** | Para desarrollo y pruebas en entornos gráficos. | **Ubuntu 22.04 LTS** |
+| **Sophos Firewall OS** | Seguridad y control de tráfico de red. | **Sophos XG / UTM** |
+| **Docker OS (Linux)** | Entorno para contenerización de servicios. | **Basado en Ubuntu** |
+
 
 
 
