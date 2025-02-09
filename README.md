@@ -95,7 +95,7 @@ Las principales tecnologías que se utilizarán en el proyecto incluyen:
   - **HTML, CSS y JavaScript** para la creación del frontend.  
 
 - **Gestión y Control de Versiones:**  
-  - **GitHub** para el control de versiones y almacenamiento del proyecto.
+  - **GitHub** para el control de versiones y almacenamiento del proyecto. 
     
 ---
 
@@ -119,16 +119,26 @@ Se necesitará un hardware adecuado para soportar las MV y la emulación de jueg
 - Procesador: **Intel i5/i7 o AMD Ryzen 5/7**  
 - RAM: **8-16 GB**  
 - Almacenamiento: **SSD de 256GB+**  
-- Conectividad: **Wi-Fi y Ethernet** 
+- Conectividad: **Wi-Fi y Ethernet**
 
-## 💻​Servicios Utilizados💻​
+---
 
-- Apache
-- DNS
-- DHCP
-- VSFTPD
-- Sophos
-  
+## 💻​ Servicios a Implementar 💻​ 
+El proyecto requiere múltiples servicios para funcionar correctamente:  
+
+| **Servicio**  | **Función**  | **Software/Herramienta**  |
+|--------------|------------|--------------------------|
+| **Servidor Web** | Aloja la página web para la interfaz de usuario. | **Apache** |
+| **Servidor FTP** | Almacena y gestiona las ROMs de los juegos. | **vsftpd** o **ProFTPD** |
+| **Servidor DNS** | Resuelve nombres de dominio internos para la red. | **Bind9** |
+| **Servidor DHCP** | Asigna direcciones IP dinámicas a los dispositivos. | **ISC DHCP Server** |
+| **Firewall** | Controla el tráfico y protege los servicios. | **Sophos Firewall** |
+| **Plataforma de Emulación** | Ejecuta videojuegos retro dentro del sistema. | **RetroArch** |
+| **Docker** | Permite la virtualización y despliegue de servicios. | **Docker y Docker Compose** |
+| **Monitoreo Docker** | Aplicación para visualizar contenedores Docker en tiempo real. | **Portainer** o **Lazydocker** |
+| **Desarrollo Web** | Creación de interfaz interactiva. | **HTML, CSS, JavaScript, C#, WebAssembly (Blazor)** |
+| **Control de Versiones** | Gestiona el código y la documentación del proyecto. | **GitHub** |
+
 ---
 
 ## 🔹 Sistemas Operativos a Utilizar  
