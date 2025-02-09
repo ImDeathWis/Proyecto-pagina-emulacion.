@@ -72,12 +72,30 @@ El sistema permite a los usuarios acceder al sitio web, donde Apache sirve la in
   - Implementado en una máquina virtual para mayor flexibilidad.
 
 ## 🦾​Tecnologías Utilizadas🦾​
+Las principales tecnologías que se utilizarán en el proyecto incluyen:  
 
-- C#
-- JavaScript
-- CSS
-- HTML
-- WebAssembly
+- **Virtualización:**  
+  - VirtualBox o VMware para la creación de Máquinas Virtuales (MV).  
+  - Docker para la contenerización de los servicios.  
+  - Aplicación de monitoreo para Docker (**Portainer** o **Lazydocker**).  
+
+- **Redes y Seguridad:**  
+  - **Bind9** como servidor DNS.  
+  - **ISC DHCP Server** para asignación de IPs dinámicas.  
+  - **Sophos Firewall** para control de tráfico y seguridad.  
+
+- **Servidores y Protocolos:**  
+  - **Apache** como servidor web.  
+  - **vsftpd** o **ProFTPD** para almacenamiento y transferencia de ROMs vía FTP.  
+  - **RetroArch** como plataforma de emulación de videojuegos retro.  
+
+- **Desarrollo Web y Software:**  
+  - **C# y WebAssembly (Blazor)** para desarrollo de aplicaciones web interactivas.  
+  - **Figma** para el diseño de la interfaz web.  
+  - **HTML, CSS y JavaScript** para la creación del frontend.  
+
+- **Gestión y Control de Versiones:**  
+  - **GitHub** para el control de versiones y almacenamiento del proyecto.  
 
 ## 💻​Servicios Utilizados💻​
 
