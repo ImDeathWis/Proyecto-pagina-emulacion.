@@ -64,7 +64,3 @@ Para evitar la pérdida del proyecto y asegurar su disponibilidad:
 ✅ Cada persona mantendrá una copia completa del proyecto en su **Máquina Virtual (MV)**.  
 ✅ Se usarán herramientas como **GitHub/GitLab** para almacenar y versionar el código.  
 ✅ Se realizarán pruebas individuales antes de la integración final.  
-
----
-
-Con esta metodología, ambas personas aprenderán y desarrollarán habilidades en **infraestructura, redes, desarrollo web y emulación con RetroArch**, asegurando que el conocimiento no quede centralizado en un solo integrante. 🚀  
