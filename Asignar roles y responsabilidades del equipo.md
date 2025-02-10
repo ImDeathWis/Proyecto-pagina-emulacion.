@@ -34,7 +34,7 @@ Cada integrante del equipo deberá:
 - Documentación oficial de Docker y RetroArch.  
 - Foros y comunidades como Stack Overflow, GitHub y Reddit (r/RetroArch).  
 
-🧑‍🏫 **Enseñanza a Persona 2:** Explicar cómo se configura Docker, las redes, la seguridad en el proyecto y la integración de RetroArch.  
+🧑‍🏫 **Enseñanza a Luis Miguel:** Explicar cómo se configura Docker, las redes, la seguridad en el proyecto y la integración de RetroArch.  
 
 ---
 
@@ -55,7 +55,7 @@ Cada integrante del equipo deberá:
 - Documentación de Apache, FTP y RetroArch.  
 - Tutoriales en YouTube y blogs especializados sobre RetroArch y Docker.  
 
-🧑‍🏫 **Enseñanza a Persona 1:** Explicar cómo se configura Apache, FTP, la interfaz web y la integración con RetroArch desde la plataforma.  
+🧑‍🏫 **Enseñanza a Mateo:** Explicar cómo se configura Apache, FTP, la interfaz web y la integración con RetroArch desde la plataforma.  
 
 ---
 
