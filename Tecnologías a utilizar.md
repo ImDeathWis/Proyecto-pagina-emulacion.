@@ -33,7 +33,4 @@ Ejemplo:
 ## 📚 3. ¿Dónde hay información oficial?  
 
 ### 🌍 **DNS (Domain Name System)**  
-- [ICANN – Gestión de nombres de dominio](https://www.icann.org/)  
-- [IETF RFC 1034 – Conceptos de DNS](https://www.ietf.org/rfc/rfc1034.txt)  
-- [IETF RFC 1035 – Implementación de DNS](https://www.ietf.org/rfc/rfc1035.txt)  
-- [Mozilla MDN – Guía sobre DNS](https://developer.mozilla.org/en-US/docs/Learn/
+
