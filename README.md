@@ -152,6 +152,183 @@ El proyecto utilizará principalmente sistemas basados en Linux por su estabilid
 | **Docker OS (Linux)** | Entorno para contenerización de servicios. | **Basado en Ubuntu** |
 
 
+# 📌 Configuración de DNS y DHCP en Ubuntu (Red NAT 10.1.2.1)
+
+## ✅ Requisitos previos
+- Ubuntu Server instalado.
+- Conexión a Internet.
+- Acceso con permisos de superusuario (`sudo`).
+- Red NAT con gateway `10.1.2.1`.
+
+---
+## 1️⃣ Configurar IP Estática en el Servidor
+Antes de instalar los servicios, asegurémonos de que el servidor tenga una IP fija.
+
+### 🔹 Editar la configuración de la red
+```bash
+sudo nano /etc/netplan/00-installer-config.yaml
+```
+
+### 🔹 Ejemplo de configuración (ajusta según tu red):
+```yaml
+network:
+  ethernets:
+    ens33:  # Reemplaza con el nombre de tu interfaz (usa `ip a` para verla)
+      dhcp4: no
+      addresses:
+        - 10.1.2.10/24  # IP estática del servidor
+      gateway4: 10.1.2.1
+      nameservers:
+        addresses:
+          - 8.8.8.8
+          - 8.8.4.4
+  version: 2
+```
+
+### 🔹 Aplicar cambios y verificar:
+```bash
+sudo netplan apply
+ip a
+```
+---
+## 2️⃣ Instalar y Configurar el Servicio DNS (Bind9)
+
+### 🔹 Instalar BIND9
+```bash
+sudo apt update && sudo apt install -y bind9 bind9-utils
+```
+
+### 🔹 Configurar BIND9
+Editar el archivo de configuración:
+```bash
+sudo nano /etc/bind/named.conf.options
+```
+Agregar o modificar:
+```yaml
+options {
+    directory "/var/cache/bind";
+    recursion yes;
+    allow-query { any; };
+    forwarders {
+        8.8.8.8; 8.8.4.4;
+    };
+    listen-on { 10.1.2.10; };
+    allow-recursion { any; };
+};
+```
+
+### 🔹 Configurar Zona Directa
+```bash
+sudo nano /etc/bind/named.conf.local
+```
+Agregar:
+```yaml
+zone "midominio.com" {
+    type master;
+    file "/etc/bind/db.midominio.com";
+};
+```
+Crear archivo de zona:
+```bash
+sudo cp /etc/bind/db.empty /etc/bind/db.midominio.com
+sudo nano /etc/bind/db.midominio.com
+```
+Ejemplo de configuración:
+```yaml
+$TTL 86400
+@   IN  SOA midominio.com. admin.midominio.com. (
+        20240210 ; Serial
+        604800   ; Refresh
+        86400    ; Retry
+        2419200  ; Expire
+        86400 )  ; Minimum TTL
+
+@   IN  NS  ns.midominio.com.
+ns  IN  A   10.1.2.10
+server1 IN  A   10.1.2.20
+```
+
+### 🔹 Reiniciar BIND9 y verificar
+```bash
+sudo systemctl restart bind9
+sudo systemctl enable bind9
+sudo systemctl status bind9
+```
+
+### 🔹 Probar la resolución de nombres
+```bash
+nslookup server1.midominio.com 10.1.2.10
+```
+---
+## 3️⃣ Instalar y Configurar el Servicio DHCP (isc-dhcp-server)
+
+### 🔹 Instalar DHCP Server
+```bash
+sudo apt install -y isc-dhcp-server
+```
+
+### 🔹 Configurar interfaz de red
+```bash
+sudo nano /etc/default/isc-dhcp-server
+```
+Modificar:
+```yaml
+INTERFACESv4="ens33"  # Reemplaza con tu interfaz de red
+```
+
+### 🔹 Configurar el Rango de IPs en DHCP
+```bash
+sudo nano /etc/dhcp/dhcpd.conf
+```
+Ejemplo:
+```yaml
+subnet 10.1.2.0 netmask 255.255.255.0 {
+    range 10.1.2.100 10.1.2.200;
+    option routers 10.1.2.1;
+    option domain-name-servers 10.1.2.10, 8.8.8.8;
+    option domain-name "midominio.com";
+    default-lease-time 600;
+    max-lease-time 7200;
+}
+
+host pc-cliente {
+    hardware ethernet AA:BB:CC:DD:EE:FF;
+    fixed-address 10.1.2.50;
+}
+```
+
+### 🔹 Reiniciar el Servidor DHCP
+```bash
+sudo systemctl restart isc-dhcp-server
+sudo systemctl enable isc-dhcp-server
+sudo systemctl status isc-dhcp-server
+```
+---
+## 4️⃣ Pruebas Finales
+
+### 🔹 Ver Clientes Conectados
+```bash
+cat /var/lib/dhcp/dhcpd.leases
+```
+
+### 🔹 Comprobar si un Cliente Recibe IP
+Desde un cliente en la red:
+```bash
+dhclient -v
+```
+
+### 🔹 Comprobar la Resolución de Nombres DNS
+```bash
+nslookup server1.midominio.com
+```
+
+---
+## ✅ Conclusión
+
+🚀 **Tu servidor Ubuntu ahora tiene:**
+- DNS con **BIND9** (resolución de nombres en la red).
+- DHCP con **isc-dhcp-server** (asignación de IPs automática).
+
 
 
 
