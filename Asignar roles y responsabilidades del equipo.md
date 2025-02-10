@@ -1,5 +1,3 @@
-# 🎮 Proyecto de Síntesis: Plataforma de Emulación de Videojuegos Retro en Contenedores Docker  
-
 ## 📌 Distribución de Roles y Responsabilidades  
 
 Para garantizar que ambos integrantes adquieran el mismo nivel de conocimiento y habilidades técnicas, cada persona será responsable de investigar, aprender y posteriormente enseñar a su compañero/a lo que ha comprendido. Además, cada uno mantendrá una copia en su **Máquina Virtual (MV)** para evitar la pérdida del proyecto antes de la entrega.  
