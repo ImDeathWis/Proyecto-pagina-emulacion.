@@ -172,7 +172,7 @@ sudo nano /etc/default/isc-dhcp-server
 ```
 Modificar:
 ```yaml
-INTERFACESv4="ens33"  # Reemplaza con tu interfaz de red
+INTERFACESv4="enp0s3"  # Reemplaza con tu interfaz de red
 ```
 
 ### 🔹 Configurar el Rango de IPs en DHCP
