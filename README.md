@@ -151,6 +151,187 @@ El proyecto utilizará principalmente sistemas basados en Linux por su estabilid
 | **Sophos Firewall OS** | Seguridad y control de tráfico de red. | **Sophos XG / UTM** |
 | **Docker OS (Linux)** | Entorno para contenerización de servicios. | **Basado en Ubuntu** |
 
+# 📌 Configuración de Apache en Ubuntu + Clonar repositorio MAME (Red NAT 10.1.2.1)
+
+## ✅ Requisitos previos
+- Ubuntu Server instalado.
+- Conexión a Internet.
+- Acceso con permisos de superusuario (`sudo`).
+- Red NAT con gateway `10.1.2.1`.
+
+# ⚡ Guía para Montar RetroGold en Apache
+
+## 1️⃣ Instalación de Apache
+
+Para poder instalar Apache deberemos de seguir estos pasos
+
+### Debian/Ubuntu:
+```bash
+sudo apt update && sudo apt install apache2 -y
+```
+
+### Iniciar el servicio:
+```bash
+sudo systemctl start apache2  # En Debian/Ubuntu
+```
+
+### Habilitar Apache para que se inicie automáticamente:
+```bash
+sudo systemctl enable apache2  # Debian/Ubuntu
+```
+
+---
+
+## 2️⃣ Configurar Apache para Servir RetroGold
+
+### Crear el directorio del proyecto:
+```bash
+sudo mkdir -p /var/www/retrogold
+```
+
+### Dar permisos al usuario (reemplaza `tuusuario` con tu nombre de usuario):
+```bash
+sudo chown -R tuusuario:www-data /var/www/retrogold
+sudo chmod -R 755 /var/www/retrogold
+```
+
+### Crear un archivo de configuración para Apache:
+```bash
+sudo nano /etc/apache2/sites-available/retrogold.conf
+```
+
+### Contenido del archivo:
+```apache
+<VirtualHost *:80>
+    ServerAdmin admin@retrogold.com
+    DocumentRoot /var/www/retrogold
+    ServerName retrogold.com
+    ServerAlias www.retrogold.com
+
+    <Directory /var/www/retrogold>
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
+
+    ErrorLog ${APACHE_LOG_DIR}/retrogold_error.log
+    CustomLog ${APACHE_LOG_DIR}/retrogold_access.log combined
+</VirtualHost>
+```
+
+Guarda y cierra el archivo (`CTRL + X`, luego `Y` y `ENTER`).
+
+### Activar el sitio y reiniciar Apache:
+```bash
+sudo a2ensite retrogold.conf
+sudo systemctl restart apache2
+```
+
+### Habilitar Apache en el firewall (solo para CentOS/RHEL):
+```bash
+sudo firewall-cmd --add-service=http --permanent
+sudo firewall-cmd --reload
+```
+
+---
+
+## 3️⃣ Descargar e Integrar MAME en WebAssembly
+
+### Clonar el repositorio de MAME:
+```bash
+git clone https://github.com/mamedev/mame.git
+```
+
+### Copiar la versión WebAssembly de MAME a la carpeta del proyecto:
+```bash
+cp -r mame/webassembly /var/www/retrogold/mame
+```
+
+### Agregar MAME en `index.html`:
+```html
+<script src="mame/mame.wasm.js"></script>
+<script>
+  async function startMAME() {
+    const response = await fetch('mame/mame.wasm');
+    const buffer = await response.arrayBuffer();
+    MAME(buffer, { arguments: ["pacman"] });
+  }
+</script>
+<button onclick="startMAME()">Iniciar MAME</button>
+```
+
+---
+
+## 4️⃣ Configurar VSFTPD para las ROMs
+
+### Instalar VSFTPD:
+```bash
+sudo apt install vsftpd -y  # Debian/Ubuntu
+sudo yum install vsftpd -y   # CentOS/RHEL
+```
+
+### Editar la configuración de VSFTPD:
+```bash
+sudo nano /etc/vsftpd.conf
+```
+
+### Añadir o modificar las siguientes líneas:
+```ini
+anonymous_enable=NO
+local_enable=YES
+write_enable=YES
+chroot_local_user=YES
+pasv_enable=YES
+pasv_min_port=40000
+pasv_max_port=50000
+```
+
+Guarda y cierra el archivo (`CTRL + X`, luego `Y` y `ENTER`).
+
+### Reiniciar VSFTPD:
+```bash
+sudo systemctl restart vsftpd
+```
+
+### Crear un directorio para las ROMs:
+```bash
+sudo mkdir -p /srv/ftp/roms
+sudo chown ftp:ftp /srv/ftp/roms
+```
+
+Sube las ROMs a este directorio y verifica que se puedan descargar desde el navegador.
+
+---
+
+## 5️⃣ Conectar Apache con VSFTPD
+
+En tu archivo `index.html`, usa JavaScript para listar y cargar las ROMs desde VSFTPD:
+```html
+<script>
+async function loadROMs() {
+    let response = await fetch('ftp://tu-servidor-ftp/roms/');
+    let roms = await response.text();
+    document.getElementById('rom-list').innerHTML = roms;
+}
+</script>
+<button onclick="loadROMs()">Cargar ROMs</button>
+<div id="rom-list"></div>
+```
+
+---
+
+## 6️⃣ ¡Prueba RetroGold!
+
+Abre en el navegador:
+```bash
+http://tu-ip-o-dominio
+```
+
+Deberías ver la interfaz y poder iniciar MAME con los juegos del servidor FTP. 🎮🚀
+
+
+
+
 
 # 📌 Configuración de DNS y DHCP en Ubuntu (Red NAT 10.1.2.1)
 
