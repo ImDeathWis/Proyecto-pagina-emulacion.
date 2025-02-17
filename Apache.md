@@ -108,7 +108,7 @@ Ahora instala **Apache**:
 
 ---
 
-## 5. Instalar RetroArch Web 🎮
+## 5. Instalar RetroArch Web 🎮 (POR AHORA NO LO INSTALARE HASTA QUE ALINA DE EL VISTO BUENO)
 
 Instala las dependencias necesarias para compilar **RetroArch Web**:
 
