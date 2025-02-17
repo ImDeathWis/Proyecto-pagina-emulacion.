@@ -16,7 +16,6 @@ Asigna lo siguiente:
 Configura la red:
 
 - En **Adaptador 1**, selecciona `Red NAT` 🌐 con la red **192.168.6.0/24**.
-- En **Adaptador 2**, selecciona `Red Interna` y elige la red `NatNetworkSMX2`.
 
 ---
 
