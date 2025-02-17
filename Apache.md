@@ -49,7 +49,7 @@ Como tu red **NatNetworkSMX2** está configurada con **DHCP** y la **máquina co
         enp0s3:
           dhcp4: no
           addresses:
-            - 192.168.6.15/24
+            - 192.168.6.21/24
           gateway4: 192.168.6.1
           nameservers:
             addresses:
@@ -101,7 +101,7 @@ Ahora instala **Apache**:
 4. Abre un navegador y entra a la dirección:
 
     ```
-    http://192.168.6.15
+    http://192.168.6.21
     ```
 
    Si ves la página de **Apache**, ¡la instalación fue exitosa! 🎉
