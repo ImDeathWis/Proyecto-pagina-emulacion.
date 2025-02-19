@@ -554,3 +554,5 @@ https://github.com/ybootin/mamejs?tab=readme-ov-file
 https://www.digitalocean.com/community/tutorials/how-to-install-the-apache-web-server-on-ubuntu-20-04-es
 
 https://www.youtube.com/watch?v=WyR-qPAagLo&ab_channel=IvanildoGalv%C3%A3o
+
+https://github.com/kabukki/wasm-nes 
