@@ -38,31 +38,25 @@ https://extassisnetwork.com/tutoriales/como-instalar-apache-en-ubuntu/
 <h3>Configuración de Red</h3>
 
 - En <strong>Adaptador 1</strong>, selecciona `Red NAT` 🌐 con la red <strong>192.168.6.0/24</strong>.
-
-
-
+  
 </details>
 
 <details><summary><h1><strong>⚙️ Instalación</strong></h1></summary>
 
+<h3>Instalar Ubuntu en la Máquina Virtual 🖥️</h3>
 
-
-
-</details>
-
-
-## 2. Instalar Ubuntu en la Máquina Virtual 🖥️
-
-Arranca la máquina con la ISO de **Ubuntu Server** y sigue la instalación:
+Arranca la máquina con la ISO de <strong>Ubuntu Server</strong> y sigue la instalación:
 
 - Configura un usuario, una contraseña y el idioma.
 - Una vez finalizada la instalación, inicia sesión con el usuario creado.
 
----
+<h3>Configurar la Red en Ubuntu 🌍</h3>
+
+Dado que la red <strong>SMX2_Rednat1</strong> está configurada <strong>sin DHCP</strong>, la máquina con DHCP "sofphos firewall" será responsable de asignar la <strong>IP 192.168.6.14</strong>. Por lo tanto, será necesario asignar una <strong>IP estática</strong> a la máquina con Apache utilizando <strong>netplan</strong> para garantizar una configuración estable.
+
+</details>
 
 ## 3. Configurar la Red en Ubuntu 🌍
-
-Como tu red **NatNetworkSMX2** está configurada con **DHCP** y la **máquina con DHCP tiene la IP 192.168.6.14**, asigna una **IP estática** para la máquina con Apache:
 
 1. Edita el archivo de configuración de red:
 
