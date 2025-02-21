@@ -43,59 +43,54 @@ https://extassisnetwork.com/tutoriales/como-instalar-apache-en-ubuntu/
 
 <details><summary><h1><strong>⚙️ Instalación</strong></h1></summary>
 
-<h3>Instalar Ubuntu en la Máquina Virtual 🖥️</h3>
+<h2>Instalar Ubuntu en la Máquina Virtual 🖥️</h2>
 
 Arranca la máquina con la ISO de <strong>Ubuntu Server</strong> y sigue la instalación:
 
 - Configura un usuario, una contraseña y el idioma.
 - Una vez finalizada la instalación, inicia sesión con el usuario creado.
 
-<h3>Configurar la Red en Ubuntu 🌍</h3>
+<h2>Configurar la Red en Ubuntu 🌍</h2>
 
 Dado que la red <strong>SMX2_Rednat1</strong> está configurada <strong>sin DHCP</strong>, la máquina con DHCP "sofphos firewall" será responsable de asignar la <strong>IP 192.168.6.14</strong>. Por lo tanto, será necesario asignar una <strong>IP estática</strong> a la máquina con Apache utilizando <strong>netplan</strong> para garantizar una configuración estable.
 
+<ol>
+  <li>Editaremos el archivo de configuración de red con el siguiente comando:</li>
+  <pre><code>sudo nano /etc/netplan/00-installer-config.yaml</code></pre>
+
+  <li>Ajusta la configuración de red como sigue:</li>
+  <pre><code>network:
+  version: 2
+  ethernets:
+    enp0s3:
+      dhcp4: false
+      addresses:
+        - 192.168.6.21/24
+      nameservers:
+        addresses:
+          - 192.168.6.10
+          - 8.8.8.8
+          - 9.9.9.9
+      routes:
+        - to: default
+          via: 192.168.6.1
+  </code></pre>
+
+  <li>Guarda con `Ctrl + O`, luego sal con `Ctrl + X`.</li>
+  
+  <li>Aplica la configuración:</li>
+  <pre><code>sudo netplan apply</code></pre>
+  
+  <li>Comprueba si la IP está configurada correctamente:</li>
+
+  <pre><code>sudo netplan try</code></pre>
+  
+</ol>
+
+
+
 </details>
 
-## 3. Configurar la Red en Ubuntu 🌍
-
-1. Edita el archivo de configuración de red:
-
-    ```bash
-    sudo nano /etc/netplan/00-installer-config.yaml
-    ```
-
-2. Ajusta la configuración de red como sigue:
-
-    ```yaml
-    network:
-      version: 2
-      renderer: networkd
-      ethernets:
-        enp0s3:
-          dhcp4: no
-          addresses:
-            - 192.168.6.21/24
-          gateway4: 192.168.6.1
-          nameservers:
-            addresses:
-              - 192.168.6.10
-    ```
-
-3. Guarda con `Ctrl + O`, luego sal con `Ctrl + X`.
-
-4. Aplica la configuración:
-
-    ```bash
-    sudo netplan apply
-    ```
-
-5. Comprueba si la IP está configurada correctamente:
-
-    ```bash
-    ip a
-    ```
-
----
 
 ## 4. Instalar el Servidor Apache 🌐
 
