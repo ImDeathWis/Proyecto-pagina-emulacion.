@@ -1,4 +1,25 @@
-# Guía para Configuración de Apache y RetroArch Web en Ubuntu Server
+# Configuración de Apache y Página Web en Ubuntu Server
+<details><summary><h2><strong>🎮​Introducción al servicio Apache​👾​🎮</strong></h2></summary>
+
+<h2>📌 ¿Qué es Apache?</h2>
+Apache HTTP Server, es un servidor web de código abierto que nos permite la publicar de sitios web y aplicaciones en Internet o en redes locales. Es uno de los servidores web más utilizados en el mundo debido a su <strong>flexibilidad, estabilidad y compatibilidad con múltiples sistemas operativos</strong>.
+
+<h2>❓ ¿Por qué es necesario?</h2>
+
+✅ Permite alojar páginas web y aplicaciones de forma accesible desde Internet.  
+✅ Soporta múltiples lenguajes de programación como <strong>PHP y Python</strong>.  
+✅ Es altamente <strong>configurable</strong> y permite módulos para mejorar su funcionalidad.  
+✅ Es <strong>seguro</strong>, con opciones avanzadas de autenticación y cifrado.      
+✅ Funciona en plataformas como <strong>Linux, Windows y macOS</strong>. 
+
+<h2>🌐 ¿Dónde hay información oficial?</h2>
+
+https://www.digitalocean.com/community/tutorials/how-to-install-the-apache-web-server-on-ubuntu-20-04-es
+https://httpd.apache.org/docs/trunk/es/install.html
+https://www.ionos.es/digitalguide/servidores/configuracion/instalar-apache-en-ubuntu/
+https://extassisnetwork.com/tutoriales/como-instalar-apache-en-ubuntu/
+
+</details>
 
 ## 1. Crear y Configurar la Máquina Virtual en VirtualBox 🚀
 
