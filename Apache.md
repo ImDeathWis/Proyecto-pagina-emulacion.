@@ -22,8 +22,22 @@ https://extassisnetwork.com/tutoriales/como-instalar-apache-en-ubuntu/
 </details>
 
 
-<details><summary><h1><strong>🖥️ Detalles de la MV</strong></h1></summary>
+<details><summary><h1><strong>🖥️ Crear y Configurar la Máquina Virtual en VirtualBox 🚀</strong></h1></summary>
 
+<h3>Detalles de la MV</h3>
+- <strong>Nombre:</strong> `ServidorApache`  
+- <strong>Tipo:</strong> Ubuntu (64-bit)  
+
+<h3>Asignación de Recursos</h3>
+
+- <strong>3 procesadores</strong>  
+- <strong>4096 GB de RAM</strong>  
+- <strong>Disco de 25 GB</strong>
+- <strong>ISO: ubuntu-24.04.1-live-server-amd64.iso<strong>  
+
+<h3>Configuración de Red</h3>
+
+- En <strong>Adaptador 1</strong>, selecciona `Red NAT` 🌐 con la red <strong>192.168.6.0/24</strong>.
 
 
 
@@ -36,24 +50,6 @@ https://extassisnetwork.com/tutoriales/como-instalar-apache-en-ubuntu/
 
 </details>
 
-## 1. Crear y Configurar la Máquina Virtual en VirtualBox 🚀
-
-Primero, en **VirtualBox**, crea una nueva máquina virtual:
-
-- Nombre: `ServidorApache`
-- Tipo: **Ubuntu (64-bit)**
-
-Asigna lo siguiente:
-
-- **3 procesadores**
-- **4 GB de RAM**
-- **Disco de 25 GB**
-
-Configura la red:
-
-- En **Adaptador 1**, selecciona `Red NAT` 🌐 con la red **192.168.6.0/24**.
-
----
 
 ## 2. Instalar Ubuntu en la Máquina Virtual 🖥️
 
