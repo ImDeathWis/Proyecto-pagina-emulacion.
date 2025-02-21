@@ -261,10 +261,33 @@ Ahora instala <strong>Apache</strong>:
   <li>Luego recargaremos el apache para saber que todo va bien</li>
   <pre><code>sudo systemctl reload apache2</code></pre>
 
-  <li>Despues usaremos el siguiente comando para ver si todo lo posimos correctamente</li>
+  <li>Despues usaremos el siguiente comando para ver si nuestra página web esta </li>
   <pre><conde>sudo apachectl -S</conde></pre>
   
+  <br>![imagen4](https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/imagenes/Imagen4.png)
+ 
 </ol>
+
+<h2>Después en el cliente como estara en la misma red, tendremos configurar los hosts del cliente para que busque especificamente la pagina que creamos, sin confundirse con otra. Usando comando:</h2>
+<ol>
+  <li>Tendremos que añadir la direccion IP del servidor Apache más el nombre del dominio de la siguiente forma</li><br>
+  <pre><code>sudo cat /etc/hosts</code></pre><br>  
+  <pre><code>
+    127.0.0.1         localhost
+    127.0.1.1         mateo-VirtualBox
+    192.168.6.21      retrogold.conf
+    
+    # The following lines are desirable for IPv6 capable hosts
+    ::1       ip6-localhost ip6-loopback
+    fe0o :: 0 ip6-localnet
+    ff0o :: 0 ip6-mcastprefix
+    ff02 :: 1 ip6-allnodes
+    ff02 :: 2 ip6-allrouters
+  </code></pre><br>  
+  
+  <br> de esta manera podremos buscar sinla necesidad de tener problemas, a la hora de buscarlos mediante el dominio "retrogold.es" en la barra de busqueda del Cliente. Podremos ver que nos busca sin problemas la pagina.
+</ol>
+
 </details>
 
 
@@ -275,53 +298,7 @@ Ahora instala <strong>Apache</strong>:
 
 # ⚡ Guía para Montar RetroGold en Apache
 
-## 1️⃣ Instalación de Apache (lo hicimos anteriormente)
----
 
-## 2️⃣ Configurar Apache para Servir RetroGold
-
-### Crear el directorio del proyecto:
-```bash
-sudo mkdir -p /var/www/retrogold
-```
-
-### Dar permisos al usuario (reemplaza `tuusuario` con tu nombre de usuario):
-```bash
-sudo chown -R tuusuario:www-data /var/www/retrogold
-sudo chmod -R 755 /var/www/retrogold
-```
-
-### Crear un archivo de configuración para Apache:
-```bash
-sudo nano /etc/apache2/sites-available/retrogold.conf
-```
-
-### Contenido del archivo:
-```apache
-<VirtualHost *:80>
-    ServerAdmin admin@retrogold.com
-    DocumentRoot /var/www/retrogold
-    ServerName retrogold.com
-    ServerAlias www.retrogold.com
-
-    <Directory /var/www/retrogold>
-        Options Indexes FollowSymLinks
-        AllowOverride All
-        Require all granted
-    </Directory>
-
-    ErrorLog ${APACHE_LOG_DIR}/retrogold_error.log
-    CustomLog ${APACHE_LOG_DIR}/retrogold_access.log combined
-</VirtualHost>
-```
-
-Guarda y cierra el archivo (`CTRL + X`, luego `Y` y `ENTER`).
-
-### Activar el sitio y reiniciar Apache:
-```bash
-sudo a2ensite retrogold.conf
-sudo systemctl restart apache2
-```
 
 ### Habilitar Apache en el firewall (solo para CentOS/RHEL):
 ```bash
