@@ -79,165 +79,153 @@ Dado que la red <strong>SMX2_Rednat1</strong> está configurada <strong>sin DHCP
   <li>Guarda con `Ctrl + O`, luego sal con `Ctrl + X`.</li>
   
   <li>Aplica la configuración:</li>
+    <br>
   <pre><code>sudo netplan apply</code></pre>
   
   <li>Comprueba si la IP está configurada correctamente:</li>
-
+  <br>
   <pre><code>sudo netplan try</code></pre>
+
+  <li>Miraremos el estado de la red</li>
+  <br>
+  <pre><code>sudo networkctl status</code></pre>
+
+  <li>Se tendrán que ver de esta forma</li><br>
+  
+  ![imagen1](https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/imagenes/Imagen1.png)
+
+<br>
+  
+  ![imagen2](https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/imagenes/Imagen2.png)
+
   
 </ol>
 
 
+<h2>Instalar el Servidor Apache 🌐</h2>
 
+Ahora instala <strong>Apache</strong>:
+
+<ol>
+  <li>Actualiza los paquetes y realiza la instalación:</li><br>
+  <pre><code>sudo apt update
+    sudo apt upgrade
+    sudo apt install apache2</code></pre>
+
+  <li>Verifica que Apache esté funcionando:</li><br>
+  <pre><code>sudo systemctl status apache2</code></pre><br>
+
+  ![imagen3](https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/imagenes/Imagen3.png)
+
+  <br>Si aparece como "active (running)" 👍, todo está bien.
+
+</ol>
+
+<h2>Crear y Configurar Apache 🌍</h2>
+<ol>
+  <li>Primero crearemos una carpeta con nuetro nombre de nuestra web</li>
+    <br>
+  <pre><code>sudo mkdir /var/www/retrogolt</code></pre>
+  
+  <li>Luego crearemos la carpeta en la ruta "retrogolt", con el nombre de nuestra web</li>
+    <br>
+  <pre><code>sudo touch /var/www/retrogolt/index.html</code></pre>
+  
+  <li>Para luego entrar dentro del archivo index que creamos en la carpeta retrobolt</li>
+  <br>
+  <pre><code>sudo nano/var/www/retrogolt/index.html</code></pre>
+
+  <li>Una vez dentro escribiremos el codigo que nos vaya a servir pa nuestra página web "en este caso pondre una pagina simple para que se sepa que va"</li>
+  <br>
+  <pre><code>
+          <!DOCTYPE html>
+          <html lang="es">
+          <head>
+              <meta charset="UTF-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <title>RetroGolt</title>
+              <style>
+                  body {
+                      font-family: Arial, sans-serif;
+                      background-color: #222;
+                      color: white;
+                      margin: 0;
+                      padding: 0;
+                      text-align: center;
+                  }
+                  header {
+                      background-color: #f39c12;
+                      padding: 20px;
+                  }
+                  header h1 {
+                      font-size: 2em;
+                      margin: 0;
+                  }
+                  .game-list {
+                      margin-top: 30px;
+                  }
+                  .game-list h2 {
+                      margin-bottom: 20px;
+                  }
+                  .game-item {
+                      background-color: #444;
+                      padding: 15px;
+                      margin: 10px;
+                      border-radius: 10px;
+                  }
+                  footer {
+                      background-color: #333;
+                      padding: 10px;
+                      position: absolute;
+                      width: 100%;
+                      bottom: 0;
+                  }
+              </style>
+          </head>
+          <body>
+          
+              <header>
+                  <h1>RetroBolt</h1>
+                  <p>Juega los mejores clásicos arcade<br>"Actividad proyecto"</p>
+              </header>
+          
+              <div class="game-list">
+                  <h2>Juegos Clásicos</h2>
+                  <div class="game-item">Pong</div>
+                  <div class="game-item">Space Invaders</div>
+                  <div class="game-item">Pac-Man</div>
+                  <div class="game-item">Donkey Kong</div>
+              </div>
+          
+              <footer>
+                  <p>&copy; 2025 RetroBolt. Todos los derechos reservados para Luis Miguel y Mateo.</p>
+              </footer>
+          
+          </body>
+          </html>
+
+  </code></pre>
+
+  <li>Luego aquí creamos archivos de configuración, para hacerle una pregunta al apache que dominios tengo, para luego crearlo:</li><br>
+  <pre><code>ls /etc/apache2/sites-available  #con esto ver los archivos que .conf que hay no solo por defecto.
+    ls /etc/apache2/sites-enable  # con esta otra podremos ver la carpetas que etan disponibles como websites.</code></pre>
+
+  <li>Luego tendremos que crear nuestras sites para que esten disponibles con los sigueintes comando</li><br>
+    <pre><code>sudo touch  /etc/apache2/sites-available/retrogold</code></pre>
+
+  
+</ol>
 </details>
 
 
-## 4. Instalar el Servidor Apache 🌐
-
-Ahora instala **Apache**:
-
-1. Actualiza los paquetes y realiza la instalación:
-
-    ```bash
-    sudo apt update && sudo apt upgrade -y
-    sudo apt install apache2 -y
-    ```
-
-2. Verifica que Apache esté funcionando:
-
-    ```bash
-    sudo systemctl status apache2
-    ```
-
-   Si aparece como "active (running)" 👍, todo está bien.
-
-3. Permite el tráfico HTTP en el firewall:
-
-    ```bash
-    sudo ufw allow 80/tcp
-    sudo ufw reload
-    ```
-
-4. Abre un navegador y entra a la dirección:
-
-    ```
-    http://192.168.6.21
-    ```
-
-   Si ves la página de **Apache**, ¡la instalación fue exitosa! 🎉
-
----
-
-## 5. Instalar RetroArch Web 🎮 (POR AHORA NO LO INSTALARE HASTA QUE ALINA DE EL VISTO BUENO)
-
-Instala las dependencias necesarias para compilar **RetroArch Web**:
-
-1. Instala las dependencias:
-
-    ```bash
-    sudo apt install build-essential cmake git libSDL2-dev libasound2-dev emscripten -y
-    ```
-
-2. Descarga **RetroArch Web** en el directorio web:
-
-    ```bash
-    cd /var/www/html
-    sudo git clone --recursive https://github.com/libretro/RetroArch.git retroarch
-    cd retroarch
-    ```
-
-3. Compila **RetroArch para WebAssembly**:
-
-    ```bash
-    emconfigure ./configure --disable-video-opengl --enable-web
-    emmake make
-    ```
-
-4. Después de compilar, el archivo `.html` generado será la versión web de RetroArch. 🚀
-
----
-
-## 6. Configurar Apache para RetroArch ⚙️
-
-Para que **Apache** sirva correctamente **RetroArch**, crea un nuevo **VirtualHost**:
-
-1. Crea y edita el archivo de configuración del sitio:
-
-    ```bash
-    sudo nano /etc/apache2/sites-available/retroarch.conf
-    ```
-
-2. Añade la siguiente configuración:
-
-    ```apache
-    <VirtualHost *:80>
-        DocumentRoot /var/www/html/retroarch
-        ServerName retroarch.local
-        ErrorLog ${APACHE_LOG_DIR}/error.log
-        CustomLog ${APACHE_LOG_DIR}/access.log combined
-    </VirtualHost>
-    ```
-
-3. Guarda el archivo y habilita el sitio:
-
-    ```bash
-    sudo a2ensite retroarch.conf
-    sudo systemctl reload apache2
-    ```
-
-4. Abre un navegador y accede a:
-
-    ```
-    http://192.168.6.15
-    ```
-
-   Si ves **RetroArch Web** funcionando, ¡ya está todo listo! 🖥️🎮
-
----
-
-## 7. Personalizar la Interfaz de RetroArch ✨
-
-Si quieres personalizar la apariencia de **RetroArch**, edita los archivos **CSS** en:
-
-```bash
-/var/www/html/retroarch/assets/
 
 
 
 
-
-
-
-
-# 📌 Configuración de Apache en Ubuntu + Clonar repositorio MAME (Red NAT 10.1.2.1)
-
-## ✅ Requisitos previos
-- Ubuntu Server instalado.
-- Conexión a Internet.
-- Acceso con permisos de superusuario (`sudo`).
-- Red NAT con gateway `10.1.2.1`.
 
 # ⚡ Guía para Montar RetroGold en Apache
 
-## 1️⃣ Instalación de Apache
-
-Para poder instalar Apache deberemos de seguir estos pasos
-
-### Debian/Ubuntu:
-```bash
-sudo apt update && sudo apt install apache2 -y
-```
-
-### Iniciar el servicio:
-```bash
-sudo systemctl start apache2  # En Debian/Ubuntu
-```
-
-### Habilitar Apache para que se inicie automáticamente:
-```bash
-sudo systemctl enable apache2  # Debian/Ubuntu
-```
-
+## 1️⃣ Instalación de Apache (lo hicimos anteriormente)
 ---
 
 ## 2️⃣ Configurar Apache para Servir RetroGold
