@@ -294,7 +294,7 @@ Ahora instala <strong>Apache</strong>:
 
 
 
-<details><summary><h1><strong>Cosas que configurar "pendientes"</strong></h1></summary>
+<details><summary><h1><strong>Cosas que configurar y revidar "pendientes"</strong></h1></summary>
 
 # ⚡ Guía para Montar RetroGold en Apache
 
