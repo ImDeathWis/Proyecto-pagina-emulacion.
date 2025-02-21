@@ -1,5 +1,5 @@
 # Configuración de Apache y Página Web en Ubuntu Server
-<details><summary><h2><strong>🎮​Introducción al servicio Apache​👾​🎮</strong></h2></summary>
+<details><summary><h1><strong>🎮​Introducción al servicio Apache​👾​🎮</strong></h1></summary>
 
 <h2>📌 ¿Qué es Apache?</h2>
 Apache HTTP Server, es un servidor web de código abierto que nos permite la publicar de sitios web y aplicaciones en Internet o en redes locales. Es uno de los servidores web más utilizados en el mundo debido a su <strong>flexibilidad, estabilidad y compatibilidad con múltiples sistemas operativos</strong>.
@@ -18,6 +18,21 @@ https://www.digitalocean.com/community/tutorials/how-to-install-the-apache-web-s
 https://httpd.apache.org/docs/trunk/es/install.html
 https://www.ionos.es/digitalguide/servidores/configuracion/instalar-apache-en-ubuntu/
 https://extassisnetwork.com/tutoriales/como-instalar-apache-en-ubuntu/
+
+</details>
+
+
+<details><summary><h1><strong>🖥️ Detalles de la MV</strong></h1></summary>
+
+
+
+
+</details>
+
+<details><summary><h1><strong>⚙️ Instalación</strong></h1></summary>
+
+
+
 
 </details>
 
