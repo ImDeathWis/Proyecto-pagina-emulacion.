@@ -211,8 +211,58 @@ Ahora instala <strong>Apache</strong>:
     ls /etc/apache2/sites-enable  # con esta otra podremos ver la carpetas que etan disponibles como websites.</code></pre>
 
   <li>Luego tendremos que crear nuestras sites para que esten disponibles con los sigueintes comando</li><br>
-    <pre><code>sudo touch  /etc/apache2/sites-available/retrogold</code></pre>
+    <pre><code>sudo touch  /etc/apache2/sites-available/retrogold.conf</code></pre>
+  <li>tendremos que revisar si esta creado con el sigueinte comando</li><br>
+    <pre><code>ls /etc/apache2/sites-available</code></pre>
 
+  <li>Unavez comprobado que la están las carpetas, tendromos que editar la carpeta "000-default.conf" añadiendo nuestro dominio "el nombre en mi caso retrogold" editando cosas importntes como las sigueites</li>
+  <pre><code>sudo nano /etc/apache2/sites-available/000-default.conf</code></pre>
+
+  <br>Se tendría que ver de esta manera por dentro, pero le tengo que quitar la "<" de delante del Virtualhost, para que pueda verlo en github
+  <pre><code>
+    VirtualHost *: 80>
+            #Nombre del dominio
+            ServerName retrogold.es
+            
+            ServerAdmin webmaster@retrogold.es
+            
+            ServerAlias www.retrogold.es
+            
+            DirectoryIndex index.html
+            
+            #Carpeta raiz de nuestro sitio web
+            DocumentRoot /var/www/retrogold
+            
+            ErrorLog ${APACHE_LOG_DIR}/error.log
+            CustomLog ${APACHE_LOG_DIR}/access. log combined
+            
+            # For most configuration files from conf-available/, which are
+            # enabled or disabled at a global level, it is possible to
+            # include a line for only one particular virtual host. For example the
+            # following line enables the CGI configuration for this host only
+            # after it has been globally disabled with "a2disconf".
+            #Include conf-available/serve-cgi-bin. conf
+    /VirtualHost>
+
+    # vim: syntax=apache ts=4 sw=4 sts=4 sr noet
+    
+  </code></pre>
+
+  <br>Luego lo guardaré con el nombre "retrogold.conf" en vez de "000-default.conf"
+
+  <li>Luego haremos la comprobación que la pagina este correctamente con:</li>
+  <pre><code>ls /etc/apache2/sites-enabled</code></pre>
+  <pre><code>ls /etc/apache2/sites-available</code></pre>
+  
+  <li>Probablemente no esten haci que lo avilitaremos con:</li>
+  <pre><code>sudo a2ensite retrogold.conf</code></pre>
+  <br>De esa manera lo tendriamos activado la web.
+
+  <li>Luego recargaremos el apache para saber que todo va bien</li>
+  <pre><code>sudo systemctl reload apache2</code></pre>
+
+  <li>Despues usaremos el siguiente comando para ver si todo lo posimos correctamente</li>
+  <pre><conde>sudo apachectl -S</conde></pre>
   
 </ol>
 </details>
