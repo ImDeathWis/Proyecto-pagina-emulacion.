@@ -15,6 +15,8 @@
 5. **Tarjetas de red**:
    - **Adaptador 1**: Modo Adaptador Puente (para acceso a internet).
    - **Adaptador 2**: Red Interna → Nombre: `RedInterna`.
+     ![imagen8 ael adaptador de red en VBox](https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/imagenes/imagen8.png)
+     ![imagen 9 de como debe estar quitado el dhcp](https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/imagenes/imagen9.png)
 
 ---
 
@@ -64,8 +66,11 @@
 3. Contraseña: `pfsense`
 4. Seguir el asistente para terminar la configuración.
 5. Pfesense nos dará simpre el aviso que cabiemos la contraceña as si que deberemos asignerle una nosotros.
-6. 
-
+6. despues nos perdirá que cambiemos y haremos estos cambios:
+   1. ![cambiospfsense](https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/imagenes/imagen6.png)
+8. Después de hacer todo eso tendremos estas vistas dentro de pfsense.
+   1. ![imagen7 forma visual de pfsense](https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/imagenes/imagen7.png)
+10. 
 ---
 
 Con esto, pfSense estará funcionando como firewall en la red **10.20.30.0/24** y el cliente podrá conectarse y navegar.
