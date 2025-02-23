@@ -27,7 +27,7 @@
 7. Luego Procederiamos a iniciarlo y esta vez nos mostraia que ya esta instalado.
 8. En la consola, configuramos las interfaces:
    - **WAN** (reconoce automáticamente el adaptador NAT).
-   - **LAN**: Configurar manualmente con la IP **10.20.30.1/24**.
+   - **LAN**: Configurar manualmente con la IP **10.20.30.12/24**.
      Para configuarar deberiamos seguir los pasos siguentes:
          ![immagen5 configuración de la interface de red](https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/imagenes/image5.png)
        1. escribir 2, para configurar la interfase.
@@ -36,32 +36,35 @@
        4. Después ecribiremos nuestra IP (la que nosotros queramos) en mi caso yo quiro la **10.20.30.12** luego le dariamos enter.
        5. Luego nos pedirá que selecionemos la mascara y escribiremos 24 (255.255.255.0)que es la mía y le daré enter.
        6. Seguidamente daremos enter y no, hasta llegar a la configuracion de DHCP y le daremos **y** para que poder darle un rango en mi caso 10.20.30.100 a la 10.20.30.120, después le daniamos a enter.
-       7. 
+       7. luego le damos a **n**  y enter.
+       8. Y ya lo tendriamos hecho
     
-9. **Deshabilitar el servidor DHCP** si se usará otro servidor.
+9. **Deshabilitar el servidor DHCP** si se usará otro servidor, en el VitrualBox en la configuracion de solo-anfitrión desactivando el DHCP y leugo lo aplicamos.
 
 ---
 
 ## **4. Configuración del Cliente**
 1. Crear una nueva VM Cliente con:
-   - 2 GB RAM, 1 CPU.
-   - Conectada a la `RedInterna` en VirtualBox.
-2. Asignar IP manualmente:
-   - **IP:** 10.20.30.2
+   - 2047MB RAM, 4 CPU.
+   - Conectada a la `RedInterna` en VirtualBox, practimante tienen que estar lod 2 el cliente y el pfesense en la misma red interna para que nos de la ip que buscamos (la IP que estará dentro del rango de IP que le asignamos al Pfesense, **dentro del 10.20.30.100-10.20.30.120).
+2. Revisar y ajustar si es necesario IP del Cliente:
+   - **IP:** no dará una el fpsense y en mi caso me salio la 10.20.30.100
    - **Máscara:** 255.255.255.0
    - **Puerta de enlace:** 10.20.30.1 (pfSense).
-   - **DNS:** 8.8.8.8 o 1.1.1.1.
+   - **DNS:** no lo tendrá asignado y probablemente s no cargué el internet del cliente asi que, en la interface grafica añadiremos el DNS 8.8.8.8 (google que no permitira acceder a internet).
 
 ---
 
 ## **5. Acceder a la Interfaz Web de pfSense**
 1. En el Cliente, abrir un navegador e ingresar:
    ```
-   http://10.20.30.1
+   http://10.20.30.12
    ```
 2. Usuario: `admin`
 3. Contraseña: `pfsense`
 4. Seguir el asistente para terminar la configuración.
+5. Pfesense nos dará simpre el aviso que cabiemos la contraceña as si que deberemos asignerle una nosotros.
+6. 
 
 ---
 
