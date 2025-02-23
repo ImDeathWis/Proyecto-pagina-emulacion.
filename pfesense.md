@@ -68,9 +68,9 @@
 5. Pfesense nos dará simpre el aviso que cabiemos la contraceña as si que deberemos asignerle una nosotros.
 6. despues nos perdirá que cambiemos y haremos estos cambios:
    1. ![cambiospfsense](https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/imagenes/imagen6.png)
-8. Después de hacer todo eso tendremos estas vistas dentro de pfsense.
+7. Después de hacer todo eso tendremos estas vistas dentro de pfsense.
    1. ![imagen7 forma visual de pfsense](https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/imagenes/imagen7.png)
-10. 
+8.  
 ---
 
 Con esto, pfSense estará funcionando como firewall en la red **10.20.30.0/24** y el cliente podrá conectarse y navegar.
