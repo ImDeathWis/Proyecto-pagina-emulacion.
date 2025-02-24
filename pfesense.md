@@ -99,19 +99,6 @@
 
 ---
 
-## 2. Configuración del Cliente (Máquina Virtual Cliente)
-
-1. **Configurar red en VirtualBox:**
-   - Conectar la interfaz de red a **Red Interna (RedInterna)**.
-
-2. **Asignar IP manualmente en el Cliente:**
-   - **IP**: `10.20.30.2`
-   - **Máscara de subred**: `255.255.255.0`
-   - **Puerta de enlace**: `10.20.30.1` (pfSense)
-   - **DNS**: `8.8.8.8` o `1.1.1.1`
-
----
-
 💡 **Notas:**
 - Si tienes reglas restrictivas en el firewall, usa **Add 🔼** para que la nueva regla tenga prioridad.
 - Si solo estás agregando reglas generales, usa **Add 🔽** para mantener el orden.
