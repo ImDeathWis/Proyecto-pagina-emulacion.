@@ -291,7 +291,7 @@ Ahora instala <strong>Apache</strong>:
 </details>
 
 
-
+<details><summary><h1><strong>🖥️ Otros Complementos Adicionales 🚀</strong></h1></summary>
 
 
 <details><summary><h1><strong>Cosas que configurar y revidar "pendientes"</strong></h1></summary>
