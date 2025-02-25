@@ -196,6 +196,8 @@ https://ubuntu.com/server/docs/set-up-an-ftp-server
 
 https://github.com/kabukki/wasm-nes 
 
+https://www.php.net/manual/es/function.phpinfo.php
+
 </details>
 
 </details>
