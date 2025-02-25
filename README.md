@@ -192,9 +192,10 @@ https://www.ionos.es/digitalguide/servidores/configuracion/instalar-apache-en-ub
 
 https://extassisnetwork.com/tutoriales/como-instalar-apache-en-ubuntu/
 
-
+https://ubuntu.com/server/docs/set-up-an-ftp-server
 
 https://github.com/kabukki/wasm-nes 
+
 </details>
 
 </details>
