@@ -404,4 +404,88 @@ Deberías ver la interfaz y poder iniciar MAME con los juegos del servidor FTP. 
 
 <details><summary><h1><strong>🖥️ Otros Complementos Adicionales 🚀</strong></h1></summary>
 
-  ##Instalacion de PhP
+  # Guía de Instalación de LAMP
+
+## Introducción
+LAMP (Linux, Apache, MySQL, PHP) es un conjunto de software utilizado para alojar sitios web dinámicos y aplicaciones web. Esta guía explica cómo instalar LAMP en Ubuntu 20.04.
+
+## Requisitos Previos
+- Un servidor Ubuntu 20.04 actualizado.
+- Acceso a un usuario con privilegios de `sudo`.
+
+## Paso 1: Actualizar el Sistema
+Ejecuta el siguiente comando para actualizar la lista de paquetes:
+```bash
+sudo apt update && sudo apt upgrade -y
+```
+
+## Paso 2: Instalar Apache
+Instala el servidor web Apache con:
+```bash
+sudo apt install apache2 -y
+```
+Verifica el estado del servicio:
+```bash
+sudo systemctl status apache2
+```
+Permite el tráfico HTTP y HTTPS en el firewall:
+```bash
+sudo ufw allow in "Apache Full"
+```
+
+## Paso 3: Instalar MySQL
+Instala MySQL con:
+```bash
+sudo apt install mysql-server -y
+```
+Asegura la instalación ejecutando:
+```bash
+sudo mysql_secure_installation
+```
+Sigue las instrucciones en pantalla para configurar la seguridad de MySQL.
+
+## Paso 4: Instalar PHP
+Instala PHP y sus módulos necesarios:
+```bash
+sudo apt install php libapache2-mod-php php-mysql -y
+```
+Verifica la versión de PHP instalada:
+```bash
+php -v
+```
+
+## Paso 5: Configurar Apache para Priorizar PHP
+Edita el archivo de configuración de Apache:
+```bash
+sudo nano /etc/apache2/mods-enabled/dir.conf
+```
+Asegúrate de que `index.php` esté primero:
+```
+DirectoryIndex index.php index.html index.cgi index.pl index.xhtml index.htm
+```
+Guarda y cierra el archivo, luego reinicia Apache:
+```bash
+sudo systemctl restart apache2
+```
+
+## Paso 6: Probar la Instalación de PHP
+Crea un archivo de prueba:
+```bash
+sudo nano /var/www/html/info.php
+```
+Añade lo siguiente:
+```php
+<?php
+phpinfo();
+?>
+```
+Guarda y cierra el archivo, luego abre en un navegador:
+```
+http://tu-servidor/info.php
+```
+Si ves la información de PHP, la instalación fue exitosa.
+
+## Conclusión
+Has instalado correctamente la pila LAMP en Ubuntu 20.04. Ahora puedes comenzar a desarrollar y alojar tus aplicaciones web.
+
+
