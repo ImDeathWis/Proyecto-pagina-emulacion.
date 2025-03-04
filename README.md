@@ -1,13 +1,17 @@
 <details><summary><h1><strong>🎮​👾​🕹️​RetroGold🕹️​👾​🎮</strong></h1></summary>
 
-![DALL·E 2025-01-29 10 42 36 - A neon-style logo for a website called 'Retro Gold'  The design should incorporate an arcade theme with a retro-futuristic aesthetic  The color palett](https://github.com/user-attachments/assets/e8d85532-bad1-464d-8d1b-57406362fe65)
-
 
 RetroArch es tu portal para revivir los mejores clásicos de los videojuegos, potenciado por el emulador MAME. Ofrecemos una experiencia única para los amantes de los juegos retro, permitiéndote disfrutar de títulos icónicos que marcaron la época dorada de los salones recreativos.
 
+
+
+<img src="https://github.com/user-attachments/assets/e8d85532-bad1-464d-8d1b-57406362fe65" width="500" height="500">
+
+
 <details><summary><h2><strong>🛠️ Mapa de la Red 🛠️</strong></h2></summary>
   
-![Frame 6](https://github.com/user-attachments/assets/0c022f26-0552-4fd4-bb8d-4b42ee07a960)
+<img src="https://github.com/user-attachments/assets/0c022f26-0552-4fd4-bb8d-4b42ee07a960" width="500" height="500">  
+
 ---
 </details>
 
@@ -45,7 +49,8 @@ Se planea empaquetar los componentes clave (servidor web, FTP, emulador MAME) en
 <details><summary><h2><strong>👷🏻Funcionamiento General👷🏻</strong></h2></summary>
 El sistema permite a los usuarios acceder al sitio web, donde Apache sirve la interfaz para seleccionar y jugar títulos retro. Los componentes interactúan de la siguiente manera:  
 
-<h3>1. Servidor Web (Apache)</h3>
+<h3>1. Servidor Web (Apache)</h3><a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/Apache.md">Haz clic aquí para ir a la iformación</a>
+<br>
 
 - **Funcionalidades:**
   - Alojamiento del sitio web (HTML, CSS, JavaScript).
