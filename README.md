@@ -50,32 +50,34 @@ Se planea empaquetar los componentes clave (servidor web, FTP, emulador MAME) en
 El sistema permite a los usuarios acceder al sitio web, donde Apache sirve la interfaz para seleccionar y jugar títulos retro. Los componentes interactúan de la siguiente manera:  
 
 <h3>1. Servidor Web (Apache)</h3><a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/Apache.md">Haz clic aquí para ir a la iformación</a>
-<br>
+
 
 - **Funcionalidades:**
   - Alojamiento del sitio web (HTML, CSS, JavaScript).
   - Integración con MAME para cargar juegos desde el servidor FTP.
   - Seguridad HTTPS mediante cifrado SSL/TLS.
 
-<h3>2. Servidor FTP (vsftpd)</h3>
+<h3>2. Servidor FTP (vsftpd)</h3><a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/Apache.md">Haz clic aquí para ir a la iformación</a>
 
 - **Funcionalidades:**
   - Almacenamiento y acceso a ROMs para el emulador MAME.
   - Configuración de permisos para acceso seguro.
 
-<h3>3. Servidor DNS</h3>
+<h3>3. Servidor DNS</h3><a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/Tecnologías%20a%20utilizar.md
+">Haz clic aquí para ir a la iformación(Sencuentra el DNS y el DHCP)</a>
 
 - **Funcionalidades:**
   - Resolución de nombres de dominio y gestión de subdominios.
   - Redundancia mediante DNS externos (Google DNS, Cloudflare).
 
-<h3>4. Servidor DHCP</h3>
+<h3>4. Servidor DHCP</h3><a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/Tecnologías%20a%20utilizar.md
+">Haz clic aquí para ir a la iformación(Sencuentra el DNS y el DHCP)</a>
 
 - **Funcionalidades:**
   - Asignación automática de IPs en la red interna.
   - Configuración de rangos de IPs para diferentes dispositivos.
 
-<h3>5. Firewall (Sophos)</h3>
+<h3>5. Firewall (Sophos)</h3><a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/pfesense.md">Haz clic aquí para ir a la iformación(Pfesense "es temporal")</a>
 
 - **Funcionalidades:**
   - Filtrado de tráfico y prevención de amenazas.
