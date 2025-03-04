@@ -12,7 +12,7 @@ RetroArch es tu portal para revivir los mejores clásicos de los videojuegos, po
   
 <img src="https://github.com/user-attachments/assets/0c022f26-0552-4fd4-bb8d-4b42ee07a960" width="500" height="500">  
 
-<a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/brifing.md">Nuestro Brifing/Resumen del proyecto (Haz click para ver)</a>
+<a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/brifing.md" target="_blank">Nuestro Brifing/Resumen del proyecto (Haz click para ver)</a>
 ---
 </details>
 
