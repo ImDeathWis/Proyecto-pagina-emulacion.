@@ -1,4 +1,4 @@
-13# Instalación y Configuración de pfSense en VirtualBox
+# Instalación y Configuración de pfSense en VirtualBox
 
 ## **1. Requisitos previos**
 - **Máquina virtual con pfSense** (3072MB RAM, 2 núcleos, 16 GB de almacenamiento).
