@@ -1,5 +1,7 @@
 # Instalación y Configuración de pfSense en VirtualBox
 
+<a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/README.md" target="_blank">Haz clic aquí Para Volver a la Página Original</a>
+
 ## **1. Requisitos previos**
 - **Máquina virtual con pfSense** (3072MB RAM, 2 núcleos, 16 GB de almacenamiento).
 - **Máquina virtual Cliente** (Windows o Linux con una interfaz de red conectada al pfSense).
