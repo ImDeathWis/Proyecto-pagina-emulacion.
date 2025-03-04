@@ -27,9 +27,12 @@ RetroArch es tu portal para revivir los mejores clásicos de los videojuegos, po
 - **Firewall (Sophos):** Implementado en una máquina virtual para proteger la infraestructura contra amenazas de seguridad.
 - **Contenedores Docker (futuro):** Facilitarán la gestión, escalabilidad y portabilidad del sistema.
 
----
 
 <a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/Especificar%20listado%20de%20tareas.md" target="_blank">Haz clic aquí para Ver el listado de tareas del equipo</a>
+
+---
+
+
 
 
 </details>
@@ -48,9 +51,12 @@ Separar servicios como DNS y DHCP del servidor web y FTP mejora la modularidad. 
 
 Se planea empaquetar los componentes clave (servidor web, FTP, emulador MAME) en contenedores Docker para optimizar la gestión y escalabilidad.
 
----
 
 <a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/Asignar%20roles%20y%20responsabilidades%20del%20equipo.md" target="_blank">Haz clic aquí para Ver como nos asignaremos lo roles</a>
+
+---
+
+
 
 </details>
 
