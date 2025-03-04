@@ -29,7 +29,7 @@ RetroArch es tu portal para revivir los mejores clásicos de los videojuegos, po
 
 ---
 
-<a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/Especificar%20listado%20de%20tareas.md">Haz clic aquí para Ver el listado de tareas del equipo</a>
+<a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/Especificar%20listado%20de%20tareas.md" target="_blank">Haz clic aquí para Ver el listado de tareas del equipo</a>
 
 
 </details>
@@ -50,14 +50,14 @@ Se planea empaquetar los componentes clave (servidor web, FTP, emulador MAME) en
 
 ---
 
-<a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/Asignar%20roles%20y%20responsabilidades%20del%20equipo.md">Haz clic aquí para Ver como nos asignaremos lo roles</a>
+<a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/Asignar%20roles%20y%20responsabilidades%20del%20equipo.md" target="_blank">Haz clic aquí para Ver como nos asignaremos lo roles</a>
 
 </details>
 
 <details><summary><h2><strong>👷🏻Funcionamiento General👷🏻</strong></h2></summary>
 El sistema permite a los usuarios acceder al sitio web, donde Apache sirve la interfaz para seleccionar y jugar títulos retro. Los componentes interactúan de la siguiente manera:  
 
-<h3>1. Servidor Web (Apache)</h3><a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/Apache.md">Haz clic aquí para ir a la iformación</a>
+<h3>1. Servidor Web (Apache)</h3><a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/Apache.md" target="_blank">Haz clic aquí para ir a la iformación</a>
 
 
 - **Funcionalidades:**
@@ -65,25 +65,25 @@ El sistema permite a los usuarios acceder al sitio web, donde Apache sirve la in
   - Integración con MAME para cargar juegos desde el servidor FTP.
   - Seguridad HTTPS mediante cifrado SSL/TLS.
 
-<h3>2. Servidor FTP (vsftpd)</h3><a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/Apache.md">Haz clic aquí para ir a la iformación</a>
+<h3>2. Servidor FTP (vsftpd)</h3><a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/Apache.md" target="_blank">Haz clic aquí para ir a la iformación</a>
 
 - **Funcionalidades:**
   - Almacenamiento y acceso a ROMs para el emulador MAME.
   - Configuración de permisos para acceso seguro.
 
-<h3>3. Servidor DNS</h3><a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/DNSyDHCP.md">Haz clic aquí para ir a la iformación(Sencuentra el DNS y el DHCP)</a>
+<h3>3. Servidor DNS</h3><a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/DNSyDHCP.md" target="_blank">Haz clic aquí para ir a la iformación(Sencuentra el DNS y el DHCP)</a>
 
 - **Funcionalidades:**
   - Resolución de nombres de dominio y gestión de subdominios.
   - Redundancia mediante DNS externos (Google DNS, Cloudflare).
 
-<h3>4. Servidor DHCP</h3><a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/DNSyDHCP.md">Haz clic aquí para ir a la iformación(Sencuentra el DNS y el DHCP)</a>
+<h3>4. Servidor DHCP</h3><a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/DNSyDHCP.md" target="_blank">Haz clic aquí para ir a la iformación(Sencuentra el DNS y el DHCP)</a>
 
 - **Funcionalidades:**
   - Asignación automática de IPs en la red interna.
   - Configuración de rangos de IPs para diferentes dispositivos.
 
-<h3>5. Firewall (Sophos)</h3><a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/pfesense.md">Haz clic aquí para ir a la iformación(Pfesense "es temporal")</a>
+<h3>5. Firewall (Sophos)</h3><a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/pfesense.md" target="_blank">Haz clic aquí para ir a la iformación(Pfesense "es temporal")</a>
 
 - **Funcionalidades:**
   - Filtrado de tráfico y prevención de amenazas.
