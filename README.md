@@ -1,43 +1,36 @@
-<details><summary><h1><strong>🎮​👾​🕹️​RetroGold🕹️​👾​🎮</strong></h1></summary>
+<details><summary><h1><strong>🎮​👾​🕹️​RetroGold🕹️​👾​🎮</strong></h1></summary>  
 
+RetroArch es tu portal para revivir los mejores clásicos de los videojuegos, potenciado por el emulador MAME. Ofrecemos una experiencia única para los amantes de los juegos retro, permitiéndote disfrutar de títulos icónicos que marcaron la época dorada de los salones recreativos.  
 
-RetroArch es tu portal para revivir los mejores clásicos de los videojuegos, potenciado por el emulador MAME. Ofrecemos una experiencia única para los amantes de los juegos retro, permitiéndote disfrutar de títulos icónicos que marcaron la época dorada de los salones recreativos.
+<img src="https://github.com/user-attachments/assets/e8d85532-bad1-464d-8d1b-57406362fe65" width="500" height="500">  
 
+<details><summary><h2><strong>🛠️ Mapa de la Red 🛠️</strong></h2></summary>  
 
-
-<img src="https://github.com/user-attachments/assets/e8d85532-bad1-464d-8d1b-57406362fe65" width="500" height="500">
-
-
-<details><summary><h2><strong>🛠️ Mapa de la Red 🛠️</strong></h2></summary>
-  
 <img src="https://github.com/user-attachments/assets/0c022f26-0552-4fd4-bb8d-4b42ee07a960" width="500" height="500">  
 
-<a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/brifing.md" target="_blank">Nuestro Brifing/Resumen del proyecto (Haz click para ver)</a>
+<a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/brifing.md" target="_blank">Nuestro Briefing/Resumen del proyecto (Haz clic para ver)</a>  
+
+---</details>  
+
+<details><summary><h2><strong>🛠️​ Arquitectura del Sistema 🛠️</strong></h2></summary>  
+
+<h3>Componentes Principales:</h3>  
+
+- **Servidor Web (Apache):** Hospeda el sitio de emulación de juegos retro.  
+- **Servidor FTP (vsftpd):** Almacena las ROMs y permite su acceso mediante el emulador MAME.  
+- **Servidor DNS:** Gestiona la resolución de nombres de dominio.  
+- **Servidor DHCP:** Asigna dinámicamente direcciones IP en la red interna.  
+- **Firewall (Sophos):** Implementado en una máquina virtual para proteger la infraestructura contra amenazas de seguridad.  
+- **Contenedores Docker (futuro):** Facilitarán la gestión, escalabilidad y portabilidad del sistema.  
+
+<a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/Especificar%20listado%20de%20tareas.md" target="_blank">Haz clic aquí para ver el listado de tareas del equipo</a>  
+
 ---
-</details>
-
-<details><summary><h2><strong>🛠️​Arquitectura del Sistema🛠️</strong></h2></summary>
-  
-<h3>Componentes Principales:</h3>
-
-- **Servidor Web (Apache):** Hospeda el sitio de emulación de juegos retro.
-- **Servidor FTP (vsftpd):** Almacena las ROMs y permite su acceso mediante el emulador MAME.
-- **Servidor DNS:** Gestiona la resolución de nombres de dominio.
-- **Servidor DHCP:** Asigna dinámicamente direcciones IP en la red interna.
-- **Firewall (Sophos):** Implementado en una máquina virtual para proteger la infraestructura contra amenazas de seguridad.
-- **Contenedores Docker (futuro):** Facilitarán la gestión, escalabilidad y portabilidad del sistema.
-
-
-<a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/Especificar%20listado%20de%20tareas.md" target="_blank">Haz clic aquí para Ver el listado de tareas del equipo</a>
-
----
-
-
 
 
 </details>
 
-<details><summary><h2><strong>✅Objetivos del Sistema✅</strong></h2></summary>
+<details><summary><h2><strong>✅ Objetivos del Sistema ✅</strong></h2></summary>
   
 <h3>Acceso a Juegos Retro de Arcade:</h3>
 
@@ -51,45 +44,40 @@ Separar servicios como DNS y DHCP del servidor web y FTP mejora la modularidad. 
 
 Se planea empaquetar los componentes clave (servidor web, FTP, emulador MAME) en contenedores Docker para optimizar la gestión y escalabilidad.
 
-
-<a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/Asignar%20roles%20y%20responsabilidades%20del%20equipo.md" target="_blank">Haz clic aquí para Ver como nos asignaremos lo roles</a>
+<a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/Asignar%20roles%20y%20responsabilidades%20del%20equipo.md" target="_blank">Haz clic aquí para ver cómo nos asignaremos los roles</a>
 
 ---
 
-
-
 </details>
 
-<details><summary><h2><strong>👷🏻Funcionamiento General👷🏻</strong></h2></summary>
+<details><summary><h2><strong>👷🏻 Funcionamiento General 👷🏻</strong></h2></summary>
 El sistema permite a los usuarios acceder al sitio web, donde Apache sirve la interfaz para seleccionar y jugar títulos retro. Los componentes interactúan de la siguiente manera:  
 
-<h3>1. Servidor Web (Apache)</h3><a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/Apache.md" target="_blank">Haz clic aquí para ir a la iformación</a>
-
-
+<h3>1. Servidor Web (Apache)</h3><a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/Apache.md" target="_blank">Haz clic aquí para ir a la información</a>
 - **Funcionalidades:**
   - Alojamiento del sitio web (HTML, CSS, JavaScript).
   - Integración con MAME para cargar juegos desde el servidor FTP.
   - Seguridad HTTPS mediante cifrado SSL/TLS.
 
-<h3>2. Servidor FTP (vsftpd)</h3><a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/Apache.md" target="_blank">Haz clic aquí para ir a la iformación</a>
+<h3>2. Servidor FTP (vsftpd)</h3><a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/Apache.md" target="_blank">Haz clic aquí para ir a la información</a>
 
 - **Funcionalidades:**
   - Almacenamiento y acceso a ROMs para el emulador MAME.
   - Configuración de permisos para acceso seguro.
 
-<h3>3. Servidor DNS</h3><a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/DNSyDHCP.md" target="_blank">Haz clic aquí para ir a la iformación(Sencuentra el DNS y el DHCP)</a>
+<h3>3. Servidor DNS</h3><a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/DNSyDHCP.md" target="_blank">Haz clic aquí para ir a la información (Se encuentra el DNS y el DHCP)</a>
 
 - **Funcionalidades:**
   - Resolución de nombres de dominio y gestión de subdominios.
   - Redundancia mediante DNS externos (Google DNS, Cloudflare).
 
-<h3>4. Servidor DHCP</h3><a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/DNSyDHCP.md" target="_blank">Haz clic aquí para ir a la iformación(Sencuentra el DNS y el DHCP)</a>
+<h3>4. Servidor DHCP</h3><a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/DNSyDHCP.md" target="_blank">Haz clic aquí para ir a la información (Se encuentra el DNS y el DHCP)</a>
 
 - **Funcionalidades:**
   - Asignación automática de IPs en la red interna.
   - Configuración de rangos de IPs para diferentes dispositivos.
 
-<h3>5. Firewall (Sophos)</h3><a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/pfesense.md" target="_blank">Haz clic aquí para ir a la iformación(Pfesense "es temporal")</a>
+<h3>5. Firewall (Sophos)</h3><a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/pfesense.md" target="_blank">Haz clic aquí para ir a la información (pfSense "es temporal")</a>
 
 - **Funcionalidades:**
   - Filtrado de tráfico y prevención de amenazas.
@@ -99,10 +87,8 @@ El sistema permite a los usuarios acceder al sitio web, donde Apache sirve la in
 ---
 </details>
 
-
-<details><summary><h2><strong>🦾​Tecnologías Utilizadas🦾​</strong></h2></summary>
+<details><summary><h2><strong>🦾​ Tecnologías Utilizadas 🦾​</strong></h2></summary>
 Las principales tecnologías que se utilizarán en el proyecto incluyen:   
-
 
 - **Virtualización:**  
   - VirtualBox o VMware para la creación de Máquinas Virtuales (MV).  
@@ -128,10 +114,7 @@ Las principales tecnologías que se utilizarán en el proyecto incluyen:
   - **GitHub** para el control de versiones y almacenamiento del proyecto. 
     
 ---
-
 </details>
-
-
 <details><summary><h2><strong>🔹 Hardware a Utilizar ​</strong></h2></summary>
 
 Se necesitará un hardware adecuado para soportar las MV y la emulación de juegos retro.  
@@ -191,7 +174,7 @@ El proyecto utilizará principalmente sistemas basados en Linux por su estabilid
 
 </details>
 
-<details><summary><h2><strong>📖​Blibliografia📖​​​</strong></h2></summary>
+<details><summary><h2><strong>📖​ Bibliografía 📖​​​</strong></h2></summary>
 
 https://github.com/mamedev/mame
 
