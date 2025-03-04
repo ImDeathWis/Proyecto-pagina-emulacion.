@@ -1,4 +1,6 @@
  # 📘 Guía de Uso: DNS y DHCP
+ 
+ <a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/README.md" target="_blank">Haz clic aquí Para Volver a la Página Original</a>
 
 ## 📌 1. Introducción al Servicio  
 
