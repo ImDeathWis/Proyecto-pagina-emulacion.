@@ -5,7 +5,7 @@
 <details><summary><h1><strong>🎮​Introducción al servicio Apache​👾​🎮</strong></h1></summary>
 
 <h2>📌 ¿Qué es Apache?</h2>
-Apache HTTP Server, es un servidor web de código abierto que nos permite la publicar de sitios web y aplicaciones en Internet o en redes locales. Es uno de los servidores web más utilizados en el mundo debido a su <strong>flexibilidad, estabilidad y compatibilidad con múltiples sistemas operativos</strong>.
+Apache HTTP Server, es un servidor web de código abierto que nos permite la publicación de sitios web y aplicaciones en Internet o en redes locales. Es uno de los servidores web más utilizados en el mundo debido a su <strong>flexibilidad, estabilidad y compatibilidad con múltiples sistemas operativos</strong>.
 
 <h2>❓ ¿Por qué es necesario?</h2>
 
@@ -17,13 +17,12 @@ Apache HTTP Server, es un servidor web de código abierto que nos permite la pub
 
 <h2>🌐 ¿Dónde hay información oficial?</h2>
 
-https://www.digitalocean.com/community/tutorials/how-to-install-the-apache-web-server-on-ubuntu-20-04-es
-https://httpd.apache.org/docs/trunk/es/install.html
-https://www.ionos.es/digitalguide/servidores/configuracion/instalar-apache-en-ubuntu/
+https://www.digitalocean.com/community/tutorials/how-to-install-the-apache-web-server-on-ubuntu-20-04-es  
+https://httpd.apache.org/docs/trunk/es/install.html  
+https://www.ionos.es/digitalguide/servidores/configuracion/instalar-apache-en-ubuntu/  
 https://extassisnetwork.com/tutoriales/como-instalar-apache-en-ubuntu/
 
 </details>
-
 
 <details><summary><h1><strong>🖥️ Crear y Configurar la Máquina Virtual en VirtualBox 🚀</strong></h1></summary>
 
@@ -34,9 +33,9 @@ https://extassisnetwork.com/tutoriales/como-instalar-apache-en-ubuntu/
 <h3>Asignación de Recursos</h3>
 
 - <strong>3 procesadores</strong>  
-- <strong>4096 GB de RAM</strong>  
+- <strong>4096 MB de RAM</strong>  
 - <strong>Disco de 25 GB</strong>
-- <strong>ISO: ubuntu-24.04.1-live-server-amd64.iso<strong>  
+- <strong>ISO: ubuntu-24.04.1-live-server-amd64.iso</strong>  
 
 <h3>Configuración de Red</h3>
 
@@ -55,7 +54,7 @@ Arranca la máquina con la ISO de <strong>Ubuntu Server</strong> y sigue la inst
 
 <h2>Configurar la Red en Ubuntu 🌍</h2>
 
-Dado que la red <strong>SMX2_Rednat1</strong> está configurada <strong>sin DHCP</strong>, la máquina con DHCP "sofphos firewall" será responsable de asignar la <strong>IP 192.168.6.14</strong>. Por lo tanto, será necesario asignar una <strong>IP estática</strong> a la máquina con Apache utilizando <strong>netplan</strong> para garantizar una configuración estable.
+Dado que la red <strong>SMX2_Rednat1</strong> está configurada <strong>sin DHCP</strong>, la máquina con DHCP "Sophos firewall" será responsable de asignar la <strong>IP 192.168.6.14</strong>. Por lo tanto, será necesario asignar una <strong>IP estática</strong> a la máquina con Apache utilizando <strong>netplan</strong> para garantizar una configuración estable.
 
 <ol>
   <li>Editaremos el archivo de configuración de red con el siguiente comando:</li>
@@ -89,11 +88,11 @@ Dado que la red <strong>SMX2_Rednat1</strong> está configurada <strong>sin DHCP
   <br>
   <pre><code>sudo netplan try</code></pre>
 
-  <li>Miraremos el estado de la red</li>
+  <li>Miramos el estado de la red:</li>
   <br>
   <pre><code>sudo networkctl status</code></pre>
 
-  <li>Se tendrán que ver de esta forma</li><br>
+  <li>Se deberán ver las siguientes configuraciones:</li><br>
   
   ![imagen1](https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/imagenes/Imagen1.png)
 
@@ -101,10 +100,7 @@ Dado que la red <strong>SMX2_Rednat1</strong> está configurada <strong>sin DHCP
   
   ![imagen2](https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/imagenes/Imagen2.png)
 
-  
 </ol>
-
-
 <h2>Instalar el Servidor Apache 🌐</h2>
 
 Ahora instala <strong>Apache</strong>:
@@ -126,19 +122,19 @@ Ahora instala <strong>Apache</strong>:
 
 <h2>Crear y Configurar Apache 🌍</h2>
 <ol>
-  <li>Primero crearemos una carpeta con nuetro nombre de nuestra web</li>
+  <li>Primero crearemos una carpeta con el nombre de nuestra web:</li>
     <br>
   <pre><code>sudo mkdir /var/www/retrogolt</code></pre>
   
-  <li>Luego crearemos la carpeta en la ruta "retrogolt", con el nombre de nuestra web</li>
+  <li>Luego crearemos el archivo principal `index.html` dentro de la carpeta de nuestra web:</li>
     <br>
   <pre><code>sudo touch /var/www/retrogolt/index.html</code></pre>
   
-  <li>Para luego entrar dentro del archivo index que creamos en la carpeta retrobolt</li>
+  <li>Para luego entrar en el archivo `index.html` que creamos en la carpeta "retrogolt":</li>
   <br>
-  <pre><code>sudo nano/var/www/retrogolt/index.html</code></pre>
+  <pre><code>sudo nano /var/www/retrogolt/index.html</code></pre>
 
-  <li>Una vez dentro escribiremos el codigo que nos vaya a servir pa nuestra página web "en este caso pondre una pagina simple para que se sepa que va"</li>
+  <li>Una vez dentro, escribiremos el código que nos sirva para nuestra página web (en este caso, pondré una página simple para mostrar que está funcionando):</li>
   <br>
   <pre><code>
           <!DOCTYPE html>
@@ -209,21 +205,23 @@ Ahora instala <strong>Apache</strong>:
 
   </code></pre>
 
-  <li>Luego aquí creamos archivos de configuración, para hacerle una pregunta al apache que dominios tengo, para luego crearlo:</li><br>
-  <pre><code>ls /etc/apache2/sites-available  #con esto ver los archivos que .conf que hay no solo por defecto.
-    ls /etc/apache2/sites-enable  # con esta otra podremos ver la carpetas que etan disponibles como websites.</code></pre>
+  <li>Luego crearemos archivos de configuración para agregar nuestro dominio en Apache y configurar el sitio:</li><br>
+  <pre><code>ls /etc/apache2/sites-available  # Esto lista los archivos .conf disponibles</code></pre>
+  <pre><code>ls /etc/apache2/sites-enabled  # Esto muestra los sitios habilitados</code></pre>
 
-  <li>Luego tendremos que crear nuestras sites para que esten disponibles con los sigueintes comando</li><br>
-    <pre><code>sudo touch  /etc/apache2/sites-available/retrogold.conf</code></pre>
-  <li>tendremos que revisar si esta creado con el sigueinte comando</li><br>
+  <li>Ahora, crearemos un archivo de configuración para nuestro dominio "retrogolt":</li><br>
+    <pre><code>sudo touch /etc/apache2/sites-available/retrogold.conf</code></pre>
+
+  <li>Verificamos que el archivo se haya creado correctamente:</li><br>
     <pre><code>ls /etc/apache2/sites-available</code></pre>
 
-  <li>Unavez comprobado que la están las carpetas, tendromos que editar la carpeta "000-default.conf" añadiendo nuestro dominio "el nombre en mi caso retrogold" editando cosas importntes como las sigueites</li>
+  <li>Una vez comprobado que el archivo está creado, vamos a editar el archivo "000-default.conf" para agregar nuestro dominio. Es importante verificar y modificar algunas configuraciones clave:</li>
   <pre><code>sudo nano /etc/apache2/sites-available/000-default.conf</code></pre>
+</ol>
+Se tendría que ver de esta manera por dentro, pero le tengo que quitar la "<" de delante del VirtualHost para que pueda verlo en GitHub.
 
-  <br>Se tendría que ver de esta manera por dentro, pero le tengo que quitar la "<" de delante del Virtualhost, para que pueda verlo en github
-  <pre><code>
-    VirtualHost *: 80>
+<pre><code>
+    VirtualHost *:80>
             #Nombre del dominio
             ServerName retrogold.es
             
@@ -233,80 +231,75 @@ Ahora instala <strong>Apache</strong>:
             
             DirectoryIndex index.html
             
-            #Carpeta raiz de nuestro sitio web
+            #Carpeta raíz de nuestro sitio web
             DocumentRoot /var/www/retrogold
             
             ErrorLog ${APACHE_LOG_DIR}/error.log
-            CustomLog ${APACHE_LOG_DIR}/access. log combined
+            CustomLog ${APACHE_LOG_DIR}/access.log combined
             
             # For most configuration files from conf-available/, which are
             # enabled or disabled at a global level, it is possible to
-            # include a line for only one particular virtual host. For example the
+            # include a line for only one particular virtual host. For example, the
             # following line enables the CGI configuration for this host only
             # after it has been globally disabled with "a2disconf".
-            #Include conf-available/serve-cgi-bin. conf
+            #Include conf-available/serve-cgi-bin.conf
     /VirtualHost>
 
     # vim: syntax=apache ts=4 sw=4 sts=4 sr noet
-    
-  </code></pre>
+</code></pre>
 
-  <br>Luego lo guardaré con el nombre "retrogold.conf" en vez de "000-default.conf"
+Luego lo guardaré con el nombre "retrogold.conf" en vez de "000-default.conf".
 
-  <li>Luego haremos la comprobación que la pagina este correctamente con:</li>
-  <pre><code>ls /etc/apache2/sites-enabled</code></pre>
-  <pre><code>ls /etc/apache2/sites-available</code></pre>
-  
-  <li>Probablemente no esten haci que lo avilitaremos con:</li>
-  <pre><code>sudo a2ensite retrogold.conf</code></pre>
-  <br>De esa manera lo tendriamos activado la web.
+<li>Luego haremos la comprobación de que la página esté correctamente configurada con:</li>
+<pre><code>ls /etc/apache2/sites-enabled</code></pre>
+<pre><code>ls /etc/apache2/sites-available</code></pre>
 
-  <li>Luego recargaremos el apache para saber que todo va bien</li>
-  <pre><code>sudo systemctl reload apache2</code></pre>
+<li>Probablemente no estén habilitadas, así que lo activaremos con:</li>
+<pre><code>sudo a2ensite retrogold.conf</code></pre>
+<br>De esa manera tendremos activada la web.
 
-  <li>Despues usaremos el siguiente comando para ver si nuestra página web esta </li>
-  <pre><conde>sudo apachectl -S</conde></pre>
-  
-  <br>![imagen4](https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/imagenes/Imagen4.png)
- 
+<li>Luego recargaremos Apache para verificar que todo esté bien:</li>
+<pre><code>sudo systemctl reload apache2</code></pre>
+
+<li>Después, usaremos el siguiente comando para ver si nuestra página web está configurada correctamente:</li>
+<pre><code>sudo apachectl -S</code></pre>
+
+<br>![imagen4](https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/imagenes/Imagen4.png)
+
 </ol>
 
-<h2>Después en el cliente como estara en la misma red, tendremos configurar los hosts del cliente para que busque especificamente la pagina que creamos, sin confundirse con otra. Usando comando:</h2>
+<h2>Configuración en el cliente</h2>
+
+Después, en el cliente, como estará en la misma red, tendremos que configurar los hosts del cliente para que busque específicamente la página que creamos sin confundirse con otra. Usaremos el siguiente comando:
+
 <ol>
-  <li>Tendremos que añadir la direccion IP del servidor Apache más el nombre del dominio de la siguiente forma</li><br>
-  <pre><code>sudo cat /etc/hosts</code></pre><br>  
+  <li>Tendremos que añadir la dirección IP del servidor Apache más el nombre del dominio de la siguiente forma:</li><br>
+  <pre><code>sudo nano /etc/hosts</code></pre><br>  
   <pre><code>
     127.0.0.1         localhost
     127.0.1.1         mateo-VirtualBox
-    192.168.6.21      retrogold.conf
-    
-    # The following lines are desirable for IPv6 capable hosts
-    ::1       ip6-localhost ip6-loopback
-    fe0o :: 0 ip6-localnet
-    ff0o :: 0 ip6-mcastprefix
-    ff02 :: 1 ip6-allnodes
-    ff02 :: 2 ip6-allrouters
-  </code></pre><br>  
-  
-  <br> de esta manera podremos buscar sinla necesidad de tener problemas, a la hora de buscarlos mediante el dominio "retrogold.es" en la barra de busqueda del Cliente. Podremos ver que nos busca sin problemas la pagina.
+    192.168.6.21      retrogold.es
+# The following lines are desirable for IPv6 capable hosts
+::1       ip6-localhost ip6-loopback
+fe00::0   ip6-localnet
+ff00::0   ip6-mcastprefix
+ff02::1   ip6-allnodes
+ff02::2   ip6-allrouters
+</code></pre><br>  
+
+De esta manera podremos buscar sin la necesidad de tener problemas a la hora de acceder mediante el dominio "retrogold.es" en la barra de búsqueda del Cliente. Podremos ver que nos busca sin problemas la página.
 </ol>
 
 </details>
 
-
-
-
-<details><summary><h1><strong>Cosas que configurar y revidar "pendientes"</strong></h1></summary>
+<details><summary><h1><strong>Cosas que configurar y revisar "pendientes"</strong></h1></summary>
 
 # ⚡ Guía para Montar RetroGold en Apache
-
-
 
 ### Habilitar Apache en el firewall (solo para CentOS/RHEL):
 ```bash
 sudo firewall-cmd --add-service=http --permanent
 sudo firewall-cmd --reload
-```
 
 ---
 
