@@ -98,7 +98,81 @@
            - **Network**: `10.20.30.0/24`
          - **Translation**: `Interface Address`
       5. Guardar y aplicar cambios.
+# Configuración de OpenVPN y Port Forwarding en pfSense
 
+## 1. Configuración de OpenVPN en pfSense
+
+### Paso 1: Crear la Autoridad Certificadora (CA)
+1. Ve a `System` > `Cert. Manager` > `CAs`.
+2. Haz clic en **Add** y completa los campos necesarios para crear una nueva CA.
+
+### Paso 2: Crear el Certificado del Servidor
+1. En `System` > `Cert. Manager` > `Certificates`, haz clic en **Add**.
+2. Selecciona la CA creada previamente y configura el certificado como **Server Certificate**.
+
+### Paso 3: Configurar el Servidor OpenVPN
+1. Ve a `VPN` > `OpenVPN` > `Wizards` y sigue el asistente:
+   - Selecciona la CA y el certificado del servidor creados.
+   - Configura el puerto 5194 (por defecto, `1194`) y el protocolo (`UDP` recomendado).
+   - Especifica la red local que los clientes VPN deben acceder.
+
+### Paso 4: Configurar las Reglas de Firewall
+1. Ve a `Firewall` > `Rules` > `WAN`.
+2. Crea una regla para permitir el tráfico entrante al puerto OpenVPN:
+   - **Action**: `Pass`
+   - **Protocol**: `UDP`
+   - **Destination Port Range**: `1194`
+3. Ve a `Firewall` > `Rules` > `OpenVPN`.
+4. Crea una regla para permitir el tráfico desde clientes VPN a la red local:
+   - **Action**: `Pass`
+   - **Source**: `Network` (especifica la red de túnel VPN)
+   - **Destination**: `Any`
+
+### Paso 5: Exportar Configuración para Clientes
+1. Instala el paquete `openvpn-client-export` desde `System` > `Package Manager`.
+2. Ve a `VPN` > `OpenVPN` > `Client Export`.
+3. Descarga el archivo de configuración adecuado para tus clientes.
+
+---
+
+## 2. Configuración de Port Forwarding para Acceder al Servidor Apache
+
+### Paso 1: Configurar NAT (Port Forwarding)
+1. Ve a `Firewall` > `NAT` > `Port Forward` y haz clic en **Add**.
+2. Configura los siguientes parámetros:
+   - **Interface**: `WAN`
+   - **Protocol**: `TCP`
+   - **Destination**: `WAN Address`
+   - **Destination Port Range**: `80` (HTTP) o `443` (HTTPS)
+   - **Redirect Target IP**: `IP interna del servidor Apache`
+   - **Redirect Target Port**: `80` o `443`
+3. Guarda y aplica los cambios.
+
+### Paso 2: Verificar Reglas de Firewall
+pfSense suele crear automáticamente una regla de firewall asociada al configurar el port forwarding. Verifica que esta regla permita el tráfico adecuado.
+
+---
+
+## 3. Gestión de Certificados para HTTPS en el Servidor Apache
+
+Para asegurar las conexiones al servidor Apache mediante HTTPS, es necesario instalar un certificado SSL válido.
+
+### Generar Certificados en pfSense
+1. Instala el paquete `acme` desde `System` > `Package Manager`.
+2. Ve a `Services` > `Acme Certificates` y agrega una nueva cuenta de Let's Encrypt.
+3. Configura un trabajo de renovación automática para obtener y renovar certificados.
+
+
+---
+
+## 4. Acceder desde un Teléfono
+- Si estás en la red local, usa la **IP interna** del servidor (`172.16.10.1`).
+- Si estás fuera de la red, usa la **IP pública** o un **dominio** con DNS configurado.
+- Si configuraste HTTPS, accede con `https://tudominio.com`.
+
+---
+
+Este documento proporciona una guía básica para configurar **OpenVPN, port forwarding y certificados SSL en pfSense**. Puedes ampliarlo o modificarlo según las necesidades de tu proyecto. 🚀
 ---
 
 💡 **Notas:**
