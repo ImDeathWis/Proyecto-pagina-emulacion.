@@ -40,3 +40,23 @@ Un **Servidor FTP (File Transfer Protocol)** es un sistema que permite la transf
 <a href="https://www.w3.org/Protocols/rfc959/" target="_blank">RFC 959 - FTP Protocol</a>  
 
 </details>
+
+<details><summary><h1><strong>🖥️ Detalles de la Máquina Virtual en VirtualBox 🚀</strong></h1></summary>
+
+<h3>Detalles de la MV</h3>
+
+- <strong>Nombre:</strong> `ServidorFTP`
+- <strong>Tipo:</strong> Ubuntu (64-bit)  
+
+<h3>Asignación de Recursos</h3>
+
+- <strong>3 procesadores</strong>  
+- <strong>4096 MB de RAM</strong>  
+- <strong>Disco de 25 GB</strong>
+- <strong>ISO: ubuntu-24.04.1-live-server-amd64.iso</strong>  
+
+<h3>Configuración de Red</h3>
+
+- En <strong>Adaptador 1</strong>, selecciona `Red NAT` 🌐 con la red <strong>192.168.6.0/24</strong>.
+  
+</details>
