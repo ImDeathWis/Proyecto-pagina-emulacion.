@@ -24,7 +24,7 @@ https://extassisnetwork.com/tutoriales/como-instalar-apache-en-ubuntu/
 
 </details>
 
-<details><summary><h1><strong>🖥️ Crear y Configurar la Máquina Virtual en VirtualBox 🚀</strong></h1></summary>
+<details><summary><h1><strong>🖥️ Detalles de la Máquina Virtual en VirtualBox 🚀</strong></h1></summary>
 
 <h3>Detalles de la MV</h3>
 - <strong>Nombre:</strong> `ServidorApache`  
