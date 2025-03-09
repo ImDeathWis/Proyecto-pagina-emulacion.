@@ -4,9 +4,11 @@
 <details><summary><h1><strong>📂 Introducción a FTP</strong></h1></summary>
 
 <h2>📌 Definición</h2>
+
 Un **Servidor FTP (File Transfer Protocol)** es un sistema que permite la transferencia de archivos entre dispositivos a través de una red, utilizando el protocolo FTP. Se usa comúnmente para compartir y administrar archivos en entornos locales o remotos.  
 
 <h2>❓ ¿Por qué es necesario?</h2>
+
 ✅ Facilita la transferencia de archivos entre clientes y servidores.  
 ✅ Permite **usuarios con permisos específicos** para gestionar archivos.  
 ✅ Compatible con múltiples plataformas (Windows, Linux, macOS).  
@@ -25,6 +27,7 @@ Un **Servidor FTP (File Transfer Protocol)** es un sistema que permite la transf
 - **Puede ser reemplazado por métodos más seguros**, como SFTP o FTPS.  
 
 <h2>🛠️ ¿Qué necesitamos para configurar un Servidor FTP?</h2>
+
 1️⃣ **Elegir un software de servidor FTP** (Ejemplo: **vsftpd, ProFTPD, FileZilla Server**).  
 2️⃣ **Configurar cuentas de usuario** y establecer permisos adecuados.  
 3️⃣ **Abrir los puertos necesarios** en el firewall (Ejemplo: 21 para FTP, 990 para FTPS).  
@@ -32,6 +35,7 @@ Un **Servidor FTP (File Transfer Protocol)** es un sistema que permite la transf
 5️⃣ **Probar la conexión** con un cliente FTP como **FileZilla o WinSCP**.  
 
 <h2>🌐 Información oficial</h2>
+
 🔗 Documentación sobre servidores FTP:  
 <a href="https://www.w3.org/Protocols/rfc959/" target="_blank">RFC 959 - FTP Protocol</a>  
 
