@@ -157,7 +157,7 @@ nameserver 8.8.8.8
 <h2>9. ✅ Conclusión</h2>
 <p>Con esta configuración, el servidor DNS local resolverá tanto los nombres de dominio internos (como <code>www.retrogold.local</code>, <code>ftp.retrogold.local</code>, etc.) como las consultas inversas para la red local. Además, se ha configurado para reenviar consultas fuera de la red local a servidores DNS públicos de Google, lo que garantiza una resolución eficiente.</p>
 
-<p>¡Tu servidor DNS ahora está listo para usarse! 🎉</p>
+<p>¡Servidor DNS ahora está listo para usarse! 🎉</p>
 
 </details>
 
