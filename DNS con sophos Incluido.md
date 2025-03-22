@@ -1,4 +1,4 @@
-# Servidor DNS con BIND9 en Ubuntu Server
+# Servidor DNS con BIND9 en Ubuntu Server Sophos
 
 <a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/README.md" target="_blank">Haz clic aquí Para Volver a la Página Original</a>
 
