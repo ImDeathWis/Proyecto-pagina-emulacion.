@@ -6,7 +6,7 @@
 
 <h2>⚠️ Nota Importante:</h2>
 <ul>
-  <li>El servidor <strong>DHCP del Sophos</strong> no está asignando direcciones IP estáticas, por lo que se recomienda configurarlas manualmente en cada dispositivo o usar una reserva de IP en el DHCP para los dispositivos que requieran una IP fija.</li>
+  <li>El servidor <strong>DHCP del Sophos</strong> no está asignando direcciones IP estáticas, por lo que la configuraremos manualmente para cada dispositivo en el DHCP para los dispositivos que requieran una IP fija.</li>
   <li>El <strong>nombre de dominio</strong> configurado para la red local es <code>retrogold.local</code>.</li>
 </ul>
 
