@@ -121,6 +121,12 @@ options {
 sudo rm -f /etc/resolv.conf
   
 sudo ln -s /run/systemd/resolve/resolv.conf /etc/resolv.conf</code></pre>
+<p>Después tendremos que asegurarnos de los permisos para luego reiniciar el servicio.</p>
+<pre><code>
+sudo chmod 644 /etc/resolv.conf
+
+sudo chown root:root /etc/resolv.conf
+</code></pre>
 <p>Verifica el contenido del archivo <code>/etc/resolv.conf</code>:</p>
 <pre><code>cat /etc/resolv.conf</code></pre>
 El archivo debe contener lo siguiente:
