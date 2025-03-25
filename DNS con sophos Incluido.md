@@ -117,7 +117,10 @@ options {
 
 <h2>5. 🔄 Configuración del Archivo <code>/etc/resolv.conf</code></h2>
 <p>Para que el sistema use el DNS local, crea un enlace simbólico hacia el archivo de configuración del sistema:</p>
-<pre><code>sudo ln -sf /run/systemd/resolve/resolv.conf /etc/resolv.conf</code></pre>
+<pre><code>
+sudo rm -f /etc/resolv.conf
+  
+sudo ln -s /run/systemd/resolve/resolv.conf /etc/resolv.conf</code></pre>
 <p>Verifica el contenido del archivo <code>/etc/resolv.conf</code>:</p>
 <pre><code>cat /etc/resolv.conf</code></pre>
 El archivo debe contener lo siguiente:
