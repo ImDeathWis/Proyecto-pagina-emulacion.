@@ -132,7 +132,7 @@ sudo chown root:root /etc/resolv.conf
 El archivo debe contener lo siguiente:
 <pre><code>
 domain RetroDHCPGold
-search RetroDHCPGold
+search retrogold.local
 nameserver 192.168.6.10
 nameserver 8.8.8.8
 </code></pre>
