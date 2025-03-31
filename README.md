@@ -200,6 +200,8 @@ https://github.com/kabukki/wasm-nes
 
 https://www.php.net/manual/es/function.phpinfo.php
 
+https://www.youtube.com/watch?v=nQu4U0r-w-M&list=PLS1R8PLgpkVROGR9dAWw6gtyuq_oA-Z2q&index=6
+
 </details>
 
 </details>
