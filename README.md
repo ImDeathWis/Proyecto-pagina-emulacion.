@@ -54,6 +54,7 @@ Se planea empaquetar los componentes clave (servidor web, FTP, emulador MAME) en
 El sistema permite a los usuarios acceder al sitio web, donde Apache sirve la interfaz para seleccionar y jugar títulos retro. Los componentes interactúan de la siguiente manera:  
 
 <h3>1. Servidor Web (Apache)</h3><a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/Apache.md" target="_blank">Haz clic aquí para ir a la información</a>
+
 - **Funcionalidades:**
   - Alojamiento del sitio web (HTML, CSS, JavaScript).
   - Integración con MAME para cargar juegos desde el servidor FTP.
