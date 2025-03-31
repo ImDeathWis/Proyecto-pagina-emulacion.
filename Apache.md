@@ -24,7 +24,7 @@ https://extassisnetwork.com/tutoriales/como-instalar-apache-en-ubuntu/
 
 </details>
 
-<details><summary><h1><strong>MOCKUP de nuestro Proyecto</strong></h1></summary>
+<details><summary><h1><strong>🌅🌄MOCKUP de nuestro Proyecto🌄🌅</strong></h1></summary>
 <p>Aquí subimos el link de nuestros mockup para que lo visualicen como sería la meta final (visual) de la Página Web.</p>
   
 https://www.figma.com/design/8jn705VLBuXTJVUrUUnT1i/Retrogold?node-id=0-1&p=f&t=EcJ4naGGRlGmIWIv-0
