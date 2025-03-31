@@ -24,6 +24,16 @@ https://extassisnetwork.com/tutoriales/como-instalar-apache-en-ubuntu/
 
 </details>
 
+<details><summary><h1><strong>MOCKUP de nuestro Proyecto</strong></h1></summary>
+<p>Aqui subimos los link de nuestros mockup para que lo visualisen como seria la meta final (visual) de la Página Web</p>
+  
+https://www.figma.com/design/8jn705VLBuXTJVUrUUnT1i/Retrogold?node-id=0-1&p=f&t=EcJ4naGGRlGmIWIv-0
+
+https://www.figma.com/proto/8jn705VLBuXTJVUrUUnT1i/Retrogold?node-id=0-1&p=f&t=EcJ4naGGRlGmIWIv-0&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=3%3A15
+
+</details>
+
+
 <details><summary><h1><strong>🖥️ Detalles de la Máquina Virtual en VirtualBox 🚀</strong></h1></summary>
 
 <h3>Detalles de la MV</h3>
