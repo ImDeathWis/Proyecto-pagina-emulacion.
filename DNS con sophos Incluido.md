@@ -1,172 +1,176 @@
-# Servidor DNS con BIND9 en Ubuntu Server Sophos
+# **📄 Documentación de Configuración y Solución de Problemas en BIND9**
 
-<a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/README.md" target="_blank">Haz clic aquí Para Volver a la Página Original</a>
+## **🔹 1. Introducción**
+<details>
+<summary>📌 Descripción</summary>
+<p>Este documento describe la configuración y solución de problemas en un servidor DNS BIND9 en Ubuntu. Se documentan los errores encontrados, las causas y las soluciones aplicadas, basándonos en la configuración del servidor <strong>dns.retrogold.com (192.168.6.6)</strong>.</p>
+</details>
 
-<details><summary><h1><strong>📄 Configuración de Servidor DNS con BIND9</strong></h1></summary>
+---
 
-<h2>⚠️ Nota Importante:</h2>
+## **🛠️ 2. Configuración del Servidor DNS BIND9**
+<details>
+<summary>📍 Información General</summary>
 <ul>
-  <li>El servidor <strong>DHCP del Sophos</strong> no está asignando direcciones IP estáticas, por lo que la configuraremos manualmente para cada dispositivo en el DHCP para los dispositivos que requieran una IP fija.</li>
-  <li>El <strong>nombre de dominio</strong> configurado para la red local es <code>retrogold.local</code>.</li>
+<li>El servidor DNS se encuentra en la IP <strong>192.168.6.6</strong>.</li>
+<li>Tiene configuradas zonas directas e inversas:
+  <ul>
+    <li><strong>Zona directa:</strong> <code>db.retrogold.com</code></li>
+    <li><strong>Zona inversa:</strong> <code>db.6.168.192</code></li>
+  </ul>
+</li>
+<li>El firewall <strong>Sophos</strong> asigna IPs estáticas y configura <code>/etc/resolv.conf</code> con:
+<pre><code>
+domain retrogold.com
+search retrogold.com
+nameserver 192.168.6.6
+nameserver 8.8.8.8
+</code></pre>
+</li>
 </ul>
+</details>
 
-<h2>🔍 Introducción</h2>
-<p>Este documento describe la configuración y solución de problemas del servidor DNS en la máquina con IP <code>192.168.6.10</code>, utilizando BIND9 en un entorno de red con el dominio <code>retrogold.local</code>. BIND9 se utiliza para resolver tanto nombres de dominio directos como inversos en la red local.</p>
-
-<h2>💻 Instalación de BIND9</h2>
-<p>Para instalar BIND9 en la máquina, ejecute el siguiente comando en la terminal:</p>
+### **📝 2.1. Instalación de BIND9**
+<details>
+<summary>💾 Instalación</summary>
+<p>Para instalar BIND9 en la máquina, ejecutar:</p>
 <pre><code>sudo apt update && sudo apt install bind9 -y</code></pre>
+</details>
 
-<h2>⚙️ Configuración de Zonas DNS</h2>
-
-<h3>3.1. 📝 Archivo de configuración principal <code>/etc/bind/named.conf.local</code></h3>
-<p>Este archivo define las zonas directa e inversa para el servidor DNS. Añadir las siguientes líneas:</p>
-<pre><code>sudo nano /etc/bind/named.conf.local</code></pre>
-Contenido:
+### **📝 2.2. Archivos de Configuración**
+<details>
+<summary>📄 named.conf.local</summary>
 <pre><code>
-zone "retrogold.local" {
+zone "retrogold.com" IN {
     type master;
-    file "/etc/bind/zonas/db.retrogold.local";
+    file "/etc/bind/zones/db.retrogold.com";
 };
 
-zone "6.168.192.in-addr.arpa" {
+zone "6.168.192.in-addr.arpa" IN {
     type master;
-    file "/etc/bind/zonas/db.6.168.192";
+    file "/etc/bind/zones/db.6.168.192";
 };
 </code></pre>
+</details>
 
-<h3>3.2. 🗂️ Creación del directorio para las zonas y asignación de permisos</h3>
-<pre><code>sudo mkdir -p /etc/bind/zonas</code></pre>
-<pre><code>sudo chown -R bind:bind /etc/bind/zonas</code></pre>
-<pre><code>sudo chmod -R 755 /etc/bind/zonas</code></pre>
-
-<h3>3.3. 🗒️ Configuración de la Zona Directa <code>/etc/bind/zonas/db.retrogold.local</code></h3>
-<pre><code>sudo nano /etc/bind/zonas/db.retrogold.local</code></pre>
-Contenido:
+<details>
+<summary>⚙️ named.conf.options</summary>
 <pre><code>
-$TTL 604800
-@   IN  SOA ns1.retrogold.local. admin.retrogold.local. (
-    2024032201 ; Serial
-    604800     ; Refresh
-    86400      ; Retry
-    2419200    ; Expire
-    604800 )   ; Negative Cache TTL
-;
-@       IN  NS      ns1.retrogold.local.
-ns1     IN  A       192.168.6.10
-www     IN  A       192.168.6.20
-ftp     IN  A       192.168.6.30
-nas     IN  A       192.168.6.40
-</code></pre>
-
-<h3>3.4. 🔄 Configuración de la Zona Inversa <code>/etc/bind/zonas/db.6.168.192</code></h3>
-<pre><code>sudo nano /etc/bind/zonas/db.6.168.192</code></pre>
-Contenido:
-<pre><code>
-$TTL 604800
-@   IN  SOA ns1.retrogold.local. admin.retrogold.local. (
-    2024032201 ; Serial
-    604800     ; Refresh
-    86400      ; Retry
-    2419200    ; Expire
-    604800 )   ; Negative Cache TTL
-;
-@       IN  NS      ns1.retrogold.local.
-10      IN  PTR     ns1.retrogold.local.
-20      IN  PTR     www.retrogold.local.
-30      IN  PTR     ftp.retrogold.local.
-40      IN  PTR     nas.retrogold.local.
-</code></pre>
-
-<h3>3.5. 🔒 Asignación de permisos correctos a los archivos de zona</h3>
-<pre><code>sudo chown root:bind /etc/bind/zonas/db.*</code></pre>
-<pre><code>sudo chmod 644 /etc/bind/zonas/db.*</code></pre>
-
-<h2>4. 🔧 Configuración del archivo <code>/etc/bind/named.conf.options</code></h2>
-<p>Este archivo configura las opciones globales de BIND9. Añadir las siguientes configuraciones para definir las ACLs (listas de control de acceso), permitir consultas desde la red local, habilitar la recursión y configurar los reenvíos a otros servidores DNS.</p>
-<pre><code>sudo nano /etc/bind/named.conf.options</code></pre>
-Contenido del archivo:
-<pre><code>
-acl "red_local" {
+acl "autorizados" {
     192.168.6.0/24;
 };
 
 options {
     directory "/var/cache/bind";
-
-    // Habilita la recursión de consultas
     recursion yes;
-    allow-query { red_local; };
+    allow-recursion { autorizados; };
+    listen-on { 192.168.6.6; };
+    allow-transfer { none; };
 
-    // Validación de DNSSEC
-    dnssec-validation auto;
-
-    // Definir servidores DNS para reenviar las consultas
     forwarders {
         8.8.8.8;
         8.8.4.4;
     };
 
-    // Especificar la IP del servidor para escuchar las consultas DNS
-    listen-on { 192.168.6.10; };
-
-    // Descomentar para habilitar IPv6 (si es necesario)
-    // listen-on-v6 { any; };
+    dnssec-validation no;
+    allow-query { 192.168.6.0/24; };
 };
 </code></pre>
-
-<h2>5. 🔄 Configuración del Archivo <code>/etc/resolv.conf</code></h2>
-<p>Para que el sistema use el DNS local, crea un enlace simbólico hacia el archivo de configuración del sistema:</p>
-<pre><code>
-sudo rm -f /etc/resolv.conf
-  
-sudo ln -s /run/systemd/resolve/resolv.conf /etc/resolv.conf</code></pre>
-<p>Después tendremos que asegurarnos de los permisos para luego reiniciar el servicio.</p>
-<pre><code>
-sudo chmod 644 /etc/resolv.conf
-
-sudo chown root:root /etc/resolv.conf
-</code></pre>
-<p>Verifica el contenido del archivo <code>/etc/resolv.conf</code>:</p>
-<pre><code>cat /etc/resolv.conf</code></pre>
-El archivo debe contener lo siguiente:
-<pre><code>
-domain RetroDHCPGold
-search retrogold.local
-nameserver 192.168.6.10
-nameserver 8.8.8.8
-</code></pre>
-
-<h2>6. 🔄 Reinicio y Verificación del Servicio</h2>
-<p>Una vez realizadas todas las configuraciones, reinicia el servicio de BIND9:</p>
-<pre><code>sudo systemctl restart bind9</code></pre>
-<pre><code>sudo systemctl status bind9</code></pre>
-
-<h2>7. 🧪 Pruebas de Funcionamiento</h2>
-
-<h3>7.1. 🔎 Prueba con <code>nslookup</code></h3>
-<p>Para verificar que el servidor DNS responde correctamente a las consultas, utiliza el comando <code>nslookup</code>:</p>
-<pre><code>nslookup ns1.retrogold.local 192.168.6.10</code></pre>
-
-<h3>7.2. 📡 Prueba con <code>dig</code></h3>
-<p>Utiliza <code>dig</code> para comprobar la resolución DNS:</p>
-<pre><code>dig @192.168.6.10 ns1.retrogold.local</code></pre>
-
-<h3>7.3. 🔄 Prueba de Zona Inversa</h3>
-<p>Verifica la zona inversa utilizando <code>dig -x</code>:</p>
-<pre><code>dig -x 192.168.6.10 @192.168.6.10</code></pre>
-
-<h2>8. 🛠️ Solución de Problemas</h2>
-<ul>
-  <li>Verifica el estado de BIND9: <pre><code>sudo systemctl status bind9</code></pre></li>
-  <li>Revisa los archivos de zona en busca de errores de sintaxis: <pre><code>sudo named-checkzone retrogold.local /etc/bind/zonas/db.retrogold.local</code></pre><pre><code>sudo named-checkzone 6.168.192.in-addr.arpa /etc/bind/zonas/db.6.168.192</code></pre></li>
-  <li>Verifica los logs en caso de errores: <pre><code>sudo journalctl -xe | grep named</code></pre></li>
-</ul>
-
-<h2>9. ✅ Conclusión</h2>
-<p>Con esta configuración, el servidor DNS local resolverá tanto los nombres de dominio internos (como <code>www.retrogold.local</code>, <code>ftp.retrogold.local</code>, etc.) como las consultas inversas para la red local. Además, se ha configurado para reenviar consultas fuera de la red local a servidores DNS públicos de Google, lo que garantiza una resolución eficiente.</p>
-
-<p>¡Servidor DNS ahora está listo para usarse! 🎉</p>
-
 </details>
 
+<details>
+<summary>📂 Archivo de Zona Directa (db.retrogold.com)</summary>
+<pre><code>
+$TTL 604800
+@   IN  SOA dns.retrogold.com. root.retrogold.com. (
+        20250327 ; Serial
+        604800   ; Refresh
+        86400    ; Retry
+        2419200  ; Expire
+        604800 ) ; Negative Cache TTL
+;
+@       IN  NS  dns.retrogold.com.
+dns     IN  A   192.168.6.6
+cliente-proyecto IN A 192.168.6.8
+</code></pre>
+</details>
+
+<details>
+<summary>🔄 Archivo de Zona Inversa (db.6.168.192)</summary>
+<pre><code>
+$TTL 604800
+@   IN  SOA dns.retrogold.com. root.retrogold.com. (
+        20250327 ; Serial
+        604800   ; Refresh
+        86400    ; Retry
+        2419200  ; Expire
+        604800 ) ; Negative Cache TTL
+;
+@       IN  NS  dns.retrogold.com.
+6       IN  PTR dns.retrogold.com.
+8       IN  PTR cliente-proyecto.retrogold.com.
+</code></pre>
+</details>
+
+---
+
+## **🚨 3. Problemas Encontrados y Soluciones**
+<details>
+<summary>🛑 3.1. El servidor DNS no resuelve correctamente</summary>
+<p><strong>Solución:</strong></p>
+<pre><code>
+echo "nameserver 192.168.6.6" | sudo tee /etc/resolv.conf
+sudo systemctl disable --now systemd-resolved
+</code></pre>
+</details>
+
+<details>
+<summary>⚠️ 3.2. Error en named-checkzone</summary>
+<pre><code>
+named-checkzone retrogold.com /etc/bind/zones/db.retrogold.com
+named-checkzone 6.168.192.in-addr.arpa /etc/bind/zones/db.6.168.192
+</code></pre>
+</details>
+
+<details>
+<summary>🔄 3.3. Restauración de /etc/resolv.conf</summary>
+<pre><code>
+sudo nano /etc/resolv.conf
+</code></pre>
+<p>Agregar:</p>
+<pre><code>
+nameserver 192.168.6.6
+nameserver 8.8.8.8
+search retrogold.com
+</code></pre>
+<p>Proteger el archivo:</p>
+<pre><code>
+sudo chattr +i /etc/resolv.conf
+</code></pre>
+</details>
+
+---
+
+## **✅ 4. Pruebas Finales**
+<details>
+<summary>🔍 Comprobaciones</summary>
+<ul>
+<li><strong>Zona directa:</strong> <code>dig @192.168.6.6 retrogold.com</code></li>
+<li><strong>Zona inversa:</strong> <code>dig @192.168.6.6 -x 192.168.6.8</code></li>
+<li><strong>NSLOOKUP:</strong> <code>nslookup retrogold.com 192.168.6.6</code></li>
+<li><strong>PING:</strong> <code>ping cliente-proyecto.retrogold.com</code></li>
+</ul>
+</details>
+
+---
+
+## **🏁 5. Conclusión**
+<ul>
+<li>El cliente debía usar el servidor DNS correcto.</li>
+<li>Se corrigieron errores en la configuración de las zonas.</li>
+<li>Se verificó que BIND9 estuviera ejecutándose y escuchando en el puerto 53.</li>
+<li>Se restauró y protegió <code>/etc/resolv.conf</code>.</li>
+<li>Finalmente, las consultas DNS se resolvieron correctamente.</li>
+</ul>
+
+🚀 **Servidor BIND9 en dns.retrogold.com (192.168.6.6) funcionando correctamente.**
