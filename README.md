@@ -66,6 +66,7 @@ El sistema permite a los usuarios acceder al sitio web, donde Apache sirve la in
   - Configuración de permisos para acceso seguro.
 
 <h3>3. Servidor DNS</h3><a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/DNSyDHCP.md" target="_blank">Haz clic aquí para ir a la información (Se encuentra el DNS y el DHCP)</a>
+<h3>3. Servidor DNS</h3><a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/DNS%20con%20sophos%20Incluido.md" target="_blank">Haz clic aquí para ir a la información (Se encuentra el DNS ya implementado al sophos)</a>
 
 - **Funcionalidades:**
   - Resolución de nombres de dominio y gestión de subdominios.
