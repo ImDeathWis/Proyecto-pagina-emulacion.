@@ -121,14 +121,16 @@ Las principales tecnologías que se utilizarán en el proyecto incluyen:
 
 Se necesitará un hardware adecuado para soportar las MV y la emulación de juegos retro.  
 
-<h3>**Requisitos mínimos por Máquina Virtual (MV)**</h3>
+<h3>Requisitos mínimos por Máquina Virtual (MV)</h3>
+
 ✅ **Servidor Principal** (MV con Apache, FTP, RetroArch)  
 - CPU: **4 núcleos**  
 - RAM: **4 GB**  
 - Almacenamiento: **40 GB SSD**  
 - Tarjeta de Red: **1 Gbps**  
 
-✅ **Servidor DNS/DHCP y Firewall (MV con Bind9, ISC DHCP y Sophos Firewall)**  
+✅ **Servidor DNS/DHCP y Firewall (MV con Bind9, ISC DHCP y Sophos Firewall)** 
+
 - CPU: **2 núcleos**  
 - RAM: **2 GB**  
 - Almacenamiento: **20 GB SSD**  
