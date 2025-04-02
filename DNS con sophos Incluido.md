@@ -55,10 +55,10 @@ acl "autorizados" {
 
 options {
     directory "/var/cache/bind";
-    recursion yes;
+    recursion yes; #Consultas recursivas
     allow-recursion { autorizados; };
-    listen-on { 192.168.6.6; };
-    allow-transfer { none; };
+    listen-on { 192.168.6.6; }; # Un solo dns y que esta asociado a la red local
+    allow-transfer { none; }; #deshabilitamos transferencias de zonas
 
     forwarders {
         8.8.8.8;
@@ -109,30 +109,21 @@ $TTL 604800
 
 ## **🚨 3. Problemas Encontrados y Soluciones**
 <details>
-<summary>🛑 3.1. El servidor DNS no resolvía correctamente</summary>
+<summary>🛑 3.1. El servidor DNS no resuelve correctamente</summary>
 <p><strong>Problema:</strong> <br>
-Al hacer <code>dig retrogold.com</code>, no obteníamos la respuesta correcta.</p>
+El cliente no obtenía correctamente la IP asignada.</p>
 
 <p><strong>Solución:</strong></p>
 <pre><code>
-systemctl restart bind9
+sudo dhclient -r
+sudo dhclient
 </code></pre>
+<p><strong>Resultado:</strong> <br>
+Después de ejecutar los comandos, el cliente obtuvo la IP correcta y el DNS comenzó a funcionar como se esperaba.</p>
 </details>
 
 <details>
-<summary>⚠️ 3.2. Error en named-checkzone</summary>
-<p><strong>Problema:</strong> <br>
-Se intentó verificar la zona con un archivo incorrecto.</p>
-
-<p><strong>Solución:</strong></p>
-<pre><code>
-named-checkzone retrogold.com /etc/bind/zones/db.retrogold.com
-named-checkzone 6.168.192.in-addr.arpa /etc/bind/zones/db.6.168.192
-</code></pre>
-</details>
-
-<details>
-<summary>🔄 3.3. El servicio BIND9 no cargaba correctamente las zonas</summary>
+<summary>🔄 3.2. El servicio BIND9 no cargaba correctamente las zonas</summary>
 <p><strong>Solución:</strong></p>
 <pre><code>
 rndc reload
@@ -143,7 +134,7 @@ ss -tulnp | grep named
 </details>
 
 <details>
-<summary>📝 3.4. Restauración de /etc/resolv.conf</summary>
+<summary>📝 3.3. Restauración de /etc/resolv.conf</summary>
 <p><strong>Solución:</strong></p>
 <pre><code>
 sudo nano /etc/resolv.conf
@@ -186,4 +177,5 @@ sudo chattr +i /etc/resolv.conf
 </ul>
 
 🚀 **Servidor BIND9 en dns.retrogold.com (192.168.6.6) funcionando correctamente.**
+
 
