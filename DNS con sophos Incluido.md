@@ -30,14 +30,7 @@ nameserver 8.8.8.8
 </ul>
 </details>
 
-### **📝 2.1. Instalación de BIND9**
-<details>
-<summary>💾 Instalación</summary>
-<p>Para instalar BIND9 en la máquina, ejecutar:</p>
-<pre><code>sudo apt update && sudo apt install bind9 -y</code></pre>
-</details>
-
-### **📝 2.2. Archivos de Configuración**
+### **📝 2.1. Archivos de Configuración**
 <details>
 <summary>📄 named.conf.local</summary>
 <pre><code>
@@ -116,16 +109,22 @@ $TTL 604800
 
 ## **🚨 3. Problemas Encontrados y Soluciones**
 <details>
-<summary>🛑 3.1. El servidor DNS no resuelve correctamente</summary>
+<summary>🛑 3.1. El servidor DNS no resolvía correctamente</summary>
+<p><strong>Problema:</strong> <br>
+Al hacer <code>dig retrogold.com</code>, no obteníamos la respuesta correcta.</p>
+
 <p><strong>Solución:</strong></p>
 <pre><code>
-echo "nameserver 192.168.6.6" | sudo tee /etc/resolv.conf
-sudo systemctl disable --now systemd-resolved
+systemctl restart bind9
 </code></pre>
 </details>
 
 <details>
 <summary>⚠️ 3.2. Error en named-checkzone</summary>
+<p><strong>Problema:</strong> <br>
+Se intentó verificar la zona con un archivo incorrecto.</p>
+
+<p><strong>Solución:</strong></p>
 <pre><code>
 named-checkzone retrogold.com /etc/bind/zones/db.retrogold.com
 named-checkzone 6.168.192.in-addr.arpa /etc/bind/zones/db.6.168.192
@@ -133,7 +132,19 @@ named-checkzone 6.168.192.in-addr.arpa /etc/bind/zones/db.6.168.192
 </details>
 
 <details>
-<summary>🔄 3.3. Restauración de /etc/resolv.conf</summary>
+<summary>🔄 3.3. El servicio BIND9 no cargaba correctamente las zonas</summary>
+<p><strong>Solución:</strong></p>
+<pre><code>
+rndc reload
+systemctl restart bind9
+systemctl status bind9
+ss -tulnp | grep named
+</code></pre>
+</details>
+
+<details>
+<summary>📝 3.4. Restauración de /etc/resolv.conf</summary>
+<p><strong>Solución:</strong></p>
 <pre><code>
 sudo nano /etc/resolv.conf
 </code></pre>
@@ -141,6 +152,7 @@ sudo nano /etc/resolv.conf
 <pre><code>
 nameserver 192.168.6.6
 nameserver 8.8.8.8
+nameserver 9.9.9.9
 search retrogold.com
 </code></pre>
 <p>Proteger el archivo:</p>
@@ -174,3 +186,4 @@ sudo chattr +i /etc/resolv.conf
 </ul>
 
 🚀 **Servidor BIND9 en dns.retrogold.com (192.168.6.6) funcionando correctamente.**
+
