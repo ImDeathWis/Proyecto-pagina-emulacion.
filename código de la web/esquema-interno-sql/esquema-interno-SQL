@@ -1,0 +1,14 @@
+/* deberemos insertar esto dentro de apache cada uno dentor de cada tabla */
+
+USE loginforrole;
+SELECT * FROM roles;
+
+/* y */
+
+USE loginforrole;
+SELECT * FROM usuarios;
+
+/* y */
+
+USE contacto_web;
+SELECT * FROM contacto_web;
