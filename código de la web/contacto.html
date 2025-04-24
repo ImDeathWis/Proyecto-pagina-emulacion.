@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto-Luismi-Mateo</title>
+    <link rel="stylesheet" href="css/styles-home.css">
+</head>
+<body>
+
+    <!-- Menú Transparente -->
+    <header class="menu">
+        <a href="home.html">
+           <img src="fotos/logo.png" alt="Logo" class="logo"> 
+        </a>
+        
+        <nav>
+            <a href="login.html">Login</a>
+            <a href="register.html">Register</a>
+            <button id="menu-toggle">
+                <div></div>
+                <div></div>
+                <div></div>
+            </button>
+            <ul class="menu-vertical" id="menu-vertical">
+                <li><a href="myaccount.html">My Account</a></li>
+                <li><a href="mystats.html">My Stats</a></li>
+                <li><a href="contacto.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Carrusel de fondo -->
+    <div class="carousel">
+        <div class="carousel-1">
+            <div class="carousel-a">
+                <img src="fotos/fondo1.jpg" alt="">
+            </div>
+            <div class="carousel-a">
+                <img src="fotos/fondo2.jpg" alt="">
+            </div>
+            <div class="carousel-a">
+                <img src="fotos/fondo1.jpg" alt="">
+            </div>
+            <div class="carousel-a">
+                <img src="fotos/fondo2.jpg" alt="">
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+
+    <div class="formularioc">
+        <h2>Contacto</h2>
+        <form action="/Contacto/contacto.php" method="POST">
+            <label for="nombre">Nombre:</label>
+            <input type="text" name="nombre" id="nombre" required>
+
+            <label for="email">Correo:</label>
+            <input type="email" name="email" id="email" required>
+
+            <label for="mensaje">Mensaje:</label>
+            <textarea name="mensaje" id="mensaje" rows="4"></textarea>
+
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+
+
+</body>
+</html>
