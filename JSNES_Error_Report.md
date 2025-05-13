@@ -251,14 +251,3 @@ document.addEventListener('keyup', (e) => {
   }
 });
 ```
-
-## 🌐 6. Servidor local recomendado
-
-Para evitar errores de rutas o CORS, usa un servidor local como:
-- **Live Server (extensión de VSCode)**
-- `python -m http.server` (si tienes Python instalado)
-
-## ✅ Resultado final
-
-Con esto tendrás un emulador NES funcional en tu navegador, con carga de ROMs, controles y renderizado por canvas.
-
