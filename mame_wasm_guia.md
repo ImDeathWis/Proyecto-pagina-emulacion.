@@ -94,7 +94,7 @@ make -j$(nproc) TOOLS=0 NOWERROR=1 EMSCRIPTEN=1
 
 ---
 
-## 📁 Estructura
+## 📁 Estructura Recomendada
 
 ```
 /mame/
@@ -109,4 +109,16 @@ make -j$(nproc) TOOLS=0 NOWERROR=1 EMSCRIPTEN=1
 
 ---
 
+## 📝 Notas
 
+- La compilación puede tardar de **30 a 90 minutos**, dependiendo del hardware.
+- Se recomienda utilizar un SSD y cerrar programas en segundo plano para mejorar el rendimiento.
+- El archivo `index.html` debe estar adaptado a la carga de ROMs por `mame.js`.
+
+---
+
+## ✨ Próximos pasos
+
+- Integrar `mame.js` en una web retro tipo Windows 98 o estilo arcade.
+- Cargar ROMs dinámicamente desde servidor o VSFTPD.
+- Crear historial de partidas y perfiles.
