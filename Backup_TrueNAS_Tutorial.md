@@ -87,7 +87,7 @@ Ruta: `/usr/local/bin/backup_apache.sh`
 ```bash
 #!/bin/bash
 
-DESTINO="apacheuser@192.168.6.10::apachebackup"
+DESTINO="apacheuser@192.168.6.102::apachebackup"
 ORIGEN="/var/www/"
 PASSFILE="/etc/rsyncd.pass"
 LOGDIR="/var/log/rsync_backups"
