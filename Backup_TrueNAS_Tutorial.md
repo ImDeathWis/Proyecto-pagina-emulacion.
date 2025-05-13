@@ -168,7 +168,4 @@ sudo crontab -e
 - Copias automáticas en datasets organizados.
 - Logs de cada ejecución.
 - Limpieza automática de logs antiguos.
-
----
-
-*Generado el 2025-05-13*
+- Y todo estara a salvo y bien guardado
