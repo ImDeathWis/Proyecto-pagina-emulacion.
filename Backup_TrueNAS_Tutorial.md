@@ -50,12 +50,14 @@ Ambos servidores enviarán sus copias automáticamente a TrueNAS usando **rsync*
 - Path: `/mnt/POOLBACKUP/apache_data`
 - Hosts Allow: `192.168.6.101`
 - User: `apacheuser`
+![image](https://github.com/user-attachments/assets/61e55ab0-6b5b-42e6-9280-f7ebb844f6b5)
 
 #### Módulo DNS:
 - Name: `dnsbackup`
 - Path: `/mnt/POOLBACKUP/dns_data`
 - Hosts Allow: `192.168.6.100`
 - User: `dnsuser`
+![image](https://github.com/user-attachments/assets/a90acc4f-663f-4547-82a4-e9f7f444bbd6)
 
 ---
 
