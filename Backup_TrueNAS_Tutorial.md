@@ -31,6 +31,7 @@ Ambos servidores enviarán sus copias automáticamente a TrueNAS usando **rsync*
 - Dentro del pool, crea dos datasets:
   - `apache_data`
   - `dns_data`
+![image](https://github.com/user-attachments/assets/6c4522bc-1ffd-4674-b9c2-5260bbfa7729)
 
 ### 2. Crear Usuarios
 
