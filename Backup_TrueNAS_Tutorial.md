@@ -16,7 +16,7 @@ Ambos servidores enviarán sus copias automáticamente a TrueNAS usando **rsync*
 
 | Elemento        | IP              | Descripción                          |
 |-----------------|------------------|--------------------------------------|
-| TrueNAS         | 192.168.6.10     | Receptor de backups vía rsync        |
+| TrueNAS         | 192.168.6.102     | Receptor de backups vía rsync        |
 | Servidor Apache | 192.168.6.101    | Web con emuladores y ROMs            |
 | Servidor DNS    | 192.168.6.100    | Servidor BIND9 con zonas DNS         |
 | Sophos UTM      | 192.168.6.1      | Firewall y servidor DHCP             |
