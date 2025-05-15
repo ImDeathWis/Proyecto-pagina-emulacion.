@@ -1,8 +1,8 @@
-# Documentación Completa del Firewall Sophos
+# Guía de Configuración de Sophos para Redes Locales
 
 ## 🔍 Introducción
 
-Este documento reúne toda la configuración realizada en Sophos Firewall para proteger y gestionar la red corporativa *retrogold.com*. Se incluyen configuraciones de interfaces, ACL, reglas de firewall/NAT, VPN, pruebas realizadas y acceso remoto con ngrok. También se incluye un core resumen de cada apartado.
+Este documento recoge toda la configuración básica de un firewall Sophos, pensada para crear una red local segura, ordenada y accesible también desde fuera. Explicamos cómo se organizan las IPs, cómo proteger la red con reglas, y cómo permitir el acceso remoto por VPN o ngrok. Está escrita con un lenguaje claro para que cualquier persona con conocimientos básicos de redes lo entienda.
 
 ---
 
@@ -10,71 +10,39 @@ Este documento reúne toda la configuración realizada en Sophos Firewall para p
 
 ### 📍 ¿Qué es?
 
-La configuración de red define la estructura IP y la asignación de direcciones a los distintos dispositivos de la red. A través del interfaz LAN se distribuye conectividad interna, y mediante el interfaz WAN se accede a internet o redes externas.
+Es la parte donde asignamos direcciones IP a los dispositivos. Se usa una IP para la red interna (LAN) y otra para salir a internet (WAN).
 
-### 📊 Para qué lo usamos:
+### 📊 ¿Para qué sirve?
 
-* Establecer comunicación entre dispositivos
-* Controlar el rango de IPs y asignar direcciones estáticas a servicios críticos
+* Para que todos los equipos de la red se comuniquen correctamente.
+* Para que el firewall y los servidores tengan IPs fijas.
+* Para que el servidor DHCP reparta IPs automáticas sin conflictos.
 
-### Configuración:
+### 🔧 Lo que configuramos:
 
-* **LAN (PortA)**: `192.168.6.1/24`
-* **WAN (PortB)**: `192.168.0.185` (DHCP)
-
-### DHCP:
-
-* **Rango dinámico**: `192.168.6.100 - 192.168.6.200`
-* **Reservas**:
-
-  * DNS: `192.168.6.6`
-  * Apache: `192.168.6.20`
-  * TrueNAS: `192.168.6.30`
-
-### DNS:
-
-* Interno: `192.168.6.6`
-* Reenvío: `8.8.8.8`, `9.9.9.9`
-* Dominio: `retrogold.com`
-
-### 🎥 Detalles del video:
-
-Video: [Configurar DHCP y balanceo](https://www.youtube.com/watch?v=YBsrHn-g-2w)
-
-* Reservar IPs para dispositivos críticos
-* Activar redundancia con gateways en balanceo de carga
-
-### Core:
-
-* Red en `192.168.6.0/24`
-* Gateway: `192.168.6.1`
-* DNS y servidores bien definidos para estabilidad
+* Interfaz LAN: `192.168.6.1/24`
+* Interfaz WAN: `192.168.0.185` *(IP asignada por el router de casa, puede cambiar dependiendo de dónde se inicie la máquina virtual Sophos)*
+* DNS local: `192.168.6.6`
+* Rango DHCP: `192.168.6.100 - 192.168.6.200`
+* Reservas: DNS, Apache y TrueNAS con IP fija
 
 ---
 
-## 🔒 ACL y Acceso Local
+## 🔒 ACL y Acceso al Panel de Sophos
 
 ### 📍 ¿Qué es?
 
-Las ACL (Listas de Control de Acceso) determinan qué dispositivos pueden acceder a la administración de Sophos y desde qué zonas (LAN, WAN, VPN, etc).
+Una ACL es una regla que limita quién puede entrar al panel de administración de Sophos.
 
-### 📊 Para qué lo usamos:
+### 📊 ¿Para qué sirve?
 
-* Limitar acceso a la consola desde IPs específicas
-* Evitar ataques desde redes no autorizadas
+* Para que sólo ciertas IPs puedan acceder a la configuración.
+* Para evitar que usuarios externos entren sin permiso.
 
-### Configuración:
+### 🔧 Lo que configuramos:
 
-* Excepción ACL: `regla_ACL_IP_myhome`
-
-  * IP: `192.168.0.155`
-  * Zona: WAN
-  * Servicios: HTTPS, SSH, SSL VPN, User Portal, Ping
-
-### Core:
-
-* Acceso remoto sólo desde IPs autorizadas
-* ACL personalizadas para seguridad reforzada
+* Permitimos acceso desde una IP concreta: `192.168.0.155` *(es la IP del PC físico real desde el que se quiere acceder a Sophos; si se usa otro PC, esta IP debe cambiarse según el equipo que se utilice)*
+* Habilitamos HTTPS, SSH y el portal VPN para esa IP
 
 ---
 
@@ -82,160 +50,98 @@ Las ACL (Listas de Control de Acceso) determinan qué dispositivos pueden accede
 
 ### 📍 ¿Qué es?
 
-Son las reglas que definen qué tráfico está permitido entre zonas (LAN, WAN, VPN, etc.), bajo qué condiciones y con qué servicios.
+Son instrucciones que controlan qué tráfico puede pasar entre diferentes zonas de red.
 
-### 📊 Para qué lo usamos:
+### 📊 ¿Para qué sirve?
 
-* Permitir o bloquear accesos
-* Controlar puertos y protocolos
+* Para dejar navegar a los clientes.
+* Para permitir el uso de servidores internos.
+* Para aceptar conexiones externas específicas (como VPN).
 
-### Configuración destacada:
+### 🔧 Reglas creadas:
 
-| Nombre                | Zona origen → destino | Servicios        |
-| --------------------- | --------------------- | ---------------- |
-| LAN\_a\_DNS           | LAN → WAN             | DNS, HTTP, HTTPS |
-| LAN\_a\_WebServer     | LAN → Apache          | HTTP, HTTPS      |
-| LAN\_a\_Internet      | LAN → WAN             | DNS, HTTP, HTTPS |
-| LAN\_a\_LAN           | LAN → LAN             | Todos            |
-| Permitir\_LAN\_a\_WAN | LAN → WAN             | Todos            |
-| Acceso\_admin\_WAN    | WAN → LAN             | HTTP, HTTPS, VPN |
+* LAN a WAN: DNS, HTTP, HTTPS permitidos
+* LAN a Apache: HTTP y HTTPS permitidos
+* WAN a VPN: acceso por el puerto `10443`
 
-### 🎥 Detalles del video:
-
-Video: [Reglas de Firewall Sophos](https://www.youtube.com/watch?v=YOcbR1pejXE)
-
-* Orden de reglas: primero las específicas
-* Habilitar registro de tráfico para auditoría
-
-### Core:
-
-* Separación de servicios por zonas
-* Monitoreo activo en cada regla
+Todas las reglas tienen el registro activado para revisar el tráfico si hace falta.
 
 ---
 
-## 🔄 Reglas NAT
+## 🔄 NAT (Traducción de IPs)
 
 ### 📍 ¿Qué es?
 
-Las reglas de traducción (NAT) permiten acceder desde fuera de la red a servicios internos (DNAT), o disfrazar la IP interna al salir a internet (SNAT).
+NAT sirve para que los servicios de la red interna se vean desde fuera, o para ocultar las IPs de los clientes al salir a internet.
 
-### 📊 Para qué lo usamos:
+### 📊 ¿Para qué sirve?
 
-* Exponer servidores como Apache al exterior
-* Permitir navegación saliente desde LAN
+* Para publicar un servidor web (como Apache) en internet.
+* Para que los clientes usen una única IP al salir a internet.
 
-### Configuración:
+### 🔧 Lo que configuramos:
 
-| Regla                  | Tipo | Traducción                |
-| ---------------------- | ---- | ------------------------- |
-| DNAT\_10443\_VPN       | DNAT | Puerto 10443 a Sophos VPN |
-| NAT\_LAN\_a\_WAN       | SNAT | Mascaramiento (MASQ)      |
-| DNAT\_SERVIDOR\_APACHE | DNAT | TCP 8081 a Apache         |
-
-### Core:
-
-* NAT controlado evita exponer servicios innecesarios
-* NAT de salida con MASQ oculta IPs internas
+* DNAT: redirige peticiones al puerto `8081` hacia Apache interno
+* SNAT (MASQ): enmascara todas las IPs internas al salir a través del firewall
 
 ---
 
-## 🏡 VPN SSL
+## 🏡 VPN SSL con OpenVPN
 
 ### 📍 ¿Qué es?
 
-Una VPN SSL permite a usuarios acceder remotamente a la red local mediante un túnel seguro.
+Una VPN crea una conexión segura desde fuera hacia la red interna, como si estuvieras dentro de la red local.
 
-### 📊 Para qué lo usamos:
+### 📊 ¿Para qué sirve?
 
-* Acceder desde casa a la red `retrogold.com`
-* Conectar a servicios internos como DNS o Apache
+* Para trabajar o hacer pruebas desde casa conectándote como si estuvieras en el centro o la empresa.
+* Para acceder al DNS o servidor web de forma segura.
 
-### Configuración:
+### 🔧 Lo que configuramos:
 
-* Nombre: `SSL_VPN_HOME`
-* Red VPN: `10.81.0.0/16`
-* Red interna permitida: `192.168.6.0/24`
-* Split tunnel: activado
+* VPN con red: `10.81.0.0/16`
+* Red interna accesible: `192.168.6.0/24`
 * Puerto: `10443`
-* DNS interno: `192.168.6.6`
-
-### 🎥 Detalles del video:
-
-Video: [Configurar VPN SSL en Sophos](https://www.youtube.com/watch?v=apZX7oudbwE)
-
-* Asociar grupo a usuarios
-* Configurar políticas de acceso
-* Habilitar split tunneling para eficiencia
-
-### Core:
-
-* Acceso remoto seguro
-* Direccionamiento controlado a red interna
+* Cliente usado: OpenVPN
+* DNS usado desde VPN: `192.168.6.6`
 
 ---
 
-## ✨ Acceso remoto con Ngrok
+## ✨ Acceso Remoto con Ngrok
 
 ### 📍 ¿Qué es?
 
-Ngrok permite exponer un servicio local (ej. Apache) en internet a través de un túnel temporal y seguro.
+Ngrok permite acceder a un servidor interno sin tener que abrir puertos, creando un túnel desde internet.
 
-### 📊 Para qué lo usamos:
+### 📊 ¿Para qué sirve?
 
-* Probar el acceso a Apache sin abrir puertos
-* Acceso rápido desde móviles o fuera de la red
+* Para mostrar tu web o proyecto desde fuera sin tocar el firewall.
+* Ideal para hacer presentaciones o pruebas rápidas.
 
-### Pasos:
+### 🔧 Lo que hicimos:
 
-1. Descargar ngrok
-2. Configurar token de autenticación
-3. Ejecutar:
-
-```bash
-ngrok http 8081
-```
-
-4. Usar URL externa generada
-
-### 🎥 Detalles del video:
-
-Video: [Ngrok acceso remoto Apache](https://www.youtube.com/watch?v=jEZMVAeW8-g)
-
-* Ideal para pruebas y demostraciones
-* Proteger con autenticación
-
-### Core:
-
-* Túnel seguro para pruebas
-* No requiere configuración en el firewall
+* Instalamos ngrok en el servidor Apache
+* Ejecutamos: `ngrok http 8081`
+* Obtenemos una URL pública temporal para acceder a Apache desde fuera
 
 ---
 
-## ✅ Pruebas realizadas
+## 🧪 Pruebas Realizadas
 
-### DNS:
-
-* `dig`, `nslookup`, `ping` desde clientes a `retrogold.com`
-
-### Apache:
-
-* Acceso desde LAN y vía ngrok externo
-
-### VPN:
-
-* Conexión remota funcional
-* Navegación a `192.168.6.x` desde fuera
-
-### Seguridad:
-
-* Registro de tráfico y ACL para acceso restringido
+* Probamos DNS con `ping`, `dig`, `nslookup`
+* Conectamos con OpenVPN desde fuera y navegamos en la red interna
+* Accedimos al servidor web desde LAN, VPN y con ngrok
+* Verificamos que las reglas NAT y firewall funcionaban correctamente
 
 ---
 
-## 🔄 Core General Final
+## ✅ Resumen Final
 
-* Sophos gestiona seguridad, acceso remoto, red interna y VPN
-* Integrado con dominio propio `retrogold.com`
-* Reglas y servicios bien definidos, separados y monitoreados
-* Preparado para entornos de pruebas, oficinas remotas o demostraciones
+* Se configuró correctamente el firewall Sophos con acceso seguro y controlado
+* Toda la red funciona con direcciones bien definidas y protegidas
+* Se permite acceso externo por VPN o túneles con ngrok, según convenga
+* Esta configuración es ideal para prácticas de clase, simulaciones de empresa o montar una red segura en casa
+
+---
+
+> Documentación práctica redactada con un lenguaje accesible para estudiantes de informática o técnicos en formación.
