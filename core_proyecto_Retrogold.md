@@ -1,5 +1,5 @@
 
-# Núcleo del Proyecto de Emulación Retro
+# Núcleo del Proyecto RetroGold
 
 Este proyecto tiene como objetivo construir una plataforma web que permita jugar a videojuegos clásicos directamente desde el navegador, utilizando emuladores compilados en tecnologías modernas como WebAssembly y JavaScript. Para ello, se han seleccionado tres emuladores clave, cada uno enfocado en un tipo específico de plataforma retro.
 
@@ -40,7 +40,3 @@ Es un emulador de la consola **Nintendo 64** compilado en **WebAssembly**. Esta 
 El emulador de Nintendo 64 permite a los usuarios jugar títulos 3D de la era de los 64 bits directamente desde la web. La compilación en WebAssembly proporciona el rendimiento necesario para una emulación fluida sin comprometer la accesibilidad.
 
 ---
-
-## ✅ Conclusión
-
-Cada uno de estos emuladores ha sido seleccionado específicamente por su compatibilidad con tecnologías web modernas y su capacidad para ofrecer una experiencia de juego retro auténtica. Al integrarlos en nuestro sitio, ofrecemos una plataforma accesible, divertida y técnicamente avanzada para revivir clásicos arcade y de consola.
