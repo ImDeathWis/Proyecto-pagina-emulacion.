@@ -1,3 +1,5 @@
+[VOLVER ATRÁS](https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/README.md)
+
 # 🛠️ Errores encontrados en el proyecto JSNES RetroEmulator
 
 ## 🔴 1. RangeError: Maximum call stack size exceeded (Desbordamiento de pila)
