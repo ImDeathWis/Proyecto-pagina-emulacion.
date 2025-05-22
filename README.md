@@ -109,7 +109,7 @@ Como parte de la infraestructura, se utilizó **TrueNAS** para gestionar el alma
 
 - 📁 **Servidor de almacenamiento (NAS)** virtualizado en una máquina independiente.  
 - 🛡️ **RAID 5** configurado para tolerancia a fallos y seguridad de datos.  
-- 🔄 **Backups automatizados** de los servicios críticos del sistema (Apache, FTP, configuraciones DNS/DHCP, etc).  
+- 🔄 **Backups automatizados** de los servicios críticos del sistema (Apache, configuraciones DNS/DHCP, etc).  
 - 🔗 **Integración vía rsync** desde servidores hacia datasets de TrueNAS.  
 - 👤 Acceso configurado por usuarios y permisos definidos por dataset para asegurar el aislamiento de información.  
 
