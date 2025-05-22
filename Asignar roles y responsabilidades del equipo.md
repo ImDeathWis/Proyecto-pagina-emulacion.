@@ -2,65 +2,61 @@
 
 <a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/README.md" target="_blank">Haz clic aquí Para Volver a la Página Original</a>
 
-Para garantizar que ambos integrantes adquieran el mismo nivel de conocimiento y habilidades técnicas, cada persona será responsable de investigar, aprender y posteriormente enseñar a su compañero/a lo que ha comprendido. Además, cada uno mantendrá una copia en su **Máquina Virtual (MV)** para evitar la pérdida del proyecto antes de la entrega.  
+Para garantizar que ambos integrantes adquieran el mismo nivel de conocimiento y habilidades técnicas, cada persona será responsable de investigar, aprender y posteriormente enseñar a su compañero lo que ha comprendido. Además, cada uno mantendrá una copia en su **Máquina Virtual (MV)** para evitar la pérdida del proyecto antes de la entrega.  
 
 ## 🔄 Aprendizaje y Enseñanza Mutua  
 Cada integrante del equipo deberá:  
-✅ **Buscar información relevante** sobre su área asignada en cursos, tutoriales y documentación técnica (Open Webinars, documentación oficial de Docker, foros especializados, documentación de RetroArch, etc.).  
+✅ **Buscar información relevante** sobre su área asignada en cursos, tutoriales y documentación técnica.  
 ✅ **Aplicar lo aprendido** en su respectiva parte del proyecto.  
-✅ **Enseñar al compañero/a** lo aprendido, asegurándose de que ambos dominen la configuración, implementación y mantenimiento de todos los servicios.  
+✅ **Enseñar al compañero** lo aprendido, asegurándose de que ambos dominen la configuración, implementación y mantenimiento de todos los servicios.  
 ✅ **Crear documentación básica** de los procesos realizados, para acceso rápido en caso de dudas.  
 ✅ **Mantener una copia del proyecto** en su propia máquina virtual (MV), asegurando redundancia y disponibilidad en caso de fallos.  
 
 ---
 
-## 👥 Mateo Sarmiente: Infraestructura, Redes y Configuración de RetroArch  
-- **Docker y Contenedores**  
-  - Creación y configuración del `docker-compose.yml`.  
-  - Gestión de redes en Docker y conexión entre contenedores.  
-- **Servicios de Red**  
-  - Configuración y mantenimiento del contenedor **DNS/DHCP** con `Bind9` y `ISC DHCP Server`.  
-  - Garantizar la conectividad y resolución de nombres de dominio.  
-- **Seguridad y Accesibilidad**  
-  - Configuración de permisos adecuados en Docker y en los servicios.  
-  - Control de accesos y medidas de seguridad básicas.  
-- **RetroArch (Configuración de Emuladores)**  
-  - Instalación y configuración de **RetroArch** en Docker.  
-  - Gestión de **cores** para diferentes consolas retro.  
-  - Configuración de controladores y mapeo de teclas.  
+## 👥 Mateo Sarmiente: TrueNAS, Emuladores Web y Seguridad
 
-📚 **Fuentes de Aprendizaje**:  
-- Open Webinars (cursos sobre Docker, redes y administración de sistemas).  
-- Documentación oficial de Docker y RetroArch.  
-- Foros y comunidades como Stack Overflow, GitHub y Reddit (r/RetroArch).  
+- **TrueNAS y Almacenamiento**  
+  - Instalación y configuración de TrueNAS.  
+  - Creación de datasets, gestión de RAID 5 y configuración de backups vía rsync.  
 
-🧑‍🏫 **Enseñanza a Luis Miguel:** Explicar cómo se configura Docker, las redes, la seguridad en el proyecto y la integración de RetroArch.  
+- **Emuladores en WebAssembly**  
+  - Integración de emuladores como JSNES, MAME y JS64 en WebAssembly.  
+  - Configuración visual e interacción desde la interfaz web.  
+
+- **Firewall (pfSense)**  
+  - Configuración inicial del firewall con pfSense como entorno de pruebas.  
+
+- **Servidor Apache**  
+  - Configuración y mantenimiento compartido con Luis Miguel.  
+
+📚 **Fuentes de Aprendizaje**: Documentación oficial de TrueNAS, emuladores WebAssembly, guías de seguridad de red, y experiencias propias del proyecto.
+
+🧑‍🏫 **Enseñanza a Luis Miguel:** Explicación práctica sobre TrueNAS, WebAssembly y configuración de seguridad con pfSense.
 
 ---
 
-## 👥 Luis Miguel Gutiérrez: Desarrollo Web, Almacenamiento y Configuración de RetroArch  
-- **Servidor Web (Apache)**  
-  - Configuración del contenedor Apache y ajustes de servidor.  
-  - Desarrollo de la interfaz web (HTML, CSS, JS).  
-- **Servidor FTP**  
-  - Implementación del servidor FTP con **vsftpd** o **ProFTPD**.  
-  - Estructuración y organización del almacenamiento de ROMs.  
-- **Integración con Emuladores y RetroArch**  
-  - Asegurar la ejecución de los videojuegos desde la plataforma web.  
-  - Configurar los scripts necesarios para la interacción con los emuladores en Docker.  
-  - Sincronización entre la interfaz web y la ejecución de RetroArch.  
+## 👥 Luis Miguel Gutiérrez: Red, Servicios de Infraestructura y Página Web
 
-📚 **Fuentes de Aprendizaje**:  
-- Open Webinars (cursos de desarrollo web y servidores).  
-- Documentación de Apache, FTP y RetroArch.  
-- Tutoriales en YouTube y blogs especializados sobre RetroArch y Docker.  
+- **Servidor DNS con Bind9**  
+  - Instalación y configuración completa de Bind9 para resolución de nombres y subdominios.  
 
-🧑‍🏫 **Enseñanza a Mateo:** Explicar cómo se configura Apache, FTP, la interfaz web y la integración con RetroArch desde la plataforma.  
+- **Servidor DHCP y Firewall con Sophos**  
+  - Configuración de reglas, zonas, rangos de IP y acceso remoto mediante SSL VPN Remote Access.  
+
+- **Servidor Web con Apache**  
+  - Instalación, configuración y despliegue de la web junto con Mateo.  
+  - Desarrollo e integración de la interfaz web con los emuladores.  
+
+📚 **Fuentes de Aprendizaje**: Documentación de Bind9, Sophos, Apache, y diseño web.  
+
+🧑‍🏫 **Enseñanza a Mateo:** Configuración de red, Bind9, Sophos, desarrollo web e integración de sistemas.
 
 ---
 
 ## 📂 Copia de Seguridad y Gestión del Proyecto  
 Para evitar la pérdida del proyecto y asegurar su disponibilidad:  
 ✅ Cada persona mantendrá una copia completa del proyecto en su **Máquina Virtual (MV)**.  
-✅ Se usarán herramientas como **GitHub/GitLab** para almacenar y versionar el código.  
+✅ Se usará **GitHub** para almacenar y versionar el código.  
 ✅ Se realizarán pruebas individuales antes de la integración final.  
+"""
