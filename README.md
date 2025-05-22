@@ -16,12 +16,10 @@ RetroGold es tu portal para revivir los mejores clásicos de los videojuegos, po
 
 <h3>Componentes Principales:</h3>  
 
-- **Servidor Web (Apache):** Hospeda el sitio de emulación de juegos retro.  
-- **Servidor FTP (vsftpd):** Almacena las ROMs y permite su acceso mediante el emulador MAME.  
+- **Servidor Web (Apache):** Hospeda el sitio de emulación de juegos retro.
 - **Servidor DNS:** Gestiona la resolución de nombres de dominio.  
 - **Servidor DHCP:** Asigna dinámicamente direcciones IP en la red interna.  
-- **Firewall (Sophos):** Implementado en una máquina virtual para proteger la infraestructura contra amenazas de seguridad.  
-- **Contenedores Docker (futuro):** Facilitarán la gestión, escalabilidad y portabilidad del sistema.  
+- **Firewall (Sophos):** Implementado en una máquina virtual para proteger la infraestructura contra amenazas de seguridad. 
 
 <a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/Especificar%20listado%20de%20tareas.md" target="_blank">Haz clic aquí para ver el listado de tareas del equipo</a>  
 
