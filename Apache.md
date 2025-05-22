@@ -1,6 +1,6 @@
-# Configuración de Apache y Página Web en Ubuntu Server
+[VOLVER ATRÁS](https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/README.md)
 
-<a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/README.md" target="_blank">Haz clic aquí Para Volver a la Página Original</a>
+# Configuración de Apache y Página Web en Ubuntu Server
 
 <details><summary><h1><strong>🎮​Introducción al servicio Apache​👾​🎮</strong></h1></summary>
 
