@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iniciar Sesión</title>
+  <link rel="stylesheet" href="../assets/css/styles-home.css">
+</head>
+<body>
+
+  <!-- Menú superior -->
+  <header class="menu">
+    <a href="../portada.html">
+      <img src="../assets/fotos/logo.png" alt="Logo" class="logo">
+    </a>
+  </header>
+
+  <!-- Carrusel de fondo -->
+  <div class="carousel">
+    <div class="carousel-1">
+      <div class="carousel-a"><img src="../assets/fotos/fondo1.jpg" alt=""></div>
+      <div class="carousel-a"><img src="../assets/fotos/fondo2.jpg" alt=""></div>
+      <div class="carousel-a"><img src="../assets/fotos/fondo1.jpg" alt=""></div>
+      <div class="carousel-a"><img src="../assets/fotos/fondo2.jpg" alt=""></div>
+    </div>
+  </div>
+
+  <!-- Error -->
+  <div id="error-container" class="error text-center text-danger fw-bold mt-3" style="display: none;">
+    Usuario o contraseña no válidos.
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    if (params.has('error')) {
+      document.getElementById('error-container').style.display = 'block';
+    }
+  </script>
+
+  <!-- Login Form -->
+  <div class="wrapper">
+    <div class="title">INICIAR SESIÓN</div>
+    <form action="../InicioSesion/InicioSesion.php" method="POST">
+      <div class="field">
+        <input type="text" name="username" required />
+        <label>Correo o usuario</label>
+      </div>
+
+      <div class="field">
+        <input type="password" name="password" required />
+        <label>Contraseña</label>
+      </div>
+
+      <div class="content">
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="remember-me">
+          <label class="form-check-label" for="remember-me">Recordarme</label>
+        </div>
+        <div class="pass-link">
+          <a href="../recuperacion/recuperar_contrasena.html">¿Olvidaste tu contraseña?</a>
+          <a href="../recuperacion/recuperar_correo.html">¿Olvidaste tu correo?</a>
+        </div>
+      </div>
+
+      <div class="registro-link">
+        ¿No tienes cuenta? <a href="../registro/register.html">Regístrate aquí</a>
+      </div>
+
+      <div class="field">
+        <input type="submit" class="input-btn" value="Ingresar" />
+      </div>
+    </form>
+  </div>
+
+</body>
+</html>

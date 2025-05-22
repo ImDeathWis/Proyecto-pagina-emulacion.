@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>N64 Wasm</title>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="N64 Emulator, N64 JavaScript Emulator, WebAssembly, HTML5, Nintendo 64" name="keywords"/>
+<meta charset="utf-8"/>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rivets/0.9.6/rivets.bundled.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.2/dist/FileSaver.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/nipplejs/0.10.0/nipplejs.min.js"></script>
+<script>
+        // This check needs to be at the top in order to avoid the flash when the theme is swapped.
+        // If we find the user's system settings theme we default to that
+        // The attribute is applied to the document's top most element
+        function getSystemDarkMode(){
+            return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        }
+
+        const darkMode = localStorage.getItem('n64wasm-darkMode');
+        if ((darkMode !== null ? darkMode === "true" : getSystemDarkMode())) {
+            document.documentElement.dataset.darkmode = true;
+        }
+    </script>
+<style>
+        input[type="file"] {
+            display: none;
+        }
+
+        .table td,
+        .table th {
+            padding: 5px;
+        }
+
+        .regularTable td,
+        .regularTable th {
+            padding: 0;
+            vertical-align: top;
+            border-top: 0px;
+        }
+
+        .start-z-button {
+            background-color: rgb(189, 174, 173);
+        }
+
+        .b-a-button {
+            background-color: rgb(199, 199, 230);
+        }
+
+        .buttonhold {
+            background-color: lightsalmon;
+        }
+        
+        .nav-tabs .nav-item.show .nav-link,
+        .nav-tabs .nav-link.active {
+            color: #007bff;
+        }
+        .github-logo {
+            display:inline-block;
+            padding-left:10px;
+        }
+        .github-link {
+            color:black;
+            font-weight: 600;
+        }
+        .github-link:hover {
+            color:black;
+        }
+        .githubSvg {
+            height:21px;
+            width:21px;
+            color: black;
+        }
+        .touchsurface {
+            color: lightgray;
+            position: absolute;
+            width: 100%;
+            height: 800px;
+        }
+
+        [data-darkmode="true"] {
+            body {
+                background-color: black;
+                color: white;
+            }
+            #menuDiv {
+                color: black;
+            }
+            .card-body {
+                color:white;
+                background-color: rgb(20, 20, 20);
+            }
+            h1, a, .github-logo, .github-link, .github-link:hover, 
+            .githubSvg, label, th, input, ul {
+                color: white;
+            }
+
+            .modal-content, .form-control, .form-control:focus, .form-control:disabled {
+                background-color: rgb(20, 20, 20);
+                color: white;
+            }
+
+            .modal-content{
+                border: 3px solid white;
+            }
+
+            .start-z-button {
+                color: white;
+                background-color: rgb(42, 42, 42);
+            }
+
+            .b-a-button {
+                color: white;
+                background-color: rgb(80, 80, 80);
+            }
+
+            .touchsurface, .nav-link.active:hover {
+                color: rgb(72, 72, 72);
+                background-color: rgb(20, 20, 20);
+            }
+            
+            .buttonhold {
+                background-color: darkslategray;
+            }
+        }
+
+    </style>
+<style>
+.cyberpunk-button {
+    background-color: black;
+    border: 2px solid #00ffea;
+    color: #00ffea;
+    font-family: 'Press Start 2P', cursive;
+    padding: 10px 20px;
+    font-size: 16px;
+    margin: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.cyberpunk-button:hover {
+    background-color: #00ffea;
+    color: black;
+}
+</style></head>
+<body>
+<div class="container text-center" id="maindiv">
+<h1>
+            RetroGold
+        </h1>
+<div id="topPanel" style="display: none;">
+<!-- BEFORE LOAD -->
+<div rv-if="data.beforeEmulatorStarted">
+<button class="btn btn-primary mt-4 cyberpunk-button" id="btnPlayGame" onclick="myClass.loadRom();" rv-disabled="data.moduleInitializing" rv-if="data.hasRoms">Play Game</button>
+<button class="btn btn-primary mt-4 cyberpunk-button" id="btnUploadRom" onclick="myApp.uploadBrowse()" rv-disabled="data.moduleInitializing">Browse</button>
+<button class="btn btn-primary mt-4 cyberpunk-button" id="btnRemap" onclick="myApp.showRemapModal()" type="button">
+                    Remap Buttons
+                </button>
+<span rv-if="data.showLogin">
+<button class="btn btn-primary mt-4 cyberpunk-button" onclick="myApp.loginModal()" rv-if="data.loggedIn | ev '==false'">Login</button>
+<button class="btn btn-primary mt-4 cyberpunk-button" onclick="myApp.logout()" rv-if="data.loggedIn | ev '==true'">Logout</button>
+</span>
+<div class="form-check" rv-if="data.settings.SHOWADVANCED" style="margin-top: 13px;">
+<label class="form-check-label" style="margin-right: 10px;">
+<input class="form-check-input" rv-checked="data.chkAdvanced" rv-disabled="data.moduleInitializing" type="checkbox"/>
+                        Advanced
+                    </label>
+</div>
+<div class="card" rv-if="data.chkAdvanced" style="width: 18rem;margin-left: auto;margin-right: auto;margin-top: 20px;margin-bottom: 31px;">
+<div class="card-body">
+<h5 class="card-title">Advanced</h5>
+<h6 class="card-subtitle mb-2 text-muted">Options</h6>
+<button class="btn btn-secondary mt-4 cyberpunk-button" id="btnUploadEep" onclick="myApp.uploadEepBrowse()">
+                                Import Save File (EEP)</button>
+<div rv-if="data.eepName | ev_string '.length &gt; 0'">
+                                { data.eepName }
+                            </div>
+<button class="btn btn-secondary mt-4 cyberpunk-button" id="btnUploadSra" onclick="myApp.uploadSraBrowse()">
+                                Import Save File (SRA)</button>
+<div rv-if="data.sraName | ev_string '.length &gt; 0'">
+                                { data.sraName }
+                            </div>
+<button class="btn btn-secondary mt-4 cyberpunk-button" id="btnUploadFla" onclick="myApp.uploadFlaBrowse()">
+                                Import Save File (FLA)</button>
+<div rv-if="data.flaName | ev_string '.length &gt; 0'">
+                                { data.flaName }
+                            </div>
+<!-- <a href="#" class="card-link">Card link</a>
+                        <a href="#" class="card-link">Another link</a> -->
+</div>
+</div>
+<input id="file-upload-eep" type="file">
+<input id="file-upload-sra" type="file"/>
+<input id="file-upload-fla" type="file"/>
+<input id="file-upload" type="file"/>
+<!-- ROM LIST -->
+<div class="form-group mt-2 mb-4" rv-if="data.hasRoms" style="width: 300px;margin-left: auto; margin-right:auto;">
+<select class="form-control" id="romselect">
+<option rv-each-rom="data.romList" rv-value="rom.url">{rom.title}</option>
+</select>
+</div>
+<!-- SAVE STATES -->
+<div id="dbSaveStates" rv-if="data.loggedIn | ev '==true'">
+<button class="btn btn-primary mt-2 mb-2 cyberpunk-button" id="btnLoadRomAndSaveState" onclick="myApp.loadRomAndSavestate()" rv-disabled="data.moduleInitializing">Load Savestate</button>
+<div class="form-group mt-2 mb-4" style="width: 300px;margin-left: auto; margin-right:auto;">
+<select class="form-control" id="savestateSelect">
+<option rv-each-item="data.n64SaveStates" rv-value="item.Name">{item.Name}</option>
+</select>
+</div>
+</div>
+</input></div>
+<!-- AFTER LOAD -->
+<div rv-hide="data.beforeEmulatorStarted">
+<button class="btn btn-primary mt-2 mb-2 cyberpunk-button" onclick="myApp.newRom()">New Rom</button>
+<div class="btn-group mt-2 mb-2" rv-if="data.settings.SHOWADVANCED">
+<button aria-expanded="false" aria-haspopup="true" class="btn btn-primary dropdown-toggle cyberpunk-button" data-toggle="dropdown" type="button">
+                        Advanced
+                    </button>
+<div class="dropdown-menu">
+<a class="dropdown-item" onclick="myApp.exportEep()" style="cursor: pointer;">Export Save (EEP)</a>
+<a class="dropdown-item" onclick="myApp.exportSra()" style="cursor: pointer;">Export Save (SRA)</a>
+<a class="dropdown-item" onclick="myApp.exportFla()" style="cursor: pointer;">Export Save (FLA)</a>
+</div>
+</div>
+<div class="btn-group mt-2 mb-2" rv-if="data.settings.SHOWOPTIONS">
+<button aria-expanded="false" aria-haspopup="true" class="btn btn-primary dropdown-toggle cyberpunk-button" data-toggle="dropdown" type="button">
+                        Options
+                    </button>
+<div class="dropdown-menu">
+<a class="dropdown-item" onclick="myApp.reset()" style="cursor: pointer;">Reset</a>
+</div>
+</div>
+<span rv-if="data.showDoubleSpeed">
+<button class="btn btn-success mt-2 mb-2 cyberpunk-button" onclick="myApp.toggleDoubleSpeed()" rv-if="data.doubleSpeed | ev '==true'">2x Speed</button>
+<button class="btn btn-primary mt-2 mb-2 cyberpunk-button" onclick="myApp.toggleDoubleSpeed()" rv-if="data.doubleSpeed | ev '==false'">2x Speed</button>
+</span>
+<button class="btn btn-primary mt-2 mb-2 cyberpunk-button" onclick="myApp.saveCloud()" rv-if="data.loggedIn | ev '==true'">Save Cloud</button>
+<button class="btn btn-primary mt-2 mb-2 cyberpunk-button" onclick="myApp.loadCloud()" rv-disabled="data.noCloudSave" rv-if="data.loggedIn | ev '==true'">Load Cloud</button>
+<button class="btn btn-primary mt-2 mb-2 cyberpunk-button" onclick="myApp.saveStateLocal()" rv-if="data.loggedIn | ev '==false'">Save State</button>
+<button class="btn btn-primary mt-2 mb-2 cyberpunk-button" onclick="myApp.loadStateLocal()" rv-disabled="data.noLocalSave" rv-if="data.loggedIn | ev '==false'">Load State</button>
+<button class="btn btn-primary mt-2 mb-2 cyberpunk-button" onclick="myApp.zoomOut()">Zoom Out</button>
+<button class="btn btn-primary mt-2 mb-2 cyberpunk-button" onclick="myApp.zoomIn()">Zoom In</button>
+<button class="btn btn-primary mt-2 mb-2 cyberpunk-button" onclick="myApp.fullscreen()">Full Screen</button>
+</div>
+<div class="mt-4" rv-if="data.iosShowWarning">
+<div class="alert alert-info" role="alert">
+<b>NOTE: </b>On iOS 16 and above in order to improve the framerate you should disable the following: Settings -&gt; Safari -&gt; 
+                    Advanced -&gt; Experimental Features -&gt; GPU Process: WebGL. Then restart safari and it should take effect.
+                  </div>
+</div>
+<div rv-if="data.beforeEmulatorStarted" style="margin-top:40px;">
+<div id="dropArea" style="width: 150px; height: 150px; border: gray 1px solid;margin-left: auto;
+                    color: darkgrey;margin-right: auto; border-style: dashed;">
+<br/>
+<br/>
+                    Drag/Drop 
+                    <br/>
+                    Rom File
+                </div>
+</div>
+</div>
+<div id="lblErrorOuter" style="display: none;">
+<div class="alert alert-danger mt-4" id="lblError" role="alert" rv-html="data.lblError" rv-if="data.lblError | ev_string '.length &gt; 0'">
+</div>
+</div>
+<div class="mt-4" id="mydiv"></div>
+</div>
+<div class="text-center" id="middleDiv">
+<!-- ID has to be canvas it's hardcoded in the EM generated .js -->
+<div id="canvasDiv" style="display: none;">
+<canvas id="canvas" style="width: 640px;"></canvas>
+</div>
+<div id="bottomPanel" rv-hide="data.beforeEmulatorStarted">
+<!-- <div>{ data.audioSkipCount}</div> -->
+</div>
+<div class="d-flex justify-content-center card-title mt-4">
+
+</div>
+</div>
+<!-- Mobile UX -->
+<div id="mobileButtons" style="display: none;text-align: center;padding-top: 20px;padding-bottom: 20px;">
+<div style="margin-bottom: 10px;">
+<button class="btn btn-primary mt-2 mb-2 cyberpunk-button" onclick="myApp.newRom()">New Rom</button>
+<button class="btn btn-primary mt-2 mb-2 cyberpunk-button" onclick="myApp.saveCloud()" rv-if="data.loggedIn | ev '==true'">Save Cloud</button>
+<button class="btn btn-primary mt-2 mb-2 cyberpunk-button" onclick="myApp.loadCloud()" rv-disabled="data.noCloudSave" rv-if="data.loggedIn | ev '==true'">Load Cloud</button>
+<button class="btn btn-primary mt-2 mb-2 cyberpunk-button" onclick="myApp.saveStateLocal()" rv-if="data.loggedIn | ev '==false'">Save State</button>
+<button class="btn btn-primary mt-2 mb-2 cyberpunk-button" onclick="myApp.loadStateLocal()" rv-disabled="data.noLocalSave" rv-if="data.loggedIn | ev '==false'">Load State</button>
+</div>
+<span rv-if="data.showDoubleSpeed">
+<button class="btn btn-success mt-2 mb-2 cyberpunk-button" onclick="myApp.toggleDoubleSpeed()" rv-if="data.doubleSpeed | ev '==true'">2x Speed</button>
+<button class="btn btn-primary mt-2 mb-2 cyberpunk-button" onclick="myApp.toggleDoubleSpeed()" rv-if="data.doubleSpeed | ev '==false'">2x Speed</button>
+</span>
+<button class="btn btn-primary cyberpunk-button" onclick="myApp.hideMobileMenu()" type="button">
+            Hide
+        </button>
+</div>
+<div id="mobileDiv" style="display: none;height: 100%;">
+<div id="mobileCanvas">
+</div>
+<div id="mobileBottomPanel" style="font-size: 36px;height:100%;text-align: center!important;background: white;">
+<table cellpadding="0" cellspacing="0" style="width: 100%;">
+<tr>
+<td style="border-right: 1px solid rgb(72,72,72);width:50%;">
+<div class="start-z-button" id="mobileStart" rv-class-buttonhold="data.inputController.MobileStart">
+                            Start
+                        </div>
+</td>
+<td>
+<div class="start-z-button" id="mobileSelect" rv-class-buttonhold="data.inputController.MobileSelect">
+<span rv-if="data.useZasCMobile | ev '==false'">Z</span>
+<span rv-if="data.useZasCMobile | ev '==true'">C (Hold)</span>
+</div>
+</td>
+</tr>
+<tr>
+<td style="border-right: 1px solid rgb(72,72,72);">
+<div class="b-a-button" id="mobileB" rv-class-buttonhold="data.inputController.MobileB">
+                            B
+                        </div>
+</td>
+<td>
+<div class="b-a-button" id="mobileA" rv-class-buttonhold="data.inputController.MobileA">
+                            A
+                        </div>
+</td>
+</tr>
+</table>
+<!-- <div style="color: lightgray;height:100%;" id="divTouchSurface">
+                <div style="padding-top: 20px;height: 800px;" id="startDiv">
+                    << Swipe to Move>>
+                </div>
+            </div> -->
+<div style="margin-left: auto;margin-right: auto;width: 100%;height: 800px;">
+<div class="touchsurface" id="divTouchSurface">
+<div id="startDiv" style="-webkit-touch-callout: none; /* iOS Safari */
+                    -webkit-user-select: none; /* Safari */
+                     -khtml-user-select: none; /* Konqueror HTML */
+                       -moz-user-select: none; /* Old versions of Firefox */
+                        -ms-user-select: none; /* Internet Explorer/Edge */
+                            user-select: none; /* Non-prefixed version, currently
+                                                  supported by Chrome, Edge, Opera and Firefox */">
+                        Virtual Joystick
+                    </div>
+</div>
+</div>
+<div id="menuDiv" style="opacity: 0.5; background-color: rgba(243,244,244,1);width: 70px;position: absolute; top:0px;left:170px;font-size: 14px;">
+                -MENU-
+            </div>
+</div>
+</div>
+<!--  Login Modal -->
+<div aria-hidden="true" aria-labelledby="loginModalLabel" class="modal fade" id="loginModal" role="dialog" tabindex="-1">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+<div class="modal-header">
+<h5 class="modal-title" id="loginModalLabel">Login</h5>
+<button aria-label="Close" class="close cyberpunk-button" data-dismiss="modal" type="button">
+<span aria-hidden="true">×</span>
+</button>
+</div>
+<div class="modal-body">
+<div class="form-group">
+<label>Password</label>
+<input autocomplete="off" class="form-control" id="txtPassword" onkeydown="" placeholder="Enter Password" rv-value="data.password" type="password"/>
+</div>
+</div>
+<div class="modal-footer">
+<button class="btn btn-primary cyberpunk-button" onclick="myApp.loginSubmit()" type="button">Submit</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Keymapping Modal -->
+<div aria-hidden="true" class="modal fade" id="buttonsModal" role="dialog" tabindex="-1">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+<div class="modal-header">
+<h5 class="modal-title">Remap Buttons</h5>
+<button aria-label="Close" class="close cyberpunk-button" data-dismiss="modal" type="button">
+<span aria-hidden="true">×</span>
+</button>
+</div>
+<div class="modal-body" id="modalMain" style="padding-bottom: 0;">
+<ul class="nav nav-tabs" rv-hide="data.remapWait">
+<li class="nav-item">
+<a class="nav-link" onclick="myApp.swapRemap('player1')" rv-class-active="data.remapPlayer1" style="cursor: pointer;">Player 1</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" onclick="myApp.swapRemap('options')" rv-class-active="data.remapOptions" style="cursor: pointer;">Options</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" onclick="myApp.swapRemap('gameshark')" rv-class-active="data.remapGameshark" style="cursor: pointer;">GameShark</a>
+</li>
+</ul>
+<div rv-if="data.remapPlayer1">
+<table class="table" rv-hide="data.remapWait">
+<thead>
+<tr>
+<th scope="col">Button</th>
+<th scope="col">Keyboard</th>
+<th scope="col">Joypad</th>
+<th scope="col">Remap</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">D-Up</th>
+<td>
+<input class="form-control" disabled="" rv-value="data.remappings.Mapping_Up" type="text"/>
+</td>
+<td>
+<input class="form-control" disabled="" rv-value="data.remappings.Joy_Mapping_Up" type="text"/>
+</td>
+<td>
+<table class="regularTable">
+<tr>
+<td>
+<button class="btn btn-primary cyberpunk-button" onclick="myApp.btnRemapKey(1)" type="button">Key</button>
+</td>
+<td>
+<button class="btn btn-primary ml-2 cyberpunk-button" onclick="myApp.btnRemapJoy(1)" type="button">Joypad</button>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<th scope="row">D-Down</th>
+<td>
+<input class="form-control" disabled="" rv-value="data.remappings.Mapping_Down" type="text"/>
+</td>
+<td>
+<input class="form-control" disabled="" rv-value="data.remappings.Joy_Mapping_Down" type="text"/>
+</td>
+<td>
+<table class="regularTable">
+<tr>
+<td>
+<button class="btn btn-primary cyberpunk-button" onclick="myApp.btnRemapKey(2)" type="button">Key</button>
+</td>
+<td>
+<button class="btn btn-primary ml-2 cyberpunk-button" onclick="myApp.btnRemapJoy(2)" type="button">Joypad</button>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<th scope="row">D-Left</th>
+<td>
+<input class="form-control" disabled="" rv-value="data.remappings.Mapping_Left" type="text"/>
+</td>
+<td>
+<input class="form-control" disabled="" rv-value="data.remappings.Joy_Mapping_Left" type="text"/>
+</td>
+<td>
+<table class="regularTable">
+<tr>
+<td>
+<button class="btn btn-primary cyberpunk-button" onclick="myApp.btnRemapKey(3)" type="button">Key</button>
+</td>
+<td>
+<button class="btn btn-primary ml-2 cyberpunk-button" onclick="myApp.btnRemapJoy(3)" type="button">Joypad</button>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<th scope="row">D-Right</th>
+<td>
+<input class="form-control" disabled="" rv-value="data.remappings.Mapping_Right" type="text"/>
+</td>
+<td>
+<input class="form-control" disabled="" rv-value="data.remappings.Joy_Mapping_Right" type="text"/>
+</td>
+<td>
+<table class="regularTable">
+<tr>
+<td>
+<button class="btn btn-primary cyberpunk-button" onclick="myApp.btnRemapKey(4)" type="button">Key</button>
+</td>
+<td>
+<button class="btn btn-primary ml-2 cyberpunk-button" onclick="myApp.btnRemapJoy(4)" type="button">Joypad</button>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<th scope="row">A</th>
+<td>
+<input class="form-control" disabled="" rv-value="data.remappings.Mapping_Action_A" type="text"/>
+</td>
+<td>
+<input class="form-control" disabled="" rv-value="data.remappings.Joy_Mapping_Action_A" type="text"/>
+</td>
+<td>
+<table class="regularTable">
+<tr>
+<td>
+<button class="btn btn-primary cyberpunk-button" onclick="myApp.btnRemapKey(5)" type="button">Key</button>
+</td>
+<td>
+<button class="btn btn-primary ml-2 cyberpunk-button" onclick="myApp.btnRemapJoy(5)" type="button">Joypad</button>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<th scope="row">B</th>
+<td>
+<input class="form-control" disabled="" rv-value="data.remappings.Mapping_Action_B" type="text"/>
+</td>
+<td>
+<input class="form-control" disabled="" rv-value="data.remappings.Joy_Mapping_Action_B" type="text"/>
+</td>
+<td>
+<table class="regularTable">
+<tr>
+<td>
+<button class="btn btn-primary cyberpunk-button" onclick="myApp.btnRemapKey(6)" type="button">Key</button>
+</td>
+<td>
+<button class="btn btn-primary ml-2 cyberpunk-button" onclick="myApp.btnRemapJoy(6)" type="button">Joypad</button>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<th scope="row">Start</th>
+<td>
+<input class="form-control" disabled="" rv-value="data.remappings.Mapping_Action_Start" type="text"/>
+</td>
+<td>
+<input class="form-control" disabled="" rv-value="data.remappings.Joy_Mapping_Action_Start" type="text"/>
+</td>
+<td>
+<table class="regularTable">
+<tr>
+<td>
+<button class="btn btn-primary cyberpunk-button" onclick="myApp.btnRemapKey(8)" type="button">Key</button>
+</td>
+<td>
+<button class="btn btn-primary ml-2 cyberpunk-button" onclick="myApp.btnRemapJoy(8)" type="button">Joypad</button>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<th scope="row">Z</th>
+<td>
+<input class="form-control" disabled="" rv-value="data.remappings.Mapping_Action_Z" type="text"/>
+</td>
+<td>
+<input class="form-control" disabled="" rv-value="data.remappings.Joy_Mapping_Action_Z" type="text"/>
+</td>
+<td>
+<table class="regularTable">
+<tr>
+<td>
+<button class="btn btn-primary cyberpunk-button" onclick="myApp.btnRemapKey(10)" type="button">Key</button>
+</td>
+<td>
+<button class="btn btn-primary ml-2 cyberpunk-button" onclick="myApp.btnRemapJoy(10)" type="button">Joypad</button>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<th scope="row">L</th>
+<td>
+<input class="form-control" disabled="" rv-value="data.remappings.Mapping_Action_L" type="text"/>
+</td>
+<td>
+<input class="form-control" disabled="" rv-value="data.remappings.Joy_Mapping_Action_L" type="text"/>
+</td>
+<td>
+<table class="regularTable">
+<tr>
+<td>
+<button class="btn btn-primary cyberpunk-button" onclick="myApp.btnRemapKey(11)" type="button">Key</button>
+</td>
+<td>
+<button class="btn btn-primary ml-2 cyberpunk-button" onclick="myApp.btnRemapJoy(11)" type="button">Joypad</button>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<th scope="row">R</th>
+<td>
+<input class="form-control" disabled="" rv-value="data.remappings.Mapping_Action_R" type="text"/>
+</td>
+<td>
+<input class="form-control" disabled="" rv-value="data.remappings.Joy_Mapping_Action_R" type="text"/>
+</td>
+<td>
+<table class="regularTable">
+<tr>
+<td>
+<button class="btn btn-primary cyberpunk-button" onclick="myApp.btnRemapKey(12)" type="button">Key</button>
+</td>
+<td>
+<button class="btn btn-primary ml-2 cyberpunk-button" onclick="myApp.btnRemapJoy(12)" type="button">Joypad</button>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<th scope="row">Menu</th>
+<td>
+<input class="form-control" disabled="" rv-value="data.remappings.Mapping_Menu" type="text"/>
+</td>
+<td>
+<input class="form-control" disabled="" rv-value="data.remappings.Joy_Mapping_Menu" type="text"/>
+</td>
+<td>
+<table class="regularTable">
+<tr>
+<td>
+<button class="btn btn-primary cyberpunk-button" onclick="myApp.btnRemapKey(9)" type="button">Key</button>
+</td>
+<td>
+<button class="btn btn-primary ml-2 cyberpunk-button" onclick="myApp.btnRemapJoy(9)" type="button">Joypad</button>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<th scope="row">CUP</th>
+<td>
+<input class="form-control" disabled="" rv-value="data.remappings.Mapping_Action_CUP" type="text"/>
+</td>
+<td>
+</td>
+<td>
+<table class="regularTable">
+<tr>
+<td>
+<button class="btn btn-primary cyberpunk-button" onclick="myApp.btnRemapKey(13)" type="button">Key</button>
+</td>
+<td>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<th scope="row">CDOWN</th>
+<td>
+<input class="form-control" disabled="" rv-value="data.remappings.Mapping_Action_CDOWN" type="text"/>
+</td>
+<td>
+</td>
+<td>
+<table class="regularTable">
+<tr>
+<td>
+<button class="btn btn-primary cyberpunk-button" onclick="myApp.btnRemapKey(14)" type="button">Key</button>
+</td>
+<td>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<th scope="row">CLEFT</th>
+<td>
+<input class="form-control" disabled="" rv-value="data.remappings.Mapping_Action_CLEFT" type="text"/>
+</td>
+<td>
+</td>
+<td>
+<table class="regularTable">
+<tr>
+<td>
+<button class="btn btn-primary cyberpunk-button" onclick="myApp.btnRemapKey(15)" type="button">Key</button>
+</td>
+<td>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<th scope="row">CRIGHT</th>
+<td>
+<input class="form-control" disabled="" rv-value="data.remappings.Mapping_Action_CRIGHT" type="text"/>
+</td>
+<td>
+</td>
+<td>
+<table class="regularTable">
+<tr>
+<td>
+<button class="btn btn-primary cyberpunk-button" onclick="myApp.btnRemapKey(16)" type="button">Key</button>
+</td>
+<td>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<th scope="row">UP</th>
+<td>
+<input class="form-control" disabled="" rv-value="data.remappings.Mapping_Action_Analog_Up" type="text"/>
+</td>
+<td>
+</td>
+<td>
+<table class="regularTable">
+<tr>
+<td>
+<button class="btn btn-primary cyberpunk-button" onclick="myApp.btnRemapKey(17)" type="button">Key</button>
+</td>
+<td>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<th scope="row">DOWN</th>
+<td>
+<input class="form-control" disabled="" rv-value="data.remappings.Mapping_Action_Analog_Down" type="text"/>
+</td>
+<td>
+</td>
+<td>
+<table class="regularTable">
+<tr>
+<td>
+<button class="btn btn-primary cyberpunk-button" onclick="myApp.btnRemapKey(18)" type="button">Key</button>
+</td>
+<td>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<th scope="row">LEFT</th>
+<td>
+<input class="form-control" disabled="" rv-value="data.remappings.Mapping_Action_Analog_Left" type="text"/>
+</td>
+<td>
+</td>
+<td>
+<table class="regularTable">
+<tr>
+<td>
+<button class="btn btn-primary cyberpunk-button" onclick="myApp.btnRemapKey(19)" type="button">Key</button>
+</td>
+<td>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<th scope="row">RIGHT</th>
+<td>
+<input class="form-control" disabled="" rv-value="data.remappings.Mapping_Action_Analog_Right" type="text"/>
+</td>
+<td>
+</td>
+<td>
+<table class="regularTable">
+<tr>
+<td>
+<button class="btn btn-primary cyberpunk-button" onclick="myApp.btnRemapKey(20)" type="button">Key</button>
+</td>
+<td>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<div rv-if="data.remapWait">
+<div class="mt-4 mb-4 text-center">
+                                Please press a { data.remapMode }
+                                <br/>
+<br/>
+                                { data.inputController.Key_Last }
+                                <br/>
+</div>
+</div>
+</div>
+<div rv-if="data.remapOptions">
+<div class="mt-4 mb-4">
+<div style="margin-bottom: 10px;">
+<div style="margin-left: 3px;">Video Plugin</div>
+<div style="margin-left: 20px;margin-top: 3px;">
+<input id="pluginglide" name="videoplugin" rv-checked="data.pluginTemp" type="radio" value="glide"/>
+<label for="pluginglide">Glide (Best Overall)</label><br/>
+<input id="pluginrice" name="videoplugin" rv-checked="data.pluginTemp" type="radio" value="rice"/>
+<label for="pluginrice">Rice (Better for certain games: Micro Machines, Wipeout)</label><br/>
+<input id="pluginangry" name="videoplugin" rv-checked="data.pluginTemp" type="radio" value="angry"/>
+<label for="pluginangry">Software Renderer (very slow but highly accurate)</label><br/>
+</div>
+</div>
+<div>
+<label class="form-check-label" style="margin-left: 26px;">
+<input class="form-check-input" rv-checked="data.disableAudioSyncTemp" type="checkbox"/>
+                                    Vertical Sync (improves refresh rate)
+                                </label>
+</div>
+<div class="mt-2">
+<label class="form-check-label" style="margin-left: 26px;">
+<input class="form-check-input" rv-checked="data.useVBOTemp" type="checkbox"/>
+                                    Use Vertex Buffer Objects (may improve performance)
+                                </label>
+</div>
+<div class="mt-2">
+<label class="form-check-label" style="margin-left: 26px;">
+<input class="form-check-input" name="darkmode" rv-checked="data.darkModeTemp" type="checkbox"/>
+                                    Dark mode
+                                </label>
+</div>
+<div class="mt-2">
+<label class="form-check-label" style="margin-left: 26px;">
+<input class="form-check-input" rv-checked="data.showFPSTemp" type="checkbox"/>
+                                    Show FPS
+                                </label>
+</div>
+<div class="mt-2">
+<label class="form-check-label" style="margin-left: 26px;">
+<input class="form-check-input" rv-checked="data.swapSticksTemp" type="checkbox"/>
+                                    Swap Left and Right Sticks (good for goldeneye)
+                                </label>
+</div>
+<div class="mt-2">
+<label class="form-check-label" style="margin-left: 26px;">
+<input class="form-check-input" rv-checked="data.mouseModeTemp" type="checkbox"/>
+                                    Mouse Controls (good for starcraft)
+                                </label>
+</div>
+<div class="mt-2">
+<label class="form-check-label" style="margin-left: 26px;">
+<input class="form-check-input" rv-checked="data.invert2PTemp" type="checkbox"/>
+                                    Player 2 Invert Y-Axis
+                                </label>
+</div>
+<div class="mt-2">
+<label class="form-check-label" style="margin-left: 26px;">
+<input class="form-check-input" rv-checked="data.invert3PTemp" type="checkbox"/>
+                                    Player 3 Invert Y-Axis
+                                </label>
+</div>
+<div class="mt-2">
+<label class="form-check-label" style="margin-left: 26px;">
+<input class="form-check-input" rv-checked="data.invert4PTemp" type="checkbox"/>
+                                    Player 4 Invert Y-Axis
+                                </label>
+</div>
+<div class="mt-2">
+<table>
+<tr>
+<td>Mobile</td>
+<td>
+<div>
+<select class="form-control" id="ddlMobile" rv-value="data.settingMobileTemp" style="margin-left: 16px;">
+<option value="Auto">Auto Detect</option>
+<option value="ForceMobile">Force Mobile</option>
+<option value="ForceDesktop">Force Desktop</option>
+</select>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div rv-if="data.remapGameshark">
+<div class="mt-4 mb-4">
+<table class="table" rv-hide="data.remapWait">
+<thead>
+<tr>
+<th scope="col">Active</th>
+<th scope="col">Name</th>
+<th scope="col">Address</th>
+<th scope="col">Value</th>
+<th scope="col"></th>
+</tr>
+</thead>
+<tbody>
+<tr rv-each-cheat="data.cheats">
+<th scope="row">
+<label class="form-check-label" style="margin-left: 26px; margin-top: 5px;">
+<input class="form-check-input" rv-checked="cheat.active" type="checkbox"/>
+                                                Active
+                                            </label>
+</th>
+<td>
+<input class="form-control" disabled="" rv-value="cheat.name" type="text"/>
+</td>
+<td>
+<input class="form-control" disabled="" rv-value="cheat.address" type="text"/>
+</td>
+<td>
+<input class="form-control" disabled="" rv-value="cheat.value" type="text"/>
+</td>
+<td style="text-align: center;">
+<button class="btn btn-danger cyberpunk-button" onclick="myApp.deleteCheat(this)" rv-name="cheat.name" type="button">Delete</button>
+</td>
+</tr>
+<tr>
+<th scope="row">
+</th>
+<td>
+<input class="form-control" rv-value="data.cheatName" type="text"/>
+</td>
+<td>
+<input class="form-control" rv-value="data.cheatAddress" type="text"/>
+</td>
+<td>
+<input class="form-control" rv-value="data.cheatValue" type="text"/>
+</td>
+<td style="text-align: center;">
+<button class="btn btn-success cyberpunk-button" onclick="myApp.addCheat()" type="button">Add</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="modal-footer" rv-hide="data.remapWait" style="padding-top: 10px;">
+<button class="btn btn-secondary cyberpunk-button" data-dismiss="modal" type="button">Close</button>
+<button class="btn btn-primary cyberpunk-button" onclick="myApp.restoreDefaultKeymappings()" type="button">Restore Defaults</button>
+<button class="btn btn-primary cyberpunk-button" onclick="myApp.saveRemap()" type="button">Save changes</button>
+</div>
+</div>
+</div>
+</div>
+<script src="settings.js?v=1"></script>
+<script src="romlist.js"></script>
+<script type="text/javascript">
+        var rando = Math.floor(Math.random() * Math.floor(100000));
+        var script = document.createElement('script');
+        script.src = 'script.js?v=' + rando;
+        document.getElementsByTagName('head')[0].appendChild(script);
+    </script>
+</body>
+</html>
