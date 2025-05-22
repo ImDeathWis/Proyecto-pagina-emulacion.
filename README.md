@@ -85,7 +85,7 @@ Los usuarios acceden a una web donde pueden explorar y lanzar juegos clásicos. 
 ---
 
 ### 4️⃣ Firewall  
-🔗 [Configuración temporal con pfSense](https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/pfesense.md) 
+🔗 [Configuración temporal con pfSense](https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/pfesense.md) <br>
 🔗 [Configuración de Sophos y VPN](https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/SOPHOS%20DHCP%20%2B%20FIREWALL%20.md)
 - pfSense se utilizó al inicio del proyecto para pruebas básicas.  
 - Posteriormente, se migró a **Sophos Firewall**, con reglas configuradas tras investigación adicional por parte del equipo.  
