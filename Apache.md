@@ -164,7 +164,7 @@ Esta base de datos alimenta todo el sistema de login, solicitudes y gestión de 
 
 Puedes ver el código fuente completo del sitio web aquí:  
 🔗 [Código Web RetroGold (HTML, CSS, JS, PHP, SQL, Python)](https://github.com/ImDeathWis/Proyecto-pagina-emulacion./tree/main/CODIGOWEB)
-
+<details>
 # 🧠 Resumen General del Funcionamiento de la Web RetroGold
 
 **RetroGold** es una plataforma web que permite a los usuarios acceder y jugar videojuegos clásicos desde el navegador, además de gestionar un sistema completo de login, roles, administración y verificación mediante claves.
@@ -246,6 +246,8 @@ Formulario para solicitar acceso como **administrador**, pero solo mediante vali
 🔐 El acceso externo fue simulado mediante **SSL VPN Remote Access** (Sophos) y **Ngrok** para exponer servicios localmente.
 
 
+  
+</details>
 ### 🕹️ Enlaces a Emuladores Integrados
 
 - 🎮 [Emulador JSNES (NES)](https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/JSNES_Error_Report.md)  
