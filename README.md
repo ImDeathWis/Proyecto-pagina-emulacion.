@@ -96,7 +96,7 @@ Los usuarios acceden a una web donde pueden explorar y lanzar juegos clásicos. 
 ---
 
 ### 5️⃣ Acceso Remoto Seguro
-🔗 [Configuración de TrueNAS](https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/Backup_TrueNAS_Tutorial.md)
+
 Para simular el acceso externo al entorno de RetroGold, se configuró un sistema VPN basado en **SSL VPN Remote Access**, utilizando el propio firewall **Sophos**.
 Además, para facilitar la apertura de puertos desde redes sin acceso a configuración NAT, se utilizó la herramienta **Ngrok**, lo que permitió exponer servicios locales a través de túneles seguros.
 🔒 Esto proporcionó una conexión cifrada entre el entorno interno y el cliente externo, simulando un acceso remoto real.
@@ -109,6 +109,8 @@ Además, para facilitar la apertura de puertos desde redes sin acceso a configur
 <details><summary><h2><strong>📦 Almacenamiento y Backups con TrueNAS</strong></h2></summary>  
 
 Como parte de la infraestructura, se utilizó **TrueNAS** para gestionar el almacenamiento centralizado y las copias de seguridad del proyecto:  
+<br>
+🔗 [Configuración de TrueNAS](https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/Backup_TrueNAS_Tutorial.md)<br>
 
 - 📁 **Servidor de almacenamiento (NAS)** virtualizado en una máquina independiente.  
 - 🛡️ **RAID 5** configurado para tolerancia a fallos y seguridad de datos.  
