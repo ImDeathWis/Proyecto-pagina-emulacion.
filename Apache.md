@@ -56,13 +56,14 @@ https://www.figma.com/proto/8jn705VLBuXTJVUrUUnT1i/Retrogold?node-id=0-1&p=f&t=E
   
 </details>
 
-# 🌐 Instalación y Configuración de Apache para RetroGold
+
+<details><summary><h2>🌐 Instalación y Configuración de Apache para RetroGold</h2></summary>
 
 Este documento resume los pasos realizados para instalar y configurar el servidor Apache que aloja la web de **RetroGold**.
 
----
+</details>
 
-## 🧱 Instalación de Apache
+<details><summary><h3>📦 Instalación de Apache</h3></summary>
 
 ```bash
 sudo apt update && sudo apt upgrade -y
@@ -71,13 +72,14 @@ sudo systemctl status apache2
 ```
 
 Verificamos que Apache esté activo con:
+
 ```bash
 sudo systemctl status apache2
 ```
 
----
+</details>
 
-## 🛠️ Configuración de Apache
+<details><summary><h3>⚙️ Configuración de Apache</h3></summary>
 
 La máquina del servidor recibe **IP estática 192.168.6.20** gracias al servidor **DHCP de Sophos**.  
 Se configuró el archivo `/etc/apache2/sites-available/000-default.conf` para apuntar a la ruta del sitio web:
@@ -104,9 +106,9 @@ sudo systemctl reload apache2
 sudo apachectl -S
 ```
 
----
+</details>
 
-## 🧪 Configuración de Cliente (Resolución del Dominio)
+<details><summary><h3>🧪 Configuración de Cliente (/etc/hosts)</h3></summary>
 
 En la máquina cliente, añadimos la IP estática al archivo `/etc/hosts` para asociar el dominio `www.retrogold.com`:
 
@@ -122,3 +124,4 @@ Y se añadió la siguiente línea:
 
 Esto permite acceder correctamente al servidor Apache desde un navegador en la red local usando el dominio `www.retrogold.com`.
 
+</details>
