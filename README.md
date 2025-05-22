@@ -1,192 +1,179 @@
-<details><summary><h1><strong>🎮​👾​🕹️​RetroGold🕹️​👾​🎮</strong></h1></summary>  
+<details><summary><h1><strong>🎮​👾​🕹️​ RetroGold 🕹️​👾​🎮</strong></h1></summary>  
 
-RetroGold es tu portal para revivir los mejores clásicos de los videojuegos, potenciado por el emulador MAME. Ofrecemos una experiencia única para los amantes de los juegos retro, permitiéndote disfrutar de títulos icónicos que marcaron la época dorada de los salones recreativos.  
+**RetroGold** es tu portal para revivir los videojuegos clásicos, impulsado por el emulador **MAME**.  
+Una experiencia envolvente para los fans del retro gaming, permitiendo jugar títulos icónicos de los salones recreativos.  
 
 <img src="https://github.com/user-attachments/assets/e8d85532-bad1-464d-8d1b-57406362fe65" width="250" height="250">  
 
-<details><summary><h2><strong>🛠️ Mapa de la Red 🛠️</strong></h2></summary>  
+---
+
+<details><summary><h2><strong>🛠️ Mapa de la Red</strong></h2></summary>  
+
+📷 Diagrama general de la red implementada:  
 
 <img src="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/imagenes/mapa_de_red.jpg" width="960" height="540">  
 
-<a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/brifing.md" target="_blank">Nuestro Briefing/Resumen del proyecto (Haz clic para ver)</a>  
+📄 [Briefing del Proyecto (Resumen)](https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/brifing.md)  
 
----</details>  
-
-<details><summary><h2><strong>🛠️​ Arquitectura del Sistema 🛠️</strong></h2></summary>  
-
-<h3>Componentes Principales:</h3>  
-
-- **Servidor Web (Apache):** Hospeda el sitio de emulación de juegos retro.
-- **Servidor DNS:** Gestiona la resolución de nombres de dominio.  
-- **Servidor DHCP:** Asigna dinámicamente direcciones IP en la red interna.  
-- **Firewall (Sophos):** Implementado en una máquina virtual para proteger la infraestructura contra amenazas de seguridad. 
-
-<a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/Especificar%20listado%20de%20tareas.md" target="_blank">Haz clic aquí para ver el listado de tareas del equipo</a>  
+</details>  
 
 ---
 
+<details><summary><h2><strong>🏗️ Arquitectura del Sistema</strong></h2></summary>  
 
-</details>
+**Componentes principales del entorno:**  
 
-<details><summary><h2><strong>✅ Objetivos del Sistema ✅</strong></h2></summary>
-  
-<h3>Acceso a Juegos Retro de Arcade:</h3>
+- **Servidor Web (Apache):** Aloja el portal de juegos retro.  
+- **Servidor DNS:** Resuelve los dominios internos de la red.  
+- **Servidor DHCP:** Asigna direcciones IP automáticamente.  
+- **Firewall (Sophos):** Protege la infraestructura ante amenazas externas e internas.  
 
-Ofrecer una biblioteca de juegos clásicos de arcade mediante un emulador MAME alojado en un servidor Apache.
+📋 [Listado de Tareas del Equipo](https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/Especificar%20listado%20de%20tareas.md)  
 
-<h3>Modularidad y Seguridad:</h3>
-
-Separar servicios como DNS y DHCP del servidor web. Además, el firewall Sophos refuerza la seguridad del sistema.
-
-<a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/Asignar%20roles%20y%20responsabilidades%20del%20equipo.md" target="_blank">Haz clic aquí para ver cómo nos asignaremos los roles</a>
+</details>  
 
 ---
 
-</details>
+<details><summary><h2><strong>🎯 Objetivos del Sistema</strong></h2></summary>  
 
-<details><summary><h2><strong>👷🏻 Funcionamiento General 👷🏻</strong></h2></summary>
-El sistema permite a los usuarios acceder al sitio web, donde Apache sirve la interfaz para seleccionar y jugar títulos retro. Los componentes interactúan de la siguiente manera:  
+- 🎮 **Acceso a Juegos Retro de Arcade**  
+  Disfrutar de títulos clásicos alojados en un servidor web usando el emulador MAME.
 
-<h3>1. Servidor Web (Apache)</h3><a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/Apache.md" target="_blank">Haz clic aquí para ir a la información</a>
+- 🔐 **Modularidad y Seguridad**  
+  Separar roles entre servidores y aplicar medidas de seguridad usando un firewall dedicado.
 
-- **Funcionalidades:**
-  - Alojamiento del sitio web (HTML, CSS, JavaScript).
-  - Integración con MAME para cargar juegos desde el servidor FTP.
-  - Seguridad HTTPS mediante cifrado SSL/TLS.
+👥 [Asignación de Roles del Equipo](https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/Asignar%20roles%20y%20responsabilidades%20del%20equipo.md)  
 
-<h3>3. Servidor DNS</h3><a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/DNSyDHCP.md" target="_blank">Haz clic aquí para ir a la información (Se encuentra el DNS y el DHCP)</a>
-<h3>3. Servidor DNS</h3><a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/DNS%20con%20sophos%20Incluido.md" target="_blank">Haz clic aquí para ir a la información (Se encuentra el DNS ya implementado al sophos)</a>
-
-- **Funcionalidades:**
-  - Resolución de nombres de dominio y gestión de subdominios.
-  - Redundancia mediante DNS externos (Google DNS, Cloudflare).
-
-<h3>4. Servidor DHCP</h3><a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/DNSyDHCP.md" target="_blank">Haz clic aquí para ir a la información (Se encuentra el DNS y el DHCP)</a>
-
-- **Funcionalidades:**
-  - Asignación automática de IPs en la red interna.
-  - Configuración de rangos de IPs para diferentes dispositivos.
-
-<h3>5. Firewall (Sophos)</h3><a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/pfesense.md" target="_blank">Haz clic aquí para ir a la información (pfSense "es temporal")</a>
-
-- **Funcionalidades:**
-  - Filtrado de tráfico y prevención de amenazas.
-  - Monitorización de la seguridad de la red.
-  - Implementado en una máquina virtual para mayor flexibilidad.
+</details>  
 
 ---
-</details>
 
-<details><summary><h2><strong>🦾​ Tecnologías Utilizadas 🦾​</strong></h2></summary>
-Las principales tecnologías que se utilizarán en el proyecto incluyen:   
+<details><summary><h2><strong>⚙️ Funcionamiento General</strong></h2></summary>  
 
-- **Virtualización:**  
-  - VirtualBox o VMware para la creación de Máquinas Virtuales (MV).  
-  - Docker para la contenerización de los servicios.  
-  - Aplicación de monitoreo para Docker (**Portainer** o **Lazydocker**).  
-
-- **Redes y Seguridad:**  
-  - **Bind9** como servidor DNS.  
-  - **ISC DHCP Server** para asignación de IPs dinámicas.  
-  - **Sophos Firewall** para control de tráfico y seguridad.  
-
-- **Servidores y Protocolos:**  
-  - **Apache** como servidor web.   
-  - **RetroArch** como plataforma de emulación de videojuegos retro.  
-
-- **Desarrollo Web y Software:**  
-  - **C# y WebAssembly (Blazor)** para desarrollo de aplicaciones web interactivas.  
-  - **Figma** para el diseño de la interfaz web.  
-  - **HTML, CSS y JavaScript** para la creación del frontend.  
-
-- **Gestión y Control de Versiones:**  
-  - **GitHub** para el control de versiones y almacenamiento del proyecto. 
-    
----
-</details>
-<details><summary><h2><strong>🔹 Hardware a Utilizar ​</strong></h2></summary>
-
-Se necesitará un hardware adecuado para soportar las MV y la emulación de juegos retro.  
-
-<h3>Requisitos mínimos por Máquina Virtual (MV)</h3>
-
-✅ **Servidor DNS/DHCP y Firewall (MV con Bind9, ISC DHCP y Sophos Firewall)** 
-
-- CPU: **2 núcleos**  
-- RAM: **2 GB**  
-- Almacenamiento: **20 GB SSD**  
-- Tarjeta de Red: **1 Gbps**  
-
-✅ **Máquina Física para Virtualización (Host)**  
-- Procesador: **Intel i5/i7 o AMD Ryzen 5/7**  
-- RAM: **8-16 GB**  
-- Almacenamiento: **SSD de 256GB+**  
-- Conectividad: **Wi-Fi y Ethernet**
+Los usuarios acceden a una web donde pueden explorar y lanzar juegos clásicos. La comunicación entre servicios es la clave.  
 
 ---
-</details>
 
-<details><summary><h2><strong>💻​ Servicios a Implementar 💻​​</strong></h2></summary>
-  
-El proyecto requiere múltiples servicios para funcionar correctamente:  
-
-| **Servicio**  | **Función**  | **Software/Herramienta**  |
-|--------------|------------|--------------------------|
-| **Servidor Web** | Aloja la página web para la interfaz de usuario. | **Apache** |
-| **Servidor DNS** | Resuelve nombres de dominio internos para la red. | **Bind9** |
-| **Servidor DHCP** | Asigna direcciones IP dinámicas a los dispositivos. | **ISC DHCP Server** |
-| **Firewall** | Controla el tráfico y protege los servicios. | **Sophos Firewall** |
-| **Plataforma de Emulación** | Ejecuta videojuegos retro dentro del sistema. | **RetroArch** |
-| **Desarrollo Web** | Creación de interfaz interactiva. | **HTML, CSS, JavaScript, C#, WebAssembly (Blazor)** |
-| **Control de Versiones** | Gestiona el código y la documentación del proyecto. | **GitHub** |
+### 1️⃣ Servidor Web (Apache)  
+🔗 [Ver configuración detallada](https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/Apache.md)  
+- Alojamiento del sitio web (HTML, CSS, JS)  
+- Integración de MAME + carga de ROMs desde servidor FTP  
+- HTTPS mediante certificado SSL/TLS  
 
 ---
-</details>
 
-<details><summary><h2><strong>🔹 Sistemas Operativos a Utilizar ​​</strong></h2></summary>
+### 2️⃣ Servidor DNS  
+🔗 [DNS y DHCP](https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/DNSyDHCP.md)  
+🔗 [DNS integrado con Sophos](https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/DNS%20con%20sophos%20Incluido.md)  
+- Resolución de nombres internos  
+- Subdominios personalizados  
+- Redundancia con Google DNS y Cloudflare  
 
-El proyecto utilizará principalmente sistemas basados en Linux por su estabilidad y compatibilidad con los servicios requeridos.  
+---
 
-| **Sistema Operativo** | **Uso en el Proyecto** | **Versión Recomendada** |
-|----------------------|----------------------|------------------------|
-| **Ubuntu Server** | Base para todas las máquinas virtuales (MV). | **Ubuntu Server 22.04 LTS** |
-| **Ubuntu Desktop** | Para desarrollo y pruebas en entornos gráficos. | **Ubuntu 22.04 LTS** |
-| **Sophos Firewall OS** | Seguridad y control de tráfico de red. | **Sophos XG / UTM** |
+### 3️⃣ Servidor DHCP  
+🔗 [Configuración DHCP](https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/DNSyDHCP.md)  
+- Asignación dinámica de IP  
+- Gestión de rangos para distintas redes/dispositivos  
 
-</details>
+---
 
-<details><summary><h2><strong>📖​ Bibliografía 📖​​​</strong></h2></summary>
+### 4️⃣ Firewall (Sophos)  
+🔗 [Reglas implementadas con pfSense (temporal)](https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/pfesense.md)  
+- Control y monitoreo del tráfico  
+- Reglas de filtrado y seguridad  
+- Implementado en máquina virtual  
 
-https://github.com/mamedev/mame
+</details>  
 
-https://github.com/ybootin/mamejs?tab=readme-ov-file
+---
 
-https://www.digitalocean.com/community/tutorials/how-to-install-the-apache-web-server-on-ubuntu-20-04-es
+<details><summary><h2><strong>🧰 Tecnologías Utilizadas</strong></h2></summary>  
 
-https://www.youtube.com/watch?v=WyR-qPAagLo&ab_channel=IvanildoGalv%C3%A3o
+**Virtualización:**  
+- VirtualBox / VMware  
+- Docker + Portainer o Lazydocker  
 
-https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-on-ubuntu-20-04-es
+**Red y Seguridad:**  
+- Bind9 (DNS)  
+- ISC DHCP Server  
+- Sophos Firewall  
 
-https://www.digitalocean.com/community/tutorials/how-to-install-the-apache-web-server-on-ubuntu-20-04-es 
+**Emulación y Servidores:**  
+- Apache  
+- RetroArch  
 
-https://httpd.apache.org/docs/trunk/es/install.html 
+**Desarrollo Web:**  
+- HTML, CSS, JavaScript  
+- C# + WebAssembly (Blazor)  
+- Figma para diseño UI  
 
-https://www.ionos.es/digitalguide/servidores/configuracion/instalar-apache-en-ubuntu/
+**Gestión del Proyecto:**  
+- GitHub (repositorio + documentación)  
 
-https://extassisnetwork.com/tutoriales/como-instalar-apache-en-ubuntu/
+</details>  
 
-https://ubuntu.com/server/docs/set-up-an-ftp-server
+---
 
-https://github.com/kabukki/wasm-nes 
+<details><summary><h2><strong>🖥️ Hardware Recomendado</strong></h2></summary>  
 
-https://www.php.net/manual/es/function.phpinfo.php
+### Por máquina virtual (MV):  
+- CPU: 2 núcleos  
+- RAM: 2 GB  
+- Disco: 20 GB SSD  
+- Red: 1 Gbps  
 
-https://github.com/mupen64plus
+### Para máquina física (host):  
+- CPU: Intel i5/i7 o Ryzen 5/7  
+- RAM: 8–16 GB  
+- Almacenamiento: SSD 256 GB+  
+- Conectividad: Wi-Fi y Ethernet  
 
-https://jsnes.org/
+</details>  
 
-https://www.youtube.com/watch?v=nQu4U0r-w-M&list=PLS1R8PLgpkVROGR9dAWw6gtyuq_oA-Z2q&index=6
+---
 
-</details>
+<details><summary><h2><strong>🔌 Servicios a Implementar</strong></h2></summary>  
 
-</details>
+| Servicio               | Función principal                                  | Herramienta                  |
+|------------------------|---------------------------------------------------|------------------------------|
+| Servidor Web           | Portal de juegos retro                            | Apache                       |
+| DNS                    | Resolución de dominios internos                   | Bind9                        |
+| DHCP                   | Asignación de IPs dinámicas                       | ISC DHCP Server              |
+| Firewall               | Seguridad de la red                               | Sophos Firewall              |
+| Emulación              | Juegos clásicos retro                             | RetroArch                    |
+| Desarrollo Web         | Interfaz web interactiva                          | HTML, CSS, JS, C#, Blazor    |
+| Control de versiones   | Documentación y desarrollo colaborativo           | GitHub                       |
+
+</details>  
+
+---
+
+<details><summary><h2><strong>💽 Sistemas Operativos</strong></h2></summary>  
+
+| Sistema Operativo     | Uso en el Proyecto                 | Versión Recomendada    |
+|-----------------------|------------------------------------|------------------------|
+| Ubuntu Server         | Servidores principales              | 22.04 LTS              |
+| Ubuntu Desktop        | Desarrollo y pruebas gráficas       | 22.04 LTS              |
+| Sophos Firewall OS    | Gestión de seguridad de red         | Sophos XG / UTM        |
+
+</details>  
+
+---
+
+<details><summary><h2><strong>📚 Bibliografía</strong></h2></summary>  
+
+- https://github.com/mamedev/mame  
+- https://github.com/ybootin/mamejs?tab=readme-ov-file  
+- https://www.digitalocean.com/community/tutorials/how-to-install-the-apache-web-server-on-ubuntu-20-04-es  
+- https://www.youtube.com/watch?v=WyR-qPAagLo  
+- https://www.ionos.es/digitalguide/servidores/configuracion/instalar-apache-en-ubuntu/  
+- https://extassisnetwork.com/tutoriales/como-instalar-apache-en-ubuntu/  
+- https://ubuntu.com/server/docs/set-up-an-ftp-server  
+- https://github.com/kabukki/wasm-nes  
+- https://www.php.net/manual/es/function.phpinfo.php  
+- https://github.com/mupen64plus  
+- https://jsnes.org/  
+- https://www.youtube.com/watch?v=nQu4U0r-w-M&list=PLS1R8PLgpkVROGR9dAWw6gtyuq_oA-Z2q&index=6  
+
+</details>  
