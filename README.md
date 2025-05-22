@@ -5,7 +5,7 @@
 Una experiencia envolvente para los fans del retro gaming, permitiendo jugar títulos icónicos de los salones recreativos.  
 
 <img src="https://github.com/user-attachments/assets/e8d85532-bad1-464d-8d1b-57406362fe65" width="250" height="250">  
-
+🔗 [Core del Proyecto](https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/core_proyecto_Retrogold.md)
 ---
 
 <details><summary><h2><strong>🛠️ Mapa de la Red</strong></h2></summary>  
