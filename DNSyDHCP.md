@@ -1,7 +1,7 @@
- # 📘 Guía de Uso: DNS y DHCP
- 
- <a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/README.md" target="_blank">Haz clic aquí Para Volver a la Página Original</a>
+[VOLVER ATRÁS](https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/README.md) 
 
+# 📘 Guía de Uso: DNS y DHCP
+ 
 ## 📌 1. Introducción al Servicio  
 
 ### 🖥️ 1.1 ¿Qué es DNS y DHCP?  
