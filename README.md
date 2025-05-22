@@ -186,6 +186,7 @@ Los usuarios acceden a una web donde pueden explorar y lanzar juegos clásicos. 
 - https://www.php.net/manual/es/function.phpinfo.php  
 - https://github.com/mupen64plus  
 - https://jsnes.org/  
-- https://www.youtube.com/watch?v=nQu4U0r-w-M&list=PLS1R8PLgpkVROGR9dAWw6gtyuq_oA-Z2q&index=6  
+- https://www.youtube.com/watch?v=nQu4U0r-w-M&list=PLS1R8PLgpkVROGR9dAWw6gtyuq_oA-Z2q&index=6
+- https://www.youtube.com/watch?v=FZv3zBIH8io&t=99s
 
 </details>  
