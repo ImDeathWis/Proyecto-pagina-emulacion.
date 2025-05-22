@@ -2,8 +2,6 @@
 
 # Configuración de pfSense, Port Forwarding y OpenVPN
 
-<a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/README.md" target="_blank">Haz clic aquí Para Volver a la Página Original</a>
-
 <details><summary><h1><strong>🌐 Introducción a pfSense</strong></h1></summary>
 
 <h2>📌 Definición</h2>
