@@ -56,110 +56,13 @@ https://www.figma.com/proto/8jn705VLBuXTJVUrUUnT1i/Retrogold?node-id=0-1&p=f&t=E
   
 </details>
 
-<details><summary><h1><strong>⚙️ Instalación</strong></h1></summary>
+# 🌐 Instalación y Configuración de Apache para RetroGold
 
-<h2>Instalar Ubuntu en la Máquina Virtual 🖥️</h2>
-
-Arranca la máquina con la ISO de <strong>Ubuntu Server</strong> y sigue la instalación:
-
-- Configura un usuario, una contraseña y el idioma.
-- Una vez finalizada la instalación, inicia sesión con el usuario creado.
-
-<h2>Configurar la Red en Ubuntu 🌍</h2>
-
-Dado que la red <strong>SMX2_Rednat1</strong> está configurada <strong>sin DHCP</strong>, la máquina con DHCP "Sophos firewall" será responsable de asignar la <strong>IP 192.168.6.14</strong>. Por lo tanto, será necesario asignar una <strong>IP estática</strong> a la máquina con Apache utilizando <strong>netplan</strong> para garantizar una configuración estable.
-
-<ol>
-  <li>Editaremos el archivo de configuración de red con el siguiente comando:</li>
-  <pre><code>sudo nano /etc/netplan/00-installer-config.yaml</code></pre>
-
-  <li>Ajusta la configuración de red como sigue:</li>
-  <pre><code>network:
-  version: 2
-  ethernets:
-    enp0s3:
-      dhcp4: false
-      addresses:
-        - 192.168.6.21/24
-      nameservers:
-        addresses:
-          - 192.168.6.10
-          - 8.8.8.8
-          - 9.9.9.9
-      routes:
-        - to: default
-          via: 192.168.6.1
-  </code></pre>
-
-  <li>Guarda con `Ctrl + O`, luego sal con `Ctrl + X`.</li>
-  
-  <li>Aplica la configuración:</li>
-    <br>
-  <pre><code>sudo netplan apply</code></pre>
-  
-  <li>Comprueba si la IP está configurada correctamente:</li>
-  <br>
-  <pre><code>sudo netplan try</code></pre>
-
-  <li>Miramos el estado de la red:</li>
-  <br>
-  <pre><code>sudo networkctl status</code></pre>
-
-  <li>Se deberán ver las siguientes configuraciones:</li><br>
-  
-  ![imagen1](https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/imagenes/Imagen1.png)
-
-<br>
-  
-  ![imagen2](https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/imagenes/Imagen2.png)
-
-</ol>
-
-# 🌐 Configuración Completa de Apache para RetroGold
-
-Este documento describe todos los pasos realizados para configurar correctamente el servidor web **Apache** y publicar la web de RetroGold dentro del entorno Ubuntu Server.
+Este documento resume los pasos realizados para instalar y configurar el servidor Apache que aloja la web de **RetroGold**.
 
 ---
 
-## 📍 Ruta del Proyecto Web
-
-El archivo principal del sitio se encuentra en:  
-```bash
-/var/www/retrogolds/portada.html
-```
-
----
-
-## 🛠️ Configuración de Red con Netplan
-
-Archivo editado: `/etc/netplan/00-installer-config.yaml`
-
-```yaml
-network:
-  version: 2
-  ethernets:
-    enp0s3:
-      dhcp4: false
-      addresses:
-        - 192.168.6.21/24
-      nameservers:
-        addresses:
-          - 192.168.6.10
-          - 8.8.8.8
-          - 9.9.9.9
-      routes:
-        - to: default
-          via: 192.168.6.1
-```
-
-Aplicar cambios:
-```bash
-sudo netplan apply
-```
-
----
-
-## 🌍 Instalación y Activación de Apache
+## 🧱 Instalación de Apache
 
 ```bash
 sudo apt update && sudo apt upgrade -y
@@ -167,27 +70,17 @@ sudo apt install apache2 -y
 sudo systemctl status apache2
 ```
 
----
-
-## 📁 Creación de la Carpeta del Proyecto
-
+Verificamos que Apache esté activo con:
 ```bash
-sudo mkdir -p /var/www/retrogolds
-sudo nano /var/www/retrogolds/portada.html
+sudo systemctl status apache2
 ```
-
-Se diseñó un `portada.html` como página principal del sitio.
 
 ---
 
-## ⚙️ Configuración del Virtual Host
+## 🛠️ Configuración de Apache
 
-Se modificó el archivo por defecto de Apache:  
-```bash
-/etc/apache2/sites-available/000-default.conf
-```
-
-Contenido adaptado:
+La máquina del servidor recibe **IP estática 192.168.6.20** gracias al servidor **DHCP de Sophos**.  
+Se configuró el archivo `/etc/apache2/sites-available/000-default.conf` para apuntar a la ruta del sitio web:
 
 ```apache
 <VirtualHost *:80>
@@ -196,14 +89,14 @@ Contenido adaptado:
     DirectoryIndex portada.html
 
     ServerName retrogold.es
-    ServerAlias www.retrogold.es
+    ServerAlias www.retrogold.com
 
     ErrorLog ${APACHE_LOG_DIR}/error.log
     CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
 ```
 
-Comandos para aplicar cambios:
+Activamos y recargamos la configuración:
 
 ```bash
 sudo a2ensite 000-default.conf
@@ -211,47 +104,21 @@ sudo systemctl reload apache2
 sudo apachectl -S
 ```
 
-📷 Verificación del sitio web configurado  
-![Imagen 4](https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/imagenes/Imagen4.png)
-
 ---
 
-## 🧪 Prueba de Dominio desde Cliente
+## 🧪 Configuración de Cliente (Resolución del Dominio)
 
-Editar `/etc/hosts` en el cliente:
+En la máquina cliente, añadimos la IP estática al archivo `/etc/hosts` para asociar el dominio `www.retrogold.com`:
 
 ```bash
 sudo nano /etc/hosts
 ```
 
-Y añadir:
+Y se añadió la siguiente línea:
 
 ```text
-192.168.6.21      retrogold.es
+192.168.6.20    www.retrogold.com
 ```
 
-Esto permite acceder directamente a `http://retrogold.es` desde el navegador.
+Esto permite acceder correctamente al servidor Apache desde un navegador en la red local usando el dominio `www.retrogold.com`.
 
----
-
-## 🔐 Prueba de Entorno con PHP y Base de Datos
-
-Se configuró un archivo PHP de prueba para comprobar la integración de Apache con PHP y MySQL:
-
-```bash
-sudo nano /var/www/html/info.php
-```
-
-Contenido del archivo:
-
-```php
-<?php
-phpinfo();
-?>
-```
-
-La base de datos configurada se llama `web_retrogold` y contiene la tabla `admin` para usuarios administrativos, utilizando el campo `password` para las contraseñas hasheadas.
-
----
-
-✅ Apache quedó funcional, sirviendo la página `portada.html` correctamente desde el dominio interno `retrogold.es`.
