@@ -158,7 +158,7 @@ Esta base de datos alimenta todo el sistema de login, solicitudes y gestión de 
 
 </details>
 
-<details><summary><h2>💾 Código Fuente del Proyecto y Emuladores Integrados</h2></summary>
+<details><summary><h1>💾 Código Fuente del Proyecto y Emuladores Integrados</h1></summary>
 
 ### 🌐 Repositorio Web del Proyecto RetroGold
 
