@@ -6,7 +6,7 @@ RetroGold es tu portal para revivir los mejores clásicos de los videojuegos, po
 
 <details><summary><h2><strong>🛠️ Mapa de la Red 🛠️</strong></h2></summary>  
 
-<img src="https://github.com/user-attachments/assets/mapa_de_red.jpg" width="500" height="500">  
+<img src="https://github.com/user-attachments/assets/mapa_de_red" width="500" height="500">  
 
 <a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/brifing.md" target="_blank">Nuestro Briefing/Resumen del proyecto (Haz clic para ver)</a>  
 
