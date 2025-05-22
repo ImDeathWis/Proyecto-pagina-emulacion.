@@ -2,8 +2,6 @@
 
 ## 📌 Distribución de Roles y Responsabilidades  
 
-<a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/README.md" target="_blank">Haz clic aquí Para Volver a la Página Original</a>
-
 Para garantizar que ambos integrantes adquieran el mismo nivel de conocimiento y habilidades técnicas, cada persona será responsable de investigar, aprender y posteriormente enseñar a su compañero lo que ha comprendido. Además, cada uno mantendrá una copia en su **Máquina Virtual (MV)** para evitar la pérdida del proyecto antes de la entrega.  
 
 ## 🔄 Aprendizaje y Enseñanza Mutua  
