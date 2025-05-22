@@ -38,10 +38,6 @@ Ofrecer una biblioteca de juegos clásicos de arcade mediante un emulador MAME a
 
 Separar servicios como DNS y DHCP del servidor web y FTP mejora la modularidad. Además, el firewall Sophos refuerza la seguridad del sistema.
 
-<h3>Preparación para Dockerización:</h3>
-
-Se planea empaquetar los componentes clave (servidor web, FTP, emulador MAME) en contenedores Docker para optimizar la gestión y escalabilidad.
-
 <a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/Asignar%20roles%20y%20responsabilidades%20del%20equipo.md" target="_blank">Haz clic aquí para ver cómo nos asignaremos los roles</a>
 
 ---
