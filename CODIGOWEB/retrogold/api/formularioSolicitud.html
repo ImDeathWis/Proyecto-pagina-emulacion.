@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Solicitud de Administrador</title>
+</head>
+<body>
+  <h2>Enviar solicitud para ser administrador</h2>
+
+  <form action="procesarSolicitud.php" method="POST">
+    <label>Nombre:</label><br>
+    <input type="text" name="nombre" required><br><br>
+
+    <label>Correo:</label><br>
+    <input type="email" name="correo" required><br><br>
+
+    <label>Teléfono:</label><br>
+    <input type="tel" name="telefono"><br><br>
+
+    <button type="submit">Enviar solicitud</button>
+  </form>
+
+</body>
+</html>
