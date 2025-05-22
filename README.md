@@ -36,7 +36,7 @@ Ofrecer una biblioteca de juegos clásicos de arcade mediante un emulador MAME a
 
 <h3>Modularidad y Seguridad:</h3>
 
-Separar servicios como DNS y DHCP del servidor web y FTP mejora la modularidad. Además, el firewall Sophos refuerza la seguridad del sistema.
+Separar servicios como DNS y DHCP del servidor web. Además, el firewall Sophos refuerza la seguridad del sistema.
 
 <a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/Asignar%20roles%20y%20responsabilidades%20del%20equipo.md" target="_blank">Haz clic aquí para ver cómo nos asignaremos los roles</a>
 
@@ -53,12 +53,6 @@ El sistema permite a los usuarios acceder al sitio web, donde Apache sirve la in
   - Alojamiento del sitio web (HTML, CSS, JavaScript).
   - Integración con MAME para cargar juegos desde el servidor FTP.
   - Seguridad HTTPS mediante cifrado SSL/TLS.
-
-<h3>2. Servidor FTP (vsftpd)</h3><a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/Apache.md" target="_blank">Haz clic aquí para ir a la información</a>
-
-- **Funcionalidades:**
-  - Almacenamiento y acceso a ROMs para el emulador MAME.
-  - Configuración de permisos para acceso seguro.
 
 <h3>3. Servidor DNS</h3><a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/DNSyDHCP.md" target="_blank">Haz clic aquí para ir a la información (Se encuentra el DNS y el DHCP)</a>
 <h3>3. Servidor DNS</h3><a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/DNS%20con%20sophos%20Incluido.md" target="_blank">Haz clic aquí para ir a la información (Se encuentra el DNS ya implementado al sophos)</a>
@@ -97,8 +91,7 @@ Las principales tecnologías que se utilizarán en el proyecto incluyen:
   - **Sophos Firewall** para control de tráfico y seguridad.  
 
 - **Servidores y Protocolos:**  
-  - **Apache** como servidor web.  
-  - **vsftpd** o **ProFTPD** para almacenamiento y transferencia de ROMs vía FTP.  
+  - **Apache** como servidor web.   
   - **RetroArch** como plataforma de emulación de videojuegos retro.  
 
 - **Desarrollo Web y Software:**  
@@ -116,12 +109,6 @@ Las principales tecnologías que se utilizarán en el proyecto incluyen:
 Se necesitará un hardware adecuado para soportar las MV y la emulación de juegos retro.  
 
 <h3>Requisitos mínimos por Máquina Virtual (MV)</h3>
-
-✅ **Servidor Principal** (MV con Apache, FTP, RetroArch)  
-- CPU: **4 núcleos**  
-- RAM: **4 GB**  
-- Almacenamiento: **40 GB SSD**  
-- Tarjeta de Red: **1 Gbps**  
 
 ✅ **Servidor DNS/DHCP y Firewall (MV con Bind9, ISC DHCP y Sophos Firewall)** 
 
@@ -146,13 +133,10 @@ El proyecto requiere múltiples servicios para funcionar correctamente:
 | **Servicio**  | **Función**  | **Software/Herramienta**  |
 |--------------|------------|--------------------------|
 | **Servidor Web** | Aloja la página web para la interfaz de usuario. | **Apache** |
-| **Servidor FTP** | Almacena y gestiona las ROMs de los juegos. | **vsftpd** o **ProFTPD** |
 | **Servidor DNS** | Resuelve nombres de dominio internos para la red. | **Bind9** |
 | **Servidor DHCP** | Asigna direcciones IP dinámicas a los dispositivos. | **ISC DHCP Server** |
 | **Firewall** | Controla el tráfico y protege los servicios. | **Sophos Firewall** |
 | **Plataforma de Emulación** | Ejecuta videojuegos retro dentro del sistema. | **RetroArch** |
-| **Docker** | Permite la virtualización y despliegue de servicios. | **Docker y Docker Compose** |
-| **Monitoreo Docker** | Aplicación para visualizar contenedores Docker en tiempo real. | **Portainer** o **Lazydocker** |
 | **Desarrollo Web** | Creación de interfaz interactiva. | **HTML, CSS, JavaScript, C#, WebAssembly (Blazor)** |
 | **Control de Versiones** | Gestiona el código y la documentación del proyecto. | **GitHub** |
 
@@ -168,7 +152,6 @@ El proyecto utilizará principalmente sistemas basados en Linux por su estabilid
 | **Ubuntu Server** | Base para todas las máquinas virtuales (MV). | **Ubuntu Server 22.04 LTS** |
 | **Ubuntu Desktop** | Para desarrollo y pruebas en entornos gráficos. | **Ubuntu 22.04 LTS** |
 | **Sophos Firewall OS** | Seguridad y control de tráfico de red. | **Sophos XG / UTM** |
-| **Docker OS (Linux)** | Entorno para contenerización de servicios. | **Basado en Ubuntu** |
 
 </details>
 
