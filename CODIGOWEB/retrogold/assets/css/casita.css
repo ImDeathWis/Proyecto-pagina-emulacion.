@@ -1,0 +1,599 @@
+/* ==========================================
+   RESET GENERAL Y FUENTE
+========================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  font-family: 'Press Start 2P', cursive;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+::selection {
+  background: #4158d0;
+  color: #fff;
+}
+
+/* ==========================================
+   MENÚ SUPERIOR Y BOTÓN HAMBURGUESA
+========================================== */
+.menu {
+  display: flex;
+  top: 0;
+  left: 0;
+  padding: 0 2rem;
+  width: 100%;
+  height: 60px;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1000;
+}
+
+.logo {
+  height: 45px;
+  width: auto;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  margin-right: 20px;
+}
+
+/* === Botón hamburguesa === */
+button {
+  display: flex;
+  flex-direction: column;
+  width: 20px;
+  height: 20px;
+  border: 0;
+  background: transparent;
+  gap: 5px;
+}
+
+button > div {
+  background: white;
+  height: 2px;
+  width: 100%;
+  border-radius: 5px;
+  transition: all .5s;
+  transform-origin: left;
+}
+
+button:hover div:first-child { transform: rotate(45deg); }
+button:hover div:nth-child(2) { opacity: 0; }
+button:hover div:last-child { transform: rotate(-45deg); }
+
+/* === Menú desplegable vertical === */
+.menu-vertical {
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  display: none;
+  list-style: none;
+  width: 200px;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  z-index: 99;
+}
+
+.menu-vertical li a {
+  color: white;
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+}
+
+/* ==========================================
+   CARRUSEL DE FONDO
+========================================== */
+.carousel {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  overflow: hidden;
+  z-index: -10;
+  top: 0;
+  left: 0;
+}
+
+.carousel-1 {
+  display: flex;
+  width: calc(100vw * 4);
+  animation: carrusel 120s linear infinite;
+}
+
+.carousel-a {
+  width: 100vw;
+  height: 100vh;
+  flex-shrink: 0;
+}
+
+.carousel-a img {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+}
+
+@keyframes carrusel {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-100vw * 2)); }
+}
+
+/* ==========================================
+   FORMULARIO GENERAL (.wrapper)
+========================================== */
+.wrapper {
+  width: 460px;
+  min-height: 650px; /* NUEVO: altura mínima para equilibrar visualmente */
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  z-index: 100;
+  position: relative;
+}
+
+.wrapper .title {
+  font-size: 36px;
+  font-weight: 700;
+  text-align: center;
+  padding: 30px 0;
+  color: white;
+  background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+  border-radius: 20px 20px 0 0;
+}
+
+.wrapper form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 30px 40px 60px 40px; /* NUEVO: padding inferior para espacio extra */
+  flex: 1;
+}
+
+
+.wrapper form .field {
+  height: 50px;
+  width: 100%;
+  margin-top: 20px;
+  position: relative;
+}
+
+.wrapper form .field input {
+  height: 100%;
+  width: 100%;
+  outline: none;
+  font-size: 17px;
+  padding-left: 20px;
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  border-radius: 25px;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+.wrapper form .field input:focus,
+form .field input:valid {
+  border: 2px solid #a18cd1;
+}
+
+.wrapper form .field label {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  color: #666;
+  font-weight: 400;
+  font-size: 17px;
+  pointer-events: none;
+  transform: translateY(-50%);
+  transition: all 0.3s ease;
+}
+
+form .field input:focus ~ label,
+form .field input:valid ~ label {
+  top: 0%;
+  font-size: 16px;
+  color: #4158d0;
+  background: #fff;
+  transform: translateY(-50%);
+}
+
+/* ==========================================
+   BOTÓN REGISTRAR
+========================================== */
+.wrapper form .field input[type="submit"] {
+  color: #fff;
+  border: none;
+  padding-left: 0;
+  margin-top: 40px; /* estaba muy pegado a las opciones */
+  font-size: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-radius: 25px;
+  transition: all 0.3s ease;
+}
+
+
+
+/* ==========================================
+   ICONO DE ALERTA TELÉFONO ⚠️
+========================================== */
+.field-alerta {
+  position: relative;
+}
+
+.field-alerta .icono-alerta {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: #ff4f81;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  z-index: 2;
+}
+
+/* ==========================================
+   POPUPS (Clave y Ayuda)
+========================================== */
+#overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  backdrop-filter: blur(2px);
+}
+
+.popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  padding: 25px;
+  width: 350px;
+  z-index: 1001;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+  font-family: 'Press Start 2P', cursive;
+}
+
+.popup-header {
+  background: linear-gradient(135deg, #9d4edd, #7b2cbf);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 15px 15px 0 0;
+  font-weight: bold;
+  font-size: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.popup-body {
+  padding: 15px;
+  font-size: 14px;
+  color: #333;
+  position: relative;
+}
+
+.popup-body input:focus {
+  outline: none;
+  border: 2px solid #9d4edd;
+}
+
+.popup-body input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+/* ==========================================
+   BOTONES PERSONALIZADOS DENTRO DEL POPUP
+========================================== */
+
+/* Grupo del input con botón ℹ️ */
+.popup-input-group {
+  position: relative;
+  margin-top: 15px;
+}
+
+.popup-input-group input {
+  width: 100%;
+  padding: 10px 40px 10px 10px; /* espacio a la derecha para el botón */
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+/* Botón ℹ️ correctamente alineado */
+.popup-btn-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: #2196f3;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+/* Contenedor para separar y centrar el botón REGISTRAR */
+.popup-btn-wrapper {
+  text-align: center;
+  margin-top: 25px;
+}
+
+/* Botón REGISTRAR limpio y sin conflictos */
+.popup-btn-submit {
+  all: unset;
+  display: inline-block;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  padding: 12px 30px;
+  border-radius: 25px;
+  font-weight: bold;
+  font-size: 16px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.popup-btn-submit:hover {
+  opacity: 0.9;
+}
+
+/* Botón X elegante y accesible */
+.popup-btn-close {
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+  padding: 5px;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup-btn-close:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ff7aa0;
+  transform: rotate(90deg);
+}
+
+/* ==========================================
+   BOTÓN GENERALES CON CLASE .input-btn
+========================================== */
+.input-btn {
+  width: 100%; /* ✅ ocupa todo el ancho del contenedor */
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+  margin-top: 0; /* ❌ evita desplazamiento hacia abajo */
+  display: block; /* ✅ asegura comportamiento en bloque */
+}
+
+
+.input-btn:hover {
+  opacity: 0.9;
+}
+
+/* ==========================================
+   MEDIA QUERIES
+========================================== */
+@media screen and (max-width: 480px) {
+  .wrapper {
+    width: 90%;
+  }
+
+  .popup {
+    width: 90%;
+  }
+
+  .popup-btn-submit {
+    width: 100%;
+    padding: 12px 20px; /* aseguramos buen toque en móvil */
+    font-size: 15px;
+  }
+}
+
+
+/* ==========================================
+   ENLACE DE CAMBIO DE ROL (USUARIO/ADMIN)
+========================================== */
+.registro-link {
+  text-align: center;
+  margin-top: 20px;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 14px;
+  color: #333;
+}
+
+.registro-link a {
+  color: #9d4edd;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.registro-link a:hover {
+  text-decoration: underline;
+}
+
+.pass-link a {
+  display: block;
+  color: #9d4edd;
+  text-decoration: none;
+  margin-top: 5px; /* separación entre enlaces */
+  font-size: 13px;
+  font-family: 'Press Start 2P', cursive;
+}
+
+.pass-link a:hover {
+  text-decoration: underline;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  gap: 5px;
+}
+
+/* ==========================================
+   SIDEBAR DEL DASHBOARD
+========================================== */
+.sidebar {
+  width: 220px;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 20px;
+  box-shadow: 4px 0 10px rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  z-index: 100;
+}
+
+.sidebar h2 {
+  margin-bottom: 20px;
+  font-size: 16px;
+  color: #ffccff;
+}
+
+.sidebar button,
+.sidebar a {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 13px;
+  text-align: left;
+  cursor: pointer;
+  transition: 0.3s;
+  font-family: 'Press Start 2P', cursive;
+}
+
+.sidebar button:hover,
+.sidebar a:hover {
+  color: #ff4f81;
+  transform: scale(1.02);
+}
+
+/* ==========================================
+   ÁREA PRINCIPAL DEL DASHBOARD
+========================================== */
+.main {
+  margin-left: 240px;
+  padding: 30px;
+  height: 100vh;
+  overflow-y: auto;
+  color: white;
+}
+
+/* ==========================================
+   SECCIONES DEL CONTENIDO
+========================================== */
+.content-section {
+  display: none;
+}
+
+.active-section {
+  display: block;
+}
+
+/* ==========================================
+   ESTILOS PARA TITULARES Y TABLAS
+========================================== */
+.main h1, .main h2 {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.main table {
+  width: 100%;
+  border-collapse: collapse;
+  background: rgba(255,255,255,0.1);
+  color: white;
+}
+
+.main table th,
+.main table td {
+  padding: 10px;
+  border: 1px solid rgba(255,255,255,0.2);
+  font-size: 12px;
+}
+
+/* ==========================================
+   BOTONES GENERALES DENTRO DEL DASHBOARD
+========================================== */
+.input-btn {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+  margin-top: 20px;
+  display: inline-block;
+}
+
+.input-btn:hover {
+  opacity: 0.9;
+}
+
+/* ======================================================
+   PÁGINAS DE ERROR
+====================================================== */
+

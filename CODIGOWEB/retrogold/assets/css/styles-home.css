@@ -1,0 +1,894 @@
+
+/* ==========================================
+   RESET GENERAL Y FUENTE
+========================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  
+  height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-family: 'Press Start 2P', cursive;
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  transform: scale(1); /* Asegura que no haya escalado accidental */
+  transform-origin: top center;
+}
+
+
+::selection {
+  background: #4158d0;
+  color: #fff;
+}
+
+/* ==========================================
+  Página de inicio
+============================================ */
+.caj-carrusel {
+  width: 60%;
+  margin: auto;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 2;
+}
+
+.caj-mario {
+  display: none;
+  width: 100%;
+  text-align: center;
+}
+
+.caj-mario img {
+  max-width: 100%;
+  max-height: 300px;
+  margin: auto;
+  display: block;
+  border-radius: 20px;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+.flecha-mario {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 60px;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  padding: 10px 20px;
+  cursor: pointer;
+  z-index: 3;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.flecha-mario:hover {
+  background-color: rgba(0, 0, 0, 0.6);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.flecha-mario.izquierda {
+  left: -60px;
+}
+
+.flecha-mario.derecha {
+  right: -60px;
+}
+
+.indicadores {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.dot-caj {
+  cursor: pointer;
+  height: 6px;
+  width: 50px;
+  margin: 0 5px;
+  background-color: #888;
+  display: inline-block;
+  border-radius: 3px;
+  transition: background-color 0.3s;
+}
+
+.dot-caj:hover,
+.dot-caj.active {
+  background-color: white;
+}
+
+
+/* ==========================================
+   MENÚ SUPERIOR Y BOTÓN HAMBURGUESA
+========================================== */
+.menu {
+  display: flex;
+  top: 0;
+  left: 0;
+  padding: 0 2rem;
+  width: 100%;
+  height: 60px;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1000;
+}
+
+.logo {
+  height: 45px;
+  width: auto;
+}
+
+.icono-user {
+  height: 45px;
+  width: auto;
+  margin-left: 15px;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+}
+
+/* ==========================================
+   MENÚ DESPLEGABLE DE PERFIL DE USUARIO
+========================================== */
+.perfil-nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+}
+
+.perfil-usuario {
+  display: flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+}
+
+.nombre-usuario {
+  color: white;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 13px;
+  margin-right: 10px;
+}
+
+.icono-user {
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 60px;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  list-style: none;
+  padding: 8px 0;
+  margin: 0;
+  border-radius: 8px;
+  border: 2px solid #00ffe1;
+  z-index: 1002;
+  width: 160px;
+  box-shadow: 0 0 12px #00ffe1;
+}
+
+.perfil-usuario:hover .dropdown-menu,
+.dropdown-menu:hover {
+  display: block;
+}
+
+.dropdown-menu li {
+  padding: 8px 15px;
+}
+
+.dropdown-menu li a {
+  color: white;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 10px;
+  text-decoration: none;
+  display: block;
+  transition: all 0.3s ease;
+  border-radius: 5px;
+}
+
+.dropdown-menu li a:hover {
+  border: 1px solid #00ffe1;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+
+/* ==========================================
+   CARRUSEL DE FONDO
+========================================== */
+.carousel {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  overflow: hidden;
+  z-index: -10;
+  top: 0;
+  left: 0;
+}
+
+.carousel-1 {
+  display: flex;
+  width: calc(100vw * 4);
+  animation: carrusel 120s linear infinite;
+}
+
+.carousel-a {
+  width: 100vw;
+  height: 100vh;
+  flex-shrink: 0;
+}
+
+.carousel-a img {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+}
+
+@keyframes carrusel {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-100vw * 2)); }
+}
+
+/* ==========================================
+   Carrusel de plataformas de emulación
+========================================== */
+.container-emulador {
+  width: 50vw; /* 50% del ancho del viewport */
+  height: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* centra horizontal y vertical */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  padding: 10px;
+}
+
+
+.container-emulador .mySlides {
+  display: none;
+}
+
+.container-emulador .mySlides img {
+  width: 100%;
+  height: auto;
+}
+
+.container-emulador .elements {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.container-emulador .quadrate {
+  cursor: pointer;
+  height: 4px;
+  width: 50px;
+  margin: 0 2px;
+  background-color: #717171;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+  border-radius: 2px;
+}
+
+.container-emulador .active,
+.container-emulador .quadrate:hover {
+  background-color: #fff;
+}
+
+@media screen and (max-width: 900px) {
+  .container-emulador {
+    width: 90%;
+  }
+}
+
+/* ==========================================
+arcade NES
+============================================= */
+.arcade-nes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding-top: 80px;
+  background-image: url('../fotos/arcadenes.png');
+  background-size: 30vw auto;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  text-align: center;
+  gap: 25px;
+  zoom: 1.1; /* Ajusta esto según necesidad */
+}
+
+.canvas-pantalla {
+  display: flex;
+  justify-content: center;
+}
+
+canvas#pantalla {
+  background: black;
+  border: 4px solid #00ffe1;
+  box-shadow: 0 0 20px #00ffe1;
+  image-rendering: pixelated;
+  width: 512px;  /* Doble tamaño para mejor visualización */
+  height: 480px;
+}
+
+.selector-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+
+#romSelector {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 16px;
+  padding: 24px 32px;
+  background-color: black;
+  color: #00ffe1;
+  border: 2px solid #00ffe1;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #00ffe1;
+  width: 512px; /* igual que el canvas */
+  text-align: center;
+}
+
+.boton-emulador {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.boton-emulador button {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 14px;
+  background-color: black;
+  color: #00ffe1;
+  border: 2px solid #00ffe1;
+  padding: 20px 28px; /* ← altura aumentada */
+  border-radius: 12px;
+  box-shadow: 0 0 12px #00ffe1;
+  cursor: pointer;
+  transition: 0.3s;
+  min-width: 220px;
+  text-align: center;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.btn-pantalla {
+  min-width: 260px; /* más largo */
+  padding: 22px 32px;
+}
+
+.boton-emulador button:hover {
+  background-color: #00ffe1;
+  color: black;
+  box-shadow: 0 0 20px #00ffe1;
+}
+
+.titulo-emulador {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 24px;
+  color: #00ffe1;
+  text-align: center;
+  margin-top: 100px;
+  text-shadow: 0 0 10px #00ffe1;
+}
+
+#maindiv {
+  background-color: black !important;
+  color: #00ffea;
+  border: 4px solid #00ffea;
+  box-shadow: 0 0 25px #00ffea;
+  padding: 30px;
+  border-radius: 15px;
+  max-width: 960px;
+  width: 100%;
+}
+
+
+
+/* ==========================================
+   Flechas de navegación generales (si usas fuera del carrusel)
+========================================== */
+.flecha {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Press Start 2P', cursive;
+  font-size: 22px; /* más grande que antes */
+  color: #00ffe1;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 2px solid #00ffe1;
+  cursor: pointer;
+  z-index: 1010;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  user-select: none;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.flecha:hover {
+  background-color: #00ffe1;
+  color: black;
+  transform: translateY(-50%) scale(1.1); /* animación al hacer hover */
+}
+
+
+.flecha.izquierda {
+  left: -30px; /* acercamos a la imagen */
+}
+
+.flecha.derecha {
+  right: -30px;
+}
+
+/* ==========================================
+   FORMULARIO GENERAL (.wrapper)
+========================================== */
+.wrapper {
+  width: 460px;
+  min-height: 650px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  z-index: 100;
+
+  /* CENTRADO ABSOLUTO */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+.wrapper .title {
+  font-size: 36px;
+  font-weight: 700;
+  text-align: center;
+  padding: 30px 0;
+  color: white;
+  background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+  border-radius: 20px 20px 0 0;
+}
+
+.wrapper form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 30px 40px 60px 40px; /* NUEVO: padding inferior para espacio extra */
+  flex: 1;
+}
+
+
+.wrapper form .field {
+  height: 50px;
+  width: 100%;
+  margin-top: 20px;
+  position: relative;
+}
+
+.wrapper form .field input {
+  height: 100%;
+  width: 100%;
+  outline: none;
+  font-size: 17px;
+  padding-left: 20px;
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  border-radius: 25px;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+.wrapper form .field input:focus,
+form .field input:valid {
+  border: 2px solid #a18cd1;
+}
+
+.wrapper form .field label {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  color: #666;
+  font-weight: 400;
+  font-size: 17px;
+  pointer-events: none;
+  transform: translateY(-50%);
+  transition: all 0.3s ease;
+}
+
+form .field input:focus ~ label,
+form .field input:valid ~ label {
+  top: 0%;
+  font-size: 16px;
+  color: #4158d0;
+  background: #fff;
+  transform: translateY(-50%);
+}
+
+
+/* ==========================================
+   ICONO DE ALERTA TELÉFONO ⚠️
+========================================== */
+.field-alerta {
+  position: relative;
+}
+
+.field-alerta .icono-alerta {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: #ff4f81;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  z-index: 2;
+}
+
+/* ==========================================
+   POPUPS (Clave y Ayuda)
+========================================== */
+#overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  backdrop-filter: blur(2px);
+}
+
+.popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  padding: 25px;
+  width: 350px;
+  z-index: 1001;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+  font-family: 'Press Start 2P', cursive;
+}
+
+.popup-header {
+  background: linear-gradient(135deg, #9d4edd, #7b2cbf);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 15px 15px 0 0;
+  font-weight: bold;
+  font-size: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.popup-body {
+  padding: 15px;
+  font-size: 14px;
+  color: #333;
+  position: relative;
+}
+
+.popup-body input:focus {
+  outline: none;
+  border: 2px solid #9d4edd;
+}
+
+.popup-body input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+/* ==========================================
+   BOTONES PERSONALIZADOS DENTRO DEL POPUP
+========================================== */
+
+/* Grupo del input con botón ℹ️ */
+.popup-input-group {
+  position: relative;
+  margin-top: 15px;
+}
+
+.popup-input-group input {
+  width: 100%;
+  padding: 10px 40px 10px 10px; /* espacio a la derecha para el botón */
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+/* Botón ℹ️ correctamente alineado */
+.popup-btn-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: #2196f3;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+/* Contenedor para separar y centrar el botón REGISTRAR */
+.popup-btn-wrapper {
+  text-align: center;
+  margin-top: 25px;
+}
+
+/* Botón REGISTRAR limpio y sin conflictos */
+.popup-btn-submit {
+  all: unset;
+  display: inline-block;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  padding: 12px 30px;
+  border-radius: 25px;
+  font-weight: bold;
+  font-size: 16px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.popup-btn-submit:hover {
+  opacity: 0.9;
+}
+
+/* Botón X elegante y accesible */
+.popup-btn-close {
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+  padding: 5px;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup-btn-close:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ff7aa0;
+  transform: rotate(90deg);
+}
+
+/* ==========================================
+   BOTÓN GENERALES CON CLASE .input-btn
+========================================== */
+input[type="submit"].input-btn,
+button.input-btn {
+  appearance: none;
+  border: none;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: 'Press Start 2P', cursive;
+  text-align: center;
+  width: 100%;
+  height: 40px;
+  line-height: 40px; /* ✅ Centrado vertical */
+  border-radius: 25px;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  transition: opacity 0.3s ease;
+}
+
+input[type="submit"].input-btn:hover,
+button.input-btn:hover {
+  opacity: 0.9;
+}
+
+/* ==========================================
+   MEDIA QUERIES
+========================================== */
+@media screen and (max-width: 480px) {
+  .wrapper {
+    width: 90%;
+  }
+
+  .popup {
+    width: 90%;
+  }
+
+  .popup-btn-submit {
+    width: 100%;
+    padding: 12px 20px; /* aseguramos buen toque en móvil */
+    font-size: 15px;
+  }
+}
+
+
+/* ==========================================
+   ENLACE DE CAMBIO DE ROL (USUARIO/ADMIN)
+========================================== */
+.registro-link {
+  text-align: center;
+  margin-top: 20px;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 14px;
+  color: #333;
+}
+
+.registro-link a {
+  color: #9d4edd;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.registro-link a:hover {
+  text-decoration: underline;
+}
+
+.pass-link a {
+  display: block;
+  color: #9d4edd;
+  text-decoration: none;
+  margin-top: 5px; /* separación entre enlaces */
+  font-size: 13px;
+  font-family: 'Press Start 2P', cursive;
+}
+
+.pass-link a:hover {
+  text-decoration: underline;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  gap: 5px;
+}
+
+/* ==========================================
+   SIDEBAR DEL DASHBOARD
+========================================== */
+.sidebar {
+  width: 220px;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 20px;
+  box-shadow: 4px 0 10px rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  z-index: 100;
+}
+
+.sidebar h2 {
+  margin-bottom: 20px;
+  font-size: 16px;
+  color: #ffccff;
+}
+
+.sidebar button,
+.sidebar a {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 13px;
+  text-align: left;
+  cursor: pointer;
+  transition: 0.3s;
+  font-family: 'Press Start 2P', cursive;
+}
+
+.sidebar button:hover,
+.sidebar a:hover {
+  color: #ff4f81;
+  transform: scale(1.02);
+}
+
+/* ==========================================
+   ÁREA PRINCIPAL DEL DASHBOARD
+========================================== */
+.main {
+  margin-left: 240px;
+  padding: 30px;
+  height: 100vh;
+  overflow-y: auto;
+  color: white;
+}
+
+/* ==========================================
+   SECCIONES DEL CONTENIDO
+========================================== */
+.content-section {
+  display: none;
+}
+
+.active-section {
+  display: block;
+}
+
+/* ==========================================
+   ESTILOS PARA TITULARES Y TABLAS
+========================================== */
+.main h1, .main h2 {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.main table {
+  width: 100%;
+  border-collapse: collapse;
+  background: rgba(255,255,255,0.1);
+  color: white;
+}
+
+.main table th,
+.main table td {
+  padding: 10px;
+  border: 1px solid rgba(255,255,255,0.2);
+  font-size: 12px;
+}
+
+/* ======================================================
+   PARA AQUELLAS CARACTRESITICAS QUE NO SON OBLICATORIAS 
+   SE USARA ESTE CODIGO
+====================================================== */
+/* Permitir animación como si fuera required */
+form .field input.requiredop:not(:placeholder-shown) ~ label {
+  top: 0%;
+  font-size: 16px;
+  color: #4158d0;
+  background: #fff;
+  transform: translateY(-50%);
+}
+
