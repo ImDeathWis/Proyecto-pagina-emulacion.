@@ -122,7 +122,14 @@ Una VPN crea una conexión segura desde fuera hacia la red interna, como si estu
 * Para acceder al DNS o servidor web de forma segura.
 
 ### 🔧 Lo que configuramos:
+<br>
+![Captura de pantalla 2025-05-15 223304](https://github.com/user-attachments/assets/fe452bc7-d084-4a3f-9922-7081ce951b97)
+![Captura de pantalla 2025-05-15 223332](https://github.com/user-attachments/assets/0c9e1e54-d1f0-4550-a25a-90a0fe468a73)
+![Captura de pantalla 2025-05-15 222525](https://github.com/user-attachments/assets/40d6d63f-c4f1-4c60-9a47-970de8a486fa)
+![Captura de pantalla 2025-05-15 222452](https://github.com/user-attachments/assets/c4750982-c602-420d-8dcf-4a8982dc633f)
+![Captura de pantalla 2025-05-15 222506](https://github.com/user-attachments/assets/b0d7d48c-0eb4-42e7-a1ef-b3fbcd05443c)
 
+<br>
 * VPN con red: `10.81.0.0/16`
 * Red interna accesible: `192.168.6.0/24`
 * Puerto: `10443`
@@ -145,8 +152,13 @@ Ngrok permite acceder a un servidor interno sin tener que abrir puertos, creando
 ### 🔧 Lo que hicimos:
 
 * Instalamos ngrok en el servidor Apache
+![Captura de pantalla 2025-05-19 090139](https://github.com/user-attachments/assets/a19f5d68-7b17-484f-9bf6-f2f9d355194e)
 * Ejecutamos: `ngrok http 8081`
+![Captura de pantalla 2025-05-19 090416](https://github.com/user-attachments/assets/7eba39e4-15a0-411d-95dd-9f3fd765d97c)
 * Obtenemos una URL pública temporal para acceder a Apache desde fuera
+![Captura de pantalla 2025-05-19 090546](https://github.com/user-attachments/assets/e878061b-f0e9-4c3e-af8c-649fbda02c1b)
+![f4d62818-b378-4891-a9dc-6f52816f71a7](https://github.com/user-attachments/assets/05811cd3-c2b5-4532-9a6c-71bd84eb8a49)
+
 
 ---
 
