@@ -1,5 +1,6 @@
+[VOLVER ATRÁS](https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/README.md)
+
 # ✅ Proyecto: Plataforma de Emulación de Videojuegos Retro en Docker  
-<a href="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/README.md" target="_blank">Haz clic aquí Para Volver a la Página Original</a>
 
 ## 📌 Fase 1: Planificación y Preparación  
 - [ ] Definir el alcance y objetivos principales del proyecto.  
