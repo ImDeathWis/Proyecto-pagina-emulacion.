@@ -1,3 +1,5 @@
+[VOLVER ATRÁS](https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/README.md)
+
 # 🕹️ Compilación de MAME en WebAssembly (WASM) desde Ubuntu
 
 Este documento detalla el proceso, incidencias y soluciones al compilar MAME para WebAssembly usando Emscripten desde Ubuntu, tras un intento fallido inicial en MSYS2/MinGW64.
