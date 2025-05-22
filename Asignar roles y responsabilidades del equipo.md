@@ -36,21 +36,26 @@ Cada integrante del equipo deberá:
 
 ---
 
-## 👥 Luis Miguel Gutiérrez: Red, Servicios de Infraestructura y Página Web
+## 👥 Luis Miguel Gutiérrez: Red, Servicios de Infraestructura y Desarrollo Web
 
 - **Servidor DNS con Bind9**  
   - Instalación y configuración completa de Bind9 para resolución de nombres y subdominios.  
 
 - **Servidor DHCP y Firewall con Sophos**  
   - Configuración de reglas, zonas, rangos de IP y acceso remoto mediante SSL VPN Remote Access.  
+  - Exposición de servicios mediante túneles seguros con Ngrok.  
 
-- **Servidor Web con Apache**  
+- **Desarrollo Web y Backend**  
+  - Creación de toda la página web: HTML, CSS, PHP, JavaScript, Python, SQL.  
+  - Lógica de usuario, sistema de roles, formularios, interacción con base de datos y API.  
+  - Integración del frontend con los emuladores.  
+
+- **Servidor Apache**  
   - Instalación, configuración y despliegue de la web junto con Mateo.  
-  - Desarrollo e integración de la interfaz web con los emuladores.  
 
-📚 **Fuentes de Aprendizaje**: Documentación de Bind9, Sophos, Apache, y diseño web.  
+📚 **Fuentes de Aprendizaje**: Documentación de Bind9, Sophos, Apache, diseño web, y desarrollo de backend.  
 
-🧑‍🏫 **Enseñanza a Mateo:** Configuración de red, Bind9, Sophos, desarrollo web e integración de sistemas.
+🧑‍🏫 **Enseñanza a Mateo:** Configuración de red, Bind9, Sophos, desarrollo web completo e integración de sistemas.
 
 ---
 
@@ -59,4 +64,3 @@ Para evitar la pérdida del proyecto y asegurar su disponibilidad:
 ✅ Cada persona mantendrá una copia completa del proyecto en su **Máquina Virtual (MV)**.  
 ✅ Se usará **GitHub** para almacenar y versionar el código.  
 ✅ Se realizarán pruebas individuales antes de la integración final.  
-"""
