@@ -23,10 +23,25 @@ Es la parte donde asignamos direcciones IP a los dispositivos. Se usa una IP par
 ### 🔧 Lo que configuramos:
 
 * Interfaz LAN: `192.168.6.1/24`
+<br>
+![Captura de pantalla 2025-05-15 222630](https://github.com/user-attachments/assets/fbeb8944-2677-4320-b30e-6a7cef0eb255)
+<br>
 * Interfaz WAN: `192.168.0.185` *(IP asignada por el router de casa, puede cambiar dependiendo de dónde se inicie la máquina virtual Sophos)*
+<br>
+![Captura de pantalla 2025-05-15 222651](https://github.com/user-attachments/assets/437f4c31-9e93-431a-9873-4c2dbfd813c7)
+<br>
 * DNS local: `192.168.6.6`
+<br>
+![Captura de pantalla 2025-05-15 222719](https://github.com/user-attachments/assets/3b2b4958-7df5-433f-83c6-d4aed74de6bc)
+<br>
 * Rango DHCP: `192.168.6.100 - 192.168.6.200`
+<br>
+
+<br>
 * Reservas: DNS, Apache y TrueNAS con IP fija
+<br>
+![Captura de pantalla 2025-05-15 222921](https://github.com/user-attachments/assets/212208bc-c333-4edd-8b71-11d297e4ed60)
+<br>
 
 ---
 
@@ -41,8 +56,10 @@ Una ACL es una regla que limita quién puede entrar al panel de administración 
 * Para que sólo ciertas IPs puedan acceder a la configuración.
 * Para evitar que usuarios externos entren sin permiso.
 
-### 🔧 Lo que configuramos:
 
+### 🔧 Lo que configuramos:
+<br>
+![Captura de pantalla 2025-05-15 222110](https://github.com/user-attachments/assets/21e132e0-1908-4d72-9710-e9232313b19b)
 * Permitimos acceso desde una IP concreta: `192.168.0.155` *(es la IP del PC físico real desde el que se quiere acceder a Sophos; si se usa otro PC, esta IP debe cambiarse según el equipo que se utilice)*
 * Habilitamos HTTPS, SSH y el portal VPN para esa IP
 
@@ -59,6 +76,11 @@ Son instrucciones que controlan qué tráfico puede pasar entre diferentes zonas
 * Para dejar navegar a los clientes.
 * Para permitir el uso de servidores internos.
 * Para aceptar conexiones externas específicas (como VPN).
+
+<br>
+![Captura de pantalla 2025-05-15 223509](https://github.com/user-attachments/assets/da1f5043-3d71-4a68-b47a-6b7eab19323c)
+![Captura de pantalla 2025-05-15 223459](https://github.com/user-attachments/assets/7840d184-9666-4b8c-b469-a400f4b79fb5)
+<br>
 
 ### 🔧 Reglas creadas:
 
