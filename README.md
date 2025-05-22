@@ -2,7 +2,7 @@
 
 RetroGold es tu portal para revivir los mejores clásicos de los videojuegos, potenciado por el emulador MAME. Ofrecemos una experiencia única para los amantes de los juegos retro, permitiéndote disfrutar de títulos icónicos que marcaron la época dorada de los salones recreativos.  
 
-<img src="https://github.com/user-attachments/assets/e8d85532-bad1-464d-8d1b-57406362fe65" width="500" height="500">  
+<img src="https://github.com/user-attachments/assets/e8d85532-bad1-464d-8d1b-57406362fe65" width="250" height="250">  
 
 <details><summary><h2><strong>🛠️ Mapa de la Red 🛠️</strong></h2></summary>  
 
