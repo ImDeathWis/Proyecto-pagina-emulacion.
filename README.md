@@ -1,3 +1,4 @@
+
 <details><summary><h1><strong>🎮​👾​🕹️​ RetroGold 🕹️​👾​🎮</strong></h1></summary>  
 
 **RetroGold** es tu portal para revivir los videojuegos clásicos, impulsado por el emulador **MAME**.  
@@ -93,5 +94,97 @@ Los usuarios acceden a una web donde pueden explorar y lanzar juegos clásicos. 
 ### 5️⃣ Acceso por VPN  
 - Uso de **WireGuard** para permitir conexión segura desde una red externa simulada.  
 - Investigación y pruebas realizadas por cuenta propia para asegurar acceso remoto.
+
+</details>  
+
+---
+
+<details><summary><h2><strong>🧰 Tecnologías Utilizadas</strong></h2></summary>  
+
+**Virtualización:**  
+- VirtualBox / VMware  
+- Docker + Portainer o Lazydocker  
+
+**Red y Seguridad:**  
+- Bind9 (DNS)  
+- ISC DHCP Server  
+- Sophos Firewall  
+
+**Emulación y Servidores:**  
+- Apache  
+- RetroArch  
+
+**Desarrollo Web:**  
+- HTML, CSS, JavaScript  
+- C# + WebAssembly (Blazor)  
+- Figma para diseño UI  
+
+**Gestión del Proyecto:**  
+- GitHub (repositorio + documentación)  
+
+</details>  
+
+---
+
+<details><summary><h2><strong>🖥️ Hardware Recomendado</strong></h2></summary>  
+
+### Por máquina virtual (MV):  
+- CPU: 2 núcleos  
+- RAM: 2 GB  
+- Disco: 20 GB SSD  
+- Red: 1 Gbps  
+
+### Para máquina física (host):  
+- CPU: Intel i5/i7 o Ryzen 5/7  
+- RAM: 8–16 GB  
+- Almacenamiento: SSD 256 GB+  
+- Conectividad: Wi-Fi y Ethernet  
+
+</details>  
+
+---
+
+<details><summary><h2><strong>🔌 Servicios a Implementar</strong></h2></summary>  
+
+| Servicio               | Función principal                                  | Herramienta                  |
+|------------------------|---------------------------------------------------|------------------------------|
+| Servidor Web           | Portal de juegos retro                            | Apache                       |
+| DNS                    | Resolución de dominios internos                   | Bind9                        |
+| DHCP                   | Asignación de IPs dinámicas                       | ISC DHCP Server              |
+| Firewall               | Seguridad de la red                               | Sophos Firewall              |
+| Emulación              | Juegos clásicos retro                             | RetroArch                    |
+| Desarrollo Web         | Interfaz web interactiva                          | HTML, CSS, JS, C#, Blazor    |
+| Control de versiones   | Documentación y desarrollo colaborativo           | GitHub                       |
+
+</details>  
+
+---
+
+<details><summary><h2><strong>💽 Sistemas Operativos</strong></h2></summary>  
+
+| Sistema Operativo     | Uso en el Proyecto                 | Versión Recomendada    |
+|-----------------------|------------------------------------|------------------------|
+| Ubuntu Server         | Servidores principales              | 22.04 LTS              |
+| Ubuntu Desktop        | Desarrollo y pruebas gráficas       | 22.04 LTS              |
+| Sophos Firewall OS    | Gestión de seguridad de red         | Sophos XG / UTM        |
+
+</details>  
+
+---
+
+<details><summary><h2><strong>📚 Bibliografía</strong></h2></summary>  
+
+- https://github.com/mamedev/mame  
+- https://github.com/ybootin/mamejs?tab=readme-ov-file  
+- https://www.digitalocean.com/community/tutorials/how-to-install-the-apache-web-server-on-ubuntu-20-04-es  
+- https://www.youtube.com/watch?v=WyR-qPAagLo  
+- https://www.ionos.es/digitalguide/servidores/configuracion/instalar-apache-en-ubuntu/  
+- https://extassisnetwork.com/tutoriales/como-instalar-apache-en-ubuntu/  
+- https://ubuntu.com/server/docs/set-up-an-ftp-server  
+- https://github.com/kabukki/wasm-nes  
+- https://www.php.net/manual/es/function.phpinfo.php  
+- https://github.com/mupen64plus  
+- https://jsnes.org/  
+- https://www.youtube.com/watch?v=nQu4U0r-w-M&list=PLS1R8PLgpkVROGR9dAWw6gtyuq_oA-Z2q&index=6  
 
 </details>  
