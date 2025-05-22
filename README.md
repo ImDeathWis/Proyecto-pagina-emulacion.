@@ -72,7 +72,7 @@ Los usuarios acceden a una web donde pueden explorar y lanzar juegos clásicos. 
 ---
 
 ### 2️⃣ Servidor DNS  
-🔗 [DNS y DHCP](https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/DNSyDHCP.md)  
+🔗 [DNS y DHCP antes del SOPHOS](https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/DNSyDHCP.md)  
 🔗 [DNS integrado con Sophos](https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/DNS%20con%20sophos%20Incluido.md)  
 - Resolución de nombres internos  
 - Subdominios personalizados  
