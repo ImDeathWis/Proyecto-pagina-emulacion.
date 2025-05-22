@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RetroGold - Bienvenido</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles-home.css">
+  <link rel="icon" href="assets/fotos/logo.png" type="image/png">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      width: 100vw;
+      background: url('../assets/fotos/fondo1.jpg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Press Start 2P', cursive;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: cyan;
+      text-shadow: 2px 2px 5px black;
+    }
+
+    .ventana {
+      animation: aparecer 1s ease-in-out forwards;
+      opacity: 0;
+      background-color: rgba(0, 0, 0, 0.8);
+      border: 4px solid #00ffe1;
+      box-shadow: 0 0 20px #00ffe1;
+      padding: 40px;
+      border-radius: 20px;
+      text-align: center;
+      max-width: 600px;
+      width: 90%;
+    }
+
+    h1 {
+      font-size: 20px;
+      margin-bottom: 20px;
+      color: #00ffff;
+    }
+
+    p {
+      font-size: 12px;
+      color: #fff;
+      margin-bottom: 40px;
+    }
+
+    .btn-empezar {
+      background: #ff00c8;
+      color: #00ffff;
+      padding: 20px 30px;
+      border: 4px double #fff;
+      font-size: 14px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: 0.3s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-empezar:hover {
+      background: #00ffff;
+      color: black;
+      box-shadow: 0 0 20px #ff00c8;
+    }
+
+    @keyframes aparecer {
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Carrusel de fondo -->
+  <div class="carousel">
+    <div class="carousel-1">
+      <div class="carousel-a"><img src="assets/fotos/fondo1.jpg" alt=""></div>
+      <div class="carousel-a"><img src="assets/fotos/fondo2.jpg" alt=""></div>
+      <div class="carousel-a"><img src="assets/fotos/fondo1.jpg" alt=""></div>
+      <div class="carousel-a"><img src="assets/fotos/fondo2.jpg" alt=""></div>
+    </div>
+  </div>
+
+  <div class="ventana">
+    <h1>Bienvenido a RetroGold</h1>
+    <p>Revive los clásicos, juega como en los viejos tiempos.</p>
+    <a class="btn-empezar" href="login/login.html">Entrar al Arcade</a>
+  </div>
+
+</body>
+</html>
