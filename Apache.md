@@ -126,4 +126,34 @@ Esto permite acceder correctamente al servidor Apache desde un navegador en la r
 
 </details>
 
+<details><summary><h2>🗃️ Base de Datos del Proyecto: web_retrogold</h2></summary>
+
+Como parte del sistema de gestión de usuarios y roles de RetroGold, se diseñó y configuró una base de datos relacional llamada **`web_retrogold`** utilizando **MariaDB 10.4** y gestionada con **phpMyAdmin**.
+
+### 📐 Estructura General
+
+La base de datos se compone de las siguientes tablas clave:
+
+- **usuarios**: Guarda la información principal de los usuarios registrados. Soporta roles `admin` y `user`.
+- **administradores**: Información extendida sobre usuarios con privilegios elevados. Incluye estado `activo` o `suspendido`.
+- **moderadores**: Encargados de validar las solicitudes de administrador. Guardan contraseña cifrada.
+- **solicitudes_admin**: Recoge los formularios de los usuarios que desean ser administradores. Incluye estado (`pendiente`, `aceptado`, `rechazado`) y la contraseña encriptada que se validará.
+- **claves_validas**: Tabla que contiene claves únicas generadas por moderadores para permitir el acceso restringido. Cada clave tiene un estado (`usada` o no).
+- **mensaje**: Permite intercambiar mensajes simples entre usuarios registrados.
+
+### 🔐 Seguridad
+
+- Las contraseñas de usuarios, moderadores y administradores están cifradas con **bcrypt**.
+- Solo se puede acceder a funciones administrativas usando una clave generada por un moderador y almacenada en `claves_validas`.
+- Todas las tablas están indexadas correctamente con claves primarias y únicas para `correo` y `username` donde corresponde.
+
+### 🧪 Datos de prueba incluidos
+
+Se cargaron registros de prueba para validar el flujo completo del sistema, incluyendo solicitudes pendientes y usuarios ya registrados.
+
+Esta base de datos alimenta todo el sistema de login, solicitudes y gestión de perfiles de RetroGold.
+
+</details>
+
+
 </details>
