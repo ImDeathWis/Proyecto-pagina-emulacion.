@@ -95,9 +95,12 @@ Los usuarios acceden a una web donde pueden explorar y lanzar juegos clásicos. 
 
 ---
 
-### 5️⃣ Acceso por VPN  
-- Uso de **WireGuard** para permitir conexión segura desde una red externa simulada.  
-- Investigación y pruebas realizadas por cuenta propia para asegurar acceso remoto.
+### 5️⃣ Acceso Remoto Seguro
+🔗 [Configuración de TrueNAS](https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/Backup_TrueNAS_Tutorial.md)
+Para simular el acceso externo al entorno de RetroGold, se configuró un sistema VPN basado en **SSL VPN Remote Access**, utilizando el propio firewall **Sophos**.
+Además, para facilitar la apertura de puertos desde redes sin acceso a configuración NAT, se utilizó la herramienta **Ngrok**, lo que permitió exponer servicios locales a través de túneles seguros.
+🔒 Esto proporcionó una conexión cifrada entre el entorno interno y el cliente externo, simulando un acceso remoto real.
+
 
 </details>  
 
