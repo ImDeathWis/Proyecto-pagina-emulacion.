@@ -103,6 +103,22 @@ Los usuarios acceden a una web donde pueden explorar y lanzar juegos clásicos. 
 
 ---
 
+<details><summary><h2><strong>📦 Almacenamiento y Backups con TrueNAS</strong></h2></summary>  
+
+Como parte de la infraestructura, se utilizó **TrueNAS** para gestionar el almacenamiento centralizado y las copias de seguridad del proyecto:  
+
+- 📁 **Servidor de almacenamiento (NAS)** virtualizado en una máquina independiente.  
+- 🛡️ **RAID 5** configurado para tolerancia a fallos y seguridad de datos.  
+- 🔄 **Backups automatizados** de los servicios críticos del sistema (Apache, FTP, configuraciones DNS/DHCP, etc).  
+- 🔗 **Integración vía rsync** desde servidores hacia datasets de TrueNAS.  
+- 👤 Acceso configurado por usuarios y permisos definidos por dataset para asegurar el aislamiento de información.  
+
+🔧 Se realizó la configuración completa desde la interfaz web de TrueNAS, asegurando facilidad de administración y monitoreo.  
+
+</details> 
+
+---
+
 <details><summary><h2><strong>🧰 Tecnologías Utilizadas</strong></h2></summary>  
 
 **Virtualización:**  
