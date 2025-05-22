@@ -61,7 +61,7 @@ https://www.figma.com/proto/8jn705VLBuXTJVUrUUnT1i/Retrogold?node-id=0-1&p=f&t=E
 
 Este documento resume los pasos realizados para instalar y configurar el servidor Apache que aloja la web de **RetroGold**.
 
-</details>
+
 
 <details><summary><h3>📦 Instalación de Apache</h3></summary>
 
@@ -123,5 +123,7 @@ Y se añadió la siguiente línea:
 ```
 
 Esto permite acceder correctamente al servidor Apache desde un navegador en la red local usando el dominio `www.retrogold.com`.
+
+</details>
 
 </details>
