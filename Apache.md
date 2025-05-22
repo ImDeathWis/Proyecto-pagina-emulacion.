@@ -157,3 +157,103 @@ Esta base de datos alimenta todo el sistema de login, solicitudes y gestión de 
 
 
 </details>
+
+<details><summary><h2>💾 Código Fuente del Proyecto y Emuladores Integrados</h2></summary>
+
+### 🌐 Repositorio Web del Proyecto RetroGold
+
+Puedes ver el código fuente completo del sitio web aquí:  
+🔗 [Código Web RetroGold (HTML, CSS, JS, PHP, SQL, Python)](https://github.com/ImDeathWis/Proyecto-pagina-emulacion./tree/main/CODIGOWEB)
+
+# 🧠 Resumen General del Funcionamiento de la Web RetroGold
+
+**RetroGold** es una plataforma web que permite a los usuarios acceder y jugar videojuegos clásicos desde el navegador, además de gestionar un sistema completo de login, roles, administración y verificación mediante claves.
+
+---
+
+## 🎮 Emuladores Retro Integrados
+
+La web ofrece integración directa en el navegador de los siguientes emuladores utilizando **WebAssembly**:
+
+- **JSNES** (NES)  
+- **MAME** (Arcade)  
+- **JSN64** (Nintendo 64)  
+
+📁 Las ROMs están almacenadas localmente y se enlazan dinámicamente desde la interfaz.
+
+---
+
+## 👤 Registro y Gestión de Usuarios
+
+### 📝 `registerUser.html`
+Formulario accesible para cualquier visitante para registrarse como **usuario normal**.  
+- Guarda datos en la tabla `usuarios`.
+- El rol asignado es automáticamente `user`.
+- Acceso a emuladores y perfil.
+
+### 🛂 `registerAdmin.html`
+Formulario para solicitar acceso como **administrador**, pero solo mediante validación posterior.  
+- El solicitante introduce sus datos y una contraseña que se guarda cifrada.
+- La solicitud queda en estado `pendiente` en `solicitudes_admin`.
+
+### 🔐 Verificación mediante Clave
+- Una vez aceptado, el **moderador** genera una clave única que se guarda en `claves_validas`.
+- El aspirante debe verificar su solicitud usando dicha clave para poder convertirse en administrador.
+
+---
+
+## 🔑 Inicio de Sesión (`login.html`)
+- Valida credenciales con la base de datos (`usuarios`, `administradores`, `moderadores`).
+- Redirige según el rol:
+  - `user` ➜ `home.php`
+  - `admin` ➜ `dashboardAdmin.php`
+  - `moderador` ➜ `panelModerador.php` (u otra ruta según configuración)
+
+---
+
+## 🛡️ Roles y Permisos
+
+### 👤 `user`
+- Acceso a juegos, emuladores y su propio perfil.
+- Puede navegar libremente por la interfaz retro.
+
+### 🛠️ `admin`
+- Accede a un panel de administración (`dashboardAdmin.php`).
+- Visualiza usuarios, gestiona contenido, mensajes, y estadísticas.
+- **No puede aprobar solicitudes ni generar claves.**
+
+### 🧑‍⚖️ `moderador`
+- Accede a un panel exclusivo de moderación.
+- Revisa solicitudes desde `solicitudes_admin`.
+- Acepta o rechaza candidatos a administrador.
+- **Genera claves únicas** para validar el acceso de nuevos administradores.
+- Puede ver contraseñas hasheadas y controlar accesos administrativos.
+
+📝 **Resumen:** El **moderador** tiene control sobre el flujo de admisión de administradores. El **administrador** solo tiene acceso a herramientas de gestión interna, sin capacidad de modificar roles ni validar usuarios.
+
+---
+
+## ⚙️ Backend y Aplicación
+
+- Lenguajes usados: HTML, CSS, JS, PHP, SQL, Python.
+- Comunicación entre frontend y backend mediante AJAX y formularios.
+- Uso de PHP para lógica de login, validación de claves, inserciones en base de datos.
+- Base de datos `web_retrogold` con tablas: `usuarios`, `administradores`, `moderadores`, `claves_validas`, `solicitudes_admin`, `mensaje`.
+
+---
+
+✅ Todo el sistema corre sobre Apache en Ubuntu Server con IP estática.  
+🔐 El acceso externo fue simulado mediante **SSL VPN Remote Access** (Sophos) y **Ngrok** para exponer servicios localmente.
+
+
+### 🕹️ Enlaces a Emuladores Integrados
+
+- 🎮 [Emulador JSNES (NES)](https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/JSNES_Error_Report.md)  
+- 🎮 [Emulador MAME (Arcade)](https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/mame_wasm_guia.md)  
+- 🎮 [Emulador JSN64 (Nintendo 64)](https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/n64.md)  
+
+Cada uno de estos emuladores está integrado en la interfaz web, usando WebAssembly para su funcionamiento en el navegador.
+
+</details>
+
+
