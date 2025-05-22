@@ -164,8 +164,8 @@ Esta base de datos alimenta todo el sistema de login, solicitudes y gestión de 
 
 Puedes ver el código fuente completo del sitio web aquí:  
 🔗 [Código Web RetroGold (HTML, CSS, JS, PHP, SQL, Python)](https://github.com/ImDeathWis/Proyecto-pagina-emulacion./tree/main/CODIGOWEB)
-<details>
-# 🧠 Resumen General del Funcionamiento de la Web RetroGold
+
+<details><summary><h2>🧠 Resumen General del Funcionamiento de la Web RetroGold</h2></summary>
 
 **RetroGold** es una plataforma web que permite a los usuarios acceder y jugar videojuegos clásicos desde el navegador, además de gestionar un sistema completo de login, roles, administración y verificación mediante claves.
 
@@ -186,68 +186,59 @@ La web ofrece integración directa en el navegador de los siguientes emuladores 
 ## 👤 Registro y Gestión de Usuarios
 
 ### 📝 `registerUser.html`
-Formulario accesible para cualquier visitante para registrarse como **usuario normal**.  
+- Registro como usuario normal (`user`).
 - Guarda datos en la tabla `usuarios`.
-- El rol asignado es automáticamente `user`.
 - Acceso a emuladores y perfil.
 
 ### 🛂 `registerAdmin.html`
-Formulario para solicitar acceso como **administrador**, pero solo mediante validación posterior.  
-- El solicitante introduce sus datos y una contraseña que se guarda cifrada.
-- La solicitud queda en estado `pendiente` en `solicitudes_admin`.
+- Solicitud de acceso como administrador.
+- La contraseña se guarda cifrada.
+- Queda en estado `pendiente` en `solicitudes_admin`.
 
 ### 🔐 Verificación mediante Clave
-- Una vez aceptado, el **moderador** genera una clave única que se guarda en `claves_validas`.
-- El aspirante debe verificar su solicitud usando dicha clave para poder convertirse en administrador.
+- El moderador acepta la solicitud y genera una clave única (`claves_validas`).
+- El aspirante verifica con esa clave para activarse como administrador.
 
 ---
 
 ## 🔑 Inicio de Sesión (`login.html`)
-- Valida credenciales con la base de datos (`usuarios`, `administradores`, `moderadores`).
+- Valida credenciales desde la base de datos.
 - Redirige según el rol:
   - `user` ➜ `home.php`
   - `admin` ➜ `dashboardAdmin.php`
-  - `moderador` ➜ `panelModerador.php` (u otra ruta según configuración)
+  - `moderador` ➜ `panelModerador.php`
 
 ---
 
 ## 🛡️ Roles y Permisos
 
-### 👤 `user`
-- Acceso a juegos, emuladores y su propio perfil.
-- Puede navegar libremente por la interfaz retro.
+### 👤 Usuario (`user`)
+- Acceso a juegos y perfil.
 
-### 🛠️ `admin`
-- Accede a un panel de administración (`dashboardAdmin.php`).
-- Visualiza usuarios, gestiona contenido, mensajes, y estadísticas.
-- **No puede aprobar solicitudes ni generar claves.**
+### 🛠️ Administrador (`admin`)
+- Panel de gestión interna.
+- No tiene control sobre solicitudes ni claves.
 
-### 🧑‍⚖️ `moderador`
-- Accede a un panel exclusivo de moderación.
-- Revisa solicitudes desde `solicitudes_admin`.
-- Acepta o rechaza candidatos a administrador.
-- **Genera claves únicas** para validar el acceso de nuevos administradores.
-- Puede ver contraseñas hasheadas y controlar accesos administrativos.
+### 🧑‍⚖️ Moderador (`moderador`)
+- Revisión de solicitudes.
+- Acepta, rechaza y genera claves.
+- Ve contraseñas hasheadas.
 
-📝 **Resumen:** El **moderador** tiene control sobre el flujo de admisión de administradores. El **administrador** solo tiene acceso a herramientas de gestión interna, sin capacidad de modificar roles ni validar usuarios.
+📝 **Diferencia:** El moderador controla el acceso administrativo. El administrador solo gestiona contenido interno.
 
 ---
 
 ## ⚙️ Backend y Aplicación
 
-- Lenguajes usados: HTML, CSS, JS, PHP, SQL, Python.
-- Comunicación entre frontend y backend mediante AJAX y formularios.
-- Uso de PHP para lógica de login, validación de claves, inserciones en base de datos.
-- Base de datos `web_retrogold` con tablas: `usuarios`, `administradores`, `moderadores`, `claves_validas`, `solicitudes_admin`, `mensaje`.
+- HTML, CSS, JS, PHP, SQL, Python.
+- AJAX y formularios.
+- Base de datos `web_retrogold` con: `usuarios`, `administradores`, `moderadores`, `claves_validas`, `solicitudes_admin`, `mensaje`.
 
----
+✅ Funciona sobre Apache en Ubuntu Server con IP estática.  
+🔐 Acceso remoto mediante **SSL VPN Remote Access (Sophos)** y **Ngrok**.
 
-✅ Todo el sistema corre sobre Apache en Ubuntu Server con IP estática.  
-🔐 El acceso externo fue simulado mediante **SSL VPN Remote Access** (Sophos) y **Ngrok** para exponer servicios localmente.
-
-
-  
 </details>
+
 ### 🕹️ Enlaces a Emuladores Integrados
 
 - 🎮 [Emulador JSNES (NES)](https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/JSNES_Error_Report.md)  
@@ -257,5 +248,3 @@ Formulario para solicitar acceso como **administrador**, pero solo mediante vali
 Cada uno de estos emuladores está integrado en la interfaz web, usando WebAssembly para su funcionamiento en el navegador.
 
 </details>
-
-
