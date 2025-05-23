@@ -5,7 +5,7 @@
 Una experiencia envolvente para los fans del retro gaming, permitiendo jugar títulos icónicos de los salones recreativos.  
 
 <img src="https://github.com/user-attachments/assets/e8d85532-bad1-464d-8d1b-57406362fe65" width="250" height="250">  
-
+<br>
 🔗 [Core del Proyecto](https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/core_proyecto_Retrogold.md)
 
 ---
@@ -15,6 +15,8 @@ Una experiencia envolvente para los fans del retro gaming, permitiendo jugar tí
 📷 Diagrama general de la red implementada:  
 
 <img src="https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/imagenes/mapa_de_red.jpg" width="960" height="540">  
+
+📄 [Briefing del Proyecto (Resumen)](https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/brifing.md)  
 
 
 </details>  
@@ -176,7 +178,7 @@ Como parte de la infraestructura, se utilizó **TrueNAS** para gestionar el alma
 | DNS                    | Resolución de dominios internos                   | Bind9                        |
 | DHCP                   | Asignación de IPs dinámicas                       | ISC DHCP Server              |
 | Firewall               | Seguridad de la red                               | Sophos Firewall              |
-| Emulación              | Juegos clásicos retro                             | RetroArch                    |
+| Emulación              | Juegos clásicos retro                             | N64, MAME, NES               |
 | Desarrollo Web         | Interfaz web interactiva                          | HTML, CSS, JS, C#, Blazor    |
 | Control de versiones   | Documentación y desarrollo colaborativo           | GitHub                       |
 
