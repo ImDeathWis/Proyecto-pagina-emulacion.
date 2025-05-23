@@ -10,6 +10,9 @@ Este documento recoge toda la configuración básica de un firewall Sophos, pens
 
 ## 🌐 Red y Direccionamiento IP
 
+![Diagrama de SOPHOS y  VPN (con NGROK)](https://github.com/user-attachments/assets/334c944b-c593-4e6c-af04-53a351befa11)
+
+
 ### 📍 ¿Qué es?
 Es la parte donde asignamos direcciones IP a los dispositivos. Se usa una IP para la red interna (LAN) y otra para salir a internet (WAN).
 
