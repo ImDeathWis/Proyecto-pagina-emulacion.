@@ -44,7 +44,9 @@ Una ACL es una regla que limita quién puede entrar al panel de administración 
 * Para evitar que usuarios externos entren sin permiso.
 
 ### 🔧 Lo que configuramos:
-<img src="https://github.com/user-attachments/assets/21e132e0-1908-4d72-9710-e9232313b19b" width="600">  
+
+<img src="https://github.com/user-attachments/assets/21e132e0-1908-4d72-9710-e9232313b19b" width="600"> 
+
 * Permitimos acceso desde una IP concreta: `192.168.0.155`
 * Habilitamos HTTPS, SSH y el portal VPN para esa IP
 
