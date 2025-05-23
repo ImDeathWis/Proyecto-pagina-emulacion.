@@ -153,7 +153,7 @@ Como parte de la infraestructura, se utilizó **TrueNAS** para gestionar el alma
 
 ### Por máquina virtual (MV):  
 - CPU: 2 núcleos  
-- RAM: 2 GB  
+- RAM: 4/8 GB  
 - Disco: 20 GB SSD  
 - Red: 1 Gbps  
 
@@ -174,7 +174,7 @@ Como parte de la infraestructura, se utilizó **TrueNAS** para gestionar el alma
 | Servidor Web           | Portal de juegos retro                            | Apache                       |
 | DNS                    | Resolución de dominios internos                   | Bind9                        |
 | DHCP                   | Asignación de IPs dinámicas                       | ISC DHCP Server              |
-| Firewall               | Seguridad de la red                               | Sophos Firewall              |
+| Firewall               | Seguridad de la red                               | Sophos Firewall, Ngrok       |
 | Emulación              | Juegos clásicos retro                             | N64, MAME, NES               |
 | Desarrollo Web         | Interfaz web interactiva                          | HTML, CSS, JS, C#, Blazor    |
 | Control de versiones   | Documentación y desarrollo colaborativo           | GitHub                       |
