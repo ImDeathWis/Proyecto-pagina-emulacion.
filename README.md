@@ -32,7 +32,7 @@ Una experiencia envolvente para los fans del retro gaming, permitiendo jugar tí
 - **Servidor DHCP:** Asigna direcciones IP automáticamente.  
 - **Firewall (Sophos):** Sistema final elegido para proteger la infraestructura.  
   - Inicialmente se utilizó **pfSense**, pero fue reemplazado por **Sophos Firewall** tras una búsqueda e investigación autónoma.  
-- **VPN (WireGuard):** Implementado para simular el acceso remoto seguro desde otra red.  
+- **VPN (Ngrok):** Implementado para simular el acceso remoto seguro desde otra red.  
 
 📋 [Listado de Tareas del Equipo](https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/Especificar%20listado%20de%20tareas.md)  
 
@@ -49,7 +49,7 @@ Una experiencia envolvente para los fans del retro gaming, permitiendo jugar tí
   Separar roles entre servidores y aplicar medidas de seguridad usando un firewall dedicado.
 
 - 🌐 **Acceso Remoto Seguro**  
-  Implementación de acceso por VPN mediante **WireGuard** para gestionar el entorno desde otra red.
+  Implementación de acceso por VPN mediante **Ngrok** para gestionar el entorno desde otra red.
 
 👥 [Asignación de Roles del Equipo](https://github.com/ImDeathWis/Proyecto-pagina-emulacion./blob/main/Asignar%20roles%20y%20responsabilidades%20del%20equipo.md)  
 
@@ -128,7 +128,6 @@ Como parte de la infraestructura, se utilizó **TrueNAS** para gestionar el alma
 
 **Virtualización:**  
 - VirtualBox / VMware  
-- Docker + Portainer o Lazydocker  
 
 **Red y Seguridad:**  
 - Bind9 (DNS)  
@@ -137,7 +136,9 @@ Como parte de la infraestructura, se utilizó **TrueNAS** para gestionar el alma
 
 **Emulación y Servidores:**  
 - Apache  
-- RetroArch  
+- N64
+- MAME
+- NES  
 
 **Desarrollo Web:**  
 - HTML, CSS, JavaScript  
